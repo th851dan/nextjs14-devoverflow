@@ -107,7 +107,7 @@ const Profile = ({ clerkId, user }: Props) => {
           )}
         />
 
-        <FormField
+        {/*  <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
@@ -186,7 +186,7 @@ const Profile = ({ clerkId, user }: Props) => {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
 
         <div className="mt-7 flex justify-end">
           <Button
