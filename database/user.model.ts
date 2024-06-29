@@ -14,6 +14,7 @@ export interface IUser extends Document {
   saved: Schema.Types.ObjectId[];
   onboarded: boolean;
   joinedAt: Date;
+  preciousNumber: Number;
 }
 
 const UserSchema = new Schema({
@@ -30,6 +31,7 @@ const UserSchema = new Schema({
   saved: [{ type: Schema.Types.ObjectId, ref: "Question" }],
   onboarded: { type: Boolean, default: false },
   joinedAt: { type: Date, default: Date.now },
+  preciousNumber: { type: Number, default: -1, unique: true, require: true },
 });
 
 const User = models.User || model("User", UserSchema);
