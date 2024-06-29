@@ -47,7 +47,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
               {userInfo.user.name}
             </h2>
             <p className="paragraph-regular text-dark200_light800">
-              @{userInfo.user.username}
+              @BKBeta{userInfo.user.preciousNumber.toString()}
             </p>
 
             <div className="mt-5 flex flex-wrap items-center justify-start gap-5">
