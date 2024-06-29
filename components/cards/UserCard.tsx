@@ -13,6 +13,7 @@ interface Props {
     picture: string;
     name: string;
     username: string;
+    preciousNumber: Number;
   };
 }
 
@@ -39,7 +40,7 @@ const UserCard = async ({ user }: Props) => {
             {user.name}
           </h3>
           <p className="body-regular text-dark500_light500 mt-2">
-            @{user.username}
+            @BKBeta{user.preciousNumber.toString()}
           </p>
         </div>
 
