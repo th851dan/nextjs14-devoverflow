@@ -1,14 +1,14 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-import { SignedOut, useAuth } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
 
 import { sidebarLinks } from "@/constants";
+import link from "next/link";
 
 const LeftSidebar = () => {
   const { userId } = useAuth();
@@ -23,11 +23,12 @@ const LeftSidebar = () => {
             pathname === link.route;
 
           if (link.route === "/profile") {
-            if (userId) {
-              link.route = `${link.route}/${userId}`;
-            } else {
-              return null;
-            }
+            // if (userId) {
+            //   link.route = `${link.route}/${userId}`;
+            // } else {
+            //   return null;
+            // }
+            return null;
           }
 
           return (
@@ -57,6 +58,39 @@ const LeftSidebar = () => {
             </Link>
           );
         })}
+        {/* maybe there's a better solution for this here */}
+        <SignedIn>
+          <Link
+            key={"/profile"}
+            href={`${sidebarLinks[4].route}/${userId}`}
+            className={`${
+              pathname.includes("/profile") || pathname === "/profile"
+                ? "primary-gradient rounded-lg text-light-900"
+                : "text-dark300_light900"
+            } flex items-center justify-start gap-4 bg-transparent p-4`}
+          >
+            <Image
+              src={sidebarLinks[4].imgURL}
+              alt={sidebarLinks[4].label}
+              width={20}
+              height={20}
+              className={`${
+                pathname.includes("/profile") || pathname === "/profile"
+                  ? ""
+                  : "invert-colors"
+              }`}
+            />
+            <p
+              className={`${
+                pathname.includes("/profile") || pathname === "/profile"
+                  ? "base-bold"
+                  : "base-medium"
+              } max-lg:hidden`}
+            >
+              {sidebarLinks[4].label}
+            </p>
+          </Link>
+        </SignedIn>
       </div>
 
       <SignedOut>
