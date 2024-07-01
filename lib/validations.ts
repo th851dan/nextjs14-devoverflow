@@ -12,7 +12,7 @@ export const AnswerValidation = z.object({
 
 export const ProfileValidation = z.object({
   name: z.string().min(5).max(50),
-  username: z.string().min(5).max(50),
+  username: z.union([z.string().min(5).max(50), z.literal("")]),
   bio: z.union([z.string().min(5).max(50), z.literal("")]),
   portfolioWebsite: z.union([z.string().url(), z.literal("")]),
   location: z.union([z.string().min(5).max(50), z.literal("")]),
