@@ -8,7 +8,6 @@ import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 
 import { sidebarLinks } from "@/constants";
-import link from "next/link";
 
 const LeftSidebar = () => {
   const { userId } = useAuth();
