@@ -52,7 +52,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
         <div className="flex w-full flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
           <Link
             href={`/profile/${result.author.clerkId}`}
-            className="flex items-center justify-start gap-1"
+            className={`${result.author.isDeleted ? "pointer-events-none" : ""} flex items-center justify-start gap-1`}
           >
             <Image
               src={result.author.picture}
