@@ -13,6 +13,9 @@ import link from "next/link";
 const LeftSidebar = () => {
   const { userId } = useAuth();
   const pathname = usePathname();
+  const isProfileActive =
+    pathname.includes(`/profile/${userId}`) ||
+    pathname === `/profile/${userId}`;
 
   return (
     <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px]">
@@ -64,7 +67,7 @@ const LeftSidebar = () => {
             key={"/profile"}
             href={`${sidebarLinks[4].route}/${userId}`}
             className={`${
-              pathname.includes("/profile") || pathname === "/profile"
+              isProfileActive
                 ? "primary-gradient rounded-lg text-light-900"
                 : "text-dark300_light900"
             } flex items-center justify-start gap-4 bg-transparent p-4`}
@@ -74,17 +77,11 @@ const LeftSidebar = () => {
               alt={sidebarLinks[4].label}
               width={20}
               height={20}
-              className={`${
-                pathname.includes("/profile") || pathname === "/profile"
-                  ? ""
-                  : "invert-colors"
-              }`}
+              className={`${isProfileActive ? "" : "invert-colors"}`}
             />
             <p
               className={`${
-                pathname.includes("/profile") || pathname === "/profile"
-                  ? "base-bold"
-                  : "base-medium"
+                isProfileActive ? "base-bold" : "base-medium"
               } max-lg:hidden`}
             >
               {sidebarLinks[4].label}
