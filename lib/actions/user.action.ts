@@ -27,7 +27,7 @@ import type { BadgeCriteriaType } from "@/types";
 export async function createUser(userData: CreateUserParams) {
   try {
     connectToDatabase();
-    let preciousNumber = await User.countDocuments();
+    const preciousNumber = await User.countDocuments();
     const newUser = await User.create({
       preciousNumber: preciousNumber,
       ...userData,
