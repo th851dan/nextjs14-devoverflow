@@ -65,7 +65,9 @@ const AllAnswers = async ({
                   />
                   <div className="flex flex-col sm:flex-row sm:items-center">
                     <p className="body-semibold text-dark300_light700">
-                      {answer.author.name}
+                      {answer.author.isDeleted
+                        ? "DeletedUser" + answer.author.preciousNumber
+                        : answer.author.name}
                     </p>
                     <p className="small-regular text-light400_light500 ml-0.5 mt-0.5 line-clamp-1">
                       <span className="max-sm:hidden">• answered </span>

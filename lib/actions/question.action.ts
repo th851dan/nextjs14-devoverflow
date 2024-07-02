@@ -158,7 +158,7 @@ export async function getQuestionById(params: GetQuestionByIdParams) {
       .populate({
         path: "author",
         model: User,
-        select: "_id clerkId name picture",
+        select: "_id clerkId name picture preciousNumber isDeleted",
       });
 
     return question;

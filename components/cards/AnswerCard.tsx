@@ -19,6 +19,8 @@ interface Props {
     clerkId: string;
     name: string;
     picture: string;
+    isDeleted: boolean;
+    preciousNumber: number;
   };
   upvotes: number;
   createdAt: Date;
@@ -60,7 +62,11 @@ const AnswerCard = ({
         <Metric
           imgUrl={author.picture}
           alt="user avatar"
-          value={author.name}
+          value={
+            author.isDeleted
+              ? "DeletedUser" + author.preciousNumber
+              : author.name
+          }
           title={` • asked ${getTimestamp(createdAt)}`}
           href={`/profile/${author.clerkId}`}
           textStyles="body-medium text-dark400_light700"

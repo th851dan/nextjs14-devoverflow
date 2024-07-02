@@ -17,6 +17,8 @@ interface QuestionProps {
     name: string;
     picture: string;
     clerkId: string;
+    isDeleted: boolean;
+    preciousNumber: number;
   };
   upvotes: string[];
   views: number;
@@ -69,7 +71,11 @@ const QuestionCard = ({
         <Metric
           imgUrl={author.picture}
           alt="user"
-          value={author.name}
+          value={
+            author.isDeleted
+              ? "DeletedUser" + author.preciousNumber
+              : author.name
+          }
           title={` • asked ${getTimestamp(createdAt)}`}
           href={`/profile/${author.clerkId}`}
           isAuthor
