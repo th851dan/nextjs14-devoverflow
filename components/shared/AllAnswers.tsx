@@ -54,7 +54,7 @@ const AllAnswers = async ({
               <div className="mb-8 flex flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
                 <Link
                   href={`/profile/${answer.author.clerkId}`}
-                  className="flex flex-1 items-start gap-1 sm:items-center"
+                  className={`${answer.author.isDeleted ? "pointer-events-none" : ""} flex flex-1 items-start gap-1 sm:items-center`}
                 >
                   <Image
                     src={answer.author.picture}

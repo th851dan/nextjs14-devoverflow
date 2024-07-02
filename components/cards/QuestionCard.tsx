@@ -77,7 +77,7 @@ const QuestionCard = ({
               : author.name
           }
           title={` • asked ${getTimestamp(createdAt)}`}
-          href={`/profile/${author.clerkId}`}
+          href={author.isDeleted ? undefined : `/profile/${author.clerkId}`}
           isAuthor
           textStyles="body-medium text-dark400_light700"
         />
