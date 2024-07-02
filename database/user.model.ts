@@ -15,6 +15,7 @@ export interface IUser extends Document {
   onboarded: boolean;
   joinedAt: Date;
   preciousNumber: Number;
+  isDeleted: boolean;
 }
 
 const UserSchema = new Schema({
@@ -32,6 +33,7 @@ const UserSchema = new Schema({
   onboarded: { type: Boolean, default: false },
   joinedAt: { type: Date, default: Date.now },
   preciousNumber: { type: Number, default: -1, unique: true, require: true },
+  isDeleted: { type: Boolean, default: false },
 });
 
 const User = models.User || model("User", UserSchema);

@@ -27,7 +27,7 @@ import type { BadgeCriteriaType } from "@/types";
 export async function createUser(userData: CreateUserParams) {
   try {
     connectToDatabase();
-    let preciousNumber = (await User.countDocuments()) + 1;
+    let preciousNumber = await User.countDocuments();
     const newUser = await User.create({
       preciousNumber: preciousNumber,
       ...userData,
@@ -63,9 +63,13 @@ export async function deleteUser(params: DeleteUserParams) {
 
     const { clerkId } = params;
 
-    const user = await User.findOneAndDelete({ clerkId });
+    const deletedUser = await User.findOneAndUpdate(
+      { clerkId },
+      { isDeleted: true },
+      { new: true }
+    );
 
-    if (!user) {
+    if (!deletedUser) {
       throw new Error("User not found");
     }
 
@@ -75,12 +79,12 @@ export async function deleteUser(params: DeleteUserParams) {
     //   "_id"
     // );
 
-    // delete user questions
-    await Question.deleteMany({ author: user._id });
+    // not delete user questions
+    // await Question.deleteMany({ author: user._id });
 
     // TODO: Delete user answers, comments, etc
 
-    const deletedUser = await User.findByIdAndDelete(user._id);
+    // const deletedUser = await User.findByIdAndDelete(user._id);
 
     return deletedUser;
   } catch (error) {
@@ -98,7 +102,9 @@ export async function getUserById(params: { userId: string }) {
     const user = await User.findOne({
       clerkId: userId,
     });
-
+    if (!user) {
+      throw new Error("User not found");
+    }
     return user;
   } catch (error) {
     console.log(error);
@@ -195,7 +201,10 @@ export async function getUserInfo(params: GetUserByIdParams) {
   }
 }
 
-export async function getAllUsers(params: GetAllUsersParams) {
+export async function getAllUsers(
+  params: GetAllUsersParams,
+  noDeletedUsers = true
+) {
   try {
     connectToDatabase();
 
@@ -212,7 +221,7 @@ export async function getAllUsers(params: GetAllUsersParams) {
         { username: { $regex: new RegExp(searchQuery, "i") } },
       ];
     }
-
+    if (noDeletedUsers) query.$and = [{ isDeleted: false }];
     let sortOptions = {};
 
     switch (filter) {
@@ -366,7 +375,7 @@ export async function getUserAnswers(params: GetUserStatsParams) {
       .skip(skipAmount)
       .limit(pageSize)
       .populate("question", "_id title")
-      .populate("author", "_id clerkId name picture");
+      .populate("author", "_id clerkId name picture isDeleted preciousNumber");
 
     const isNext = totalAnswers > skipAmount + userAnswers.length;
 
@@ -395,7 +404,7 @@ export async function getUserQuestions(params: GetUserStatsParams) {
       .skip(skipAmount)
       .limit(pageSize)
       .populate("tags", "_id name")
-      .populate("author", "_id clerkId name picture");
+      .populate("author", "_id clerkId name picture isDeleted preciousNumber");
 
     const isNext = totalQuestions > skipAmount + userQuestions.length;
 

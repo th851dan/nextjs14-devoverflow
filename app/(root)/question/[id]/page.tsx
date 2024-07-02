@@ -62,7 +62,9 @@ const Page = async ({ params, searchParams }: URLProps) => {
               height={22}
             />
             <p className="paragraph-semibold text-dark300_light700">
-              {result.author.name}
+              {result.author.isDeleted
+                ? "DeletedUser" + result.author.preciousNumber
+                : result.author.name}
             </p>
           </Link>
           <div className="flex justify-end">
