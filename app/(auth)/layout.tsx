@@ -3,7 +3,7 @@ import React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Auth — DevOverflow",
+  title: "Auth — BuddyKnows",
 };
 
 export default function AuthLayout({

@@ -21,7 +21,7 @@ import type { SearchParamsProps } from "@/types";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home — DevOverflow",
+  title: "Home — BuddyKnows",
 };
 
 export default async function Home({ searchParams }: SearchParamsProps) {
