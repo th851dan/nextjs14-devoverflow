@@ -24,7 +24,7 @@ export async function generateMetadata({
     ? "DeletedUser" + user.preciousNumber
     : user.username;
   return {
-    title: `${username}'s Profile — DevOverflow`,
+    title: `${username}'s Profile — BuddyKnows`,
   };
 }
 
