@@ -11,7 +11,7 @@ const Page = async () => {
 
   const mongoUser = await getUserByIdWithDelay(
     { userId },
-    process.env.NEXT_PUBLIC_DELAY_TIME
+    process.env.NEXT_PUBLIC_DELAY_TIME_ONBOARDING
   );
   if (mongoUser?.onboarded) redirect("/");
 
