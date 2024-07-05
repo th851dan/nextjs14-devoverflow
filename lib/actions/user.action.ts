@@ -113,7 +113,7 @@ export async function getUserById(params: { userId: string }) {
 
 export async function getUserByIdWithDelay(
   params: { userId: string },
-  delayTime = 2000
+  delayTime = "2000"
 ) {
   try {
     connectToDatabase();
@@ -121,7 +121,7 @@ export async function getUserByIdWithDelay(
     const { userId } = params;
     const sleep = (ms: number) =>
       new Promise((resolve) => setTimeout(resolve, ms));
-    await sleep(delayTime);
+    await sleep(parseInt(delayTime));
     const user = await User.findOne({
       clerkId: userId,
     });

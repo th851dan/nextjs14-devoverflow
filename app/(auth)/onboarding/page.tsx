@@ -9,7 +9,10 @@ const Page = async () => {
   const { userId } = auth();
   if (!userId) return null;
 
-  const mongoUser = await getUserByIdWithDelay({ userId }, 2000);
+  const mongoUser = await getUserByIdWithDelay(
+    { userId },
+    process.env.NEXT_PUBLIC_DELAY_TIME
+  );
   if (mongoUser?.onboarded) redirect("/");
 
   return (
