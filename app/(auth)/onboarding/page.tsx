@@ -3,13 +3,13 @@ import { redirect } from "next/navigation";
 
 import Profile from "@/components/forms/Profile";
 
-import { getUserById } from "@/lib/actions/user.action";
+import { getUserByIdWithDelay } from "@/lib/actions/user.action";
 
 const Page = async () => {
   const { userId } = auth();
   if (!userId) return null;
 
-  const mongoUser = await getUserById({ userId });
+  const mongoUser = await getUserByIdWithDelay({ userId }, 2000);
   if (mongoUser?.onboarded) redirect("/");
 
   return (
