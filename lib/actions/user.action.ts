@@ -98,7 +98,9 @@ export async function getUserById(params: { userId: string }) {
     connectToDatabase();
 
     const { userId } = params;
-
+    const sleep = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
+    await sleep(1000);
     const user = await User.findOne({
       clerkId: userId,
     });
