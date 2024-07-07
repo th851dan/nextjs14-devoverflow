@@ -98,7 +98,30 @@ export async function getUserById(params: { userId: string }) {
     connectToDatabase();
 
     const { userId } = params;
+    const user = await User.findOne({
+      clerkId: userId,
+    });
+    if (!user) {
+      throw new Error("User not found");
+    }
+    return user;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 
+export async function getUserByIdWithDelay(
+  params: { userId: string },
+  delayTime = "2000"
+) {
+  try {
+    connectToDatabase();
+
+    const { userId } = params;
+    const sleep = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
+    await sleep(parseInt(delayTime));
     const user = await User.findOne({
       clerkId: userId,
     });

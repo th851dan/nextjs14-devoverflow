@@ -62,7 +62,7 @@ interface Searchable
 export interface CreateUserParams extends ClerkId {
   name: string;
   username: string;
-  email: string;
+  email_addresses: string[];
   picture: string;
 }
 
