@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-import { SignedIn, auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import { SignedIn } from "@clerk/nextjs";
 
 import Metric from "@/components/shared/Metric";
 import ParseHTML from "@/components/shared/ParseHTML";
