@@ -89,63 +89,66 @@ export async function createQuestion(params: CreateQuestionParams) {
 
 export async function createQuestionDev(params: CreateQuestionParams) {
   try {
-    connectToDatabaseDev();
-
-    const { title, content, tags, path } = params;
-    const admin = await User.findOne({
-      preciousNumber: 0,
-    });
-
-    // create new question
-    const question = await Question.create({
-      title,
-      content,
-      author: admin,
-    });
-
-    const tagDocuments = [];
-    let newTagsCounter = 0;
-
-    // create the tags or get them if they already exist
-    for (const tag of tags) {
-      const isTagAlreadyExist = await Tag.exists({
-        name: { $regex: new RegExp(`^${tag}$`, "i") },
+    const devModels = await connectToDatabaseDev();
+    if (devModels !== null && typeof devModels === "object") {
+      const { userModel, questionModel, tagModel, interactionModel } =
+        devModels;
+      const { title, content, tags, path } = params;
+      const admin = await userModel.findOne({
+        preciousNumber: 0,
       });
 
-      if (!isTagAlreadyExist) newTagsCounter++;
-
-      const existingTag = await Tag.findOneAndUpdate(
-        { name: { $regex: new RegExp(`^${tag}$`, "i") } },
-        { $setOnInsert: { name: tag }, $push: { questions: question._id } },
-        { upsert: true, new: true }
-      );
-
-      tagDocuments.push(existingTag._id);
-    }
-
-    await Question.findByIdAndUpdate(question._id, {
-      $push: { tags: { $each: tagDocuments } },
-    });
-
-    // create an interaction record for the user's ask_question action
-    await Interaction.create({
-      user: admin,
-      action: "ask_question",
-      question: question._id,
-      tags: tagDocuments,
-    });
-
-    // increment author's reputation by +S for creating a question
-    await User.findByIdAndUpdate(admin, { $inc: { reputation: 5 } });
-
-    // increment user's reputation by +S for creating a new tag (S = 3)
-    if (newTagsCounter > 0) {
-      await User.findByIdAndUpdate(admin, {
-        $inc: { reputation: newTagsCounter * 3 },
+      // create new question
+      const question = await questionModel.create({
+        title,
+        content,
+        author: admin,
       });
-    }
 
-    revalidatePath(path);
+      const tagDocuments = [];
+      let newTagsCounter = 0;
+
+      // create the tags or get them if they already exist
+      for (const tag of tags) {
+        const isTagAlreadyExist = await tagModel.exists({
+          name: { $regex: new RegExp(`^${tag}$`, "i") },
+        });
+
+        if (!isTagAlreadyExist) newTagsCounter++;
+
+        const existingTag = await tagModel.findOneAndUpdate(
+          { name: { $regex: new RegExp(`^${tag}$`, "i") } },
+          { $setOnInsert: { name: tag }, $push: { questions: question._id } },
+          { upsert: true, new: true }
+        );
+
+        tagDocuments.push(existingTag._id);
+      }
+
+      await questionModel.findByIdAndUpdate(question._id, {
+        $push: { tags: { $each: tagDocuments } },
+      });
+
+      // create an interaction record for the user's ask_question action
+      await interactionModel.create({
+        user: admin,
+        action: "ask_question",
+        question: question._id,
+        tags: tagDocuments,
+      });
+
+      // increment author's reputation by +S for creating a question
+      await userModel.findByIdAndUpdate(admin, { $inc: { reputation: 5 } });
+
+      // increment user's reputation by +S for creating a new tag (S = 3)
+      if (newTagsCounter > 0) {
+        await userModel.findByIdAndUpdate(admin, {
+          $inc: { reputation: newTagsCounter * 3 },
+        });
+      }
+
+      revalidatePath(path);
+    }
   } catch (error) {
     console.log(error);
     throw error;
