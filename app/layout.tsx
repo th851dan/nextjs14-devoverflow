@@ -26,7 +26,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "BuddyKnows",
   description:
-    "A community-driven platform for asking and answering questions about software development. Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, game development, algorithms, data structures, and more.",
+    "A community-driven platform for asking and answering questions about your student life. Get help, share knowledge, and collaborate with students around you.",
   icons: {
     icon: "/assets/images/site-logo.svg",
   },
