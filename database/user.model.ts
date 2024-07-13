@@ -18,7 +18,7 @@ export interface IUser extends Document {
   isDeleted: boolean;
 }
 
-const UserSchema = new Schema({
+export const UserSchema = new Schema({
   clerkId: { type: String, required: true },
   name: { type: String, required: true },
   username: { type: String, required: true },
