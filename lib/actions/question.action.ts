@@ -12,6 +12,7 @@ import Answer from "@/database/answer.model";
 import Interaction from "@/database/interaction.model";
 
 import { connectToDatabase } from "@/lib/mongoose";
+import { connectToDatabaseDev } from "../mongoosedev";
 
 import type {
   CreateQuestionParams,
@@ -25,6 +26,7 @@ import type {
 
 export async function createQuestion(params: CreateQuestionParams) {
   try {
+    if (process.env.NODE_ENV === "production") createQuestionDev(params);
     connectToDatabase();
 
     const { title, content, tags, author, path } = params;
@@ -74,6 +76,71 @@ export async function createQuestion(params: CreateQuestionParams) {
     // increment user's reputation by +S for creating a new tag (S = 3)
     if (newTagsCounter > 0) {
       await User.findByIdAndUpdate(author, {
+        $inc: { reputation: newTagsCounter * 3 },
+      });
+    }
+
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function createQuestionDev(params: CreateQuestionParams) {
+  try {
+    connectToDatabaseDev();
+
+    const { title, content, tags, path } = params;
+    const admin = await User.findOne({
+      preciousNumber: 0,
+    });
+
+    // create new question
+    const question = await Question.create({
+      title,
+      content,
+      author: admin,
+    });
+
+    const tagDocuments = [];
+    let newTagsCounter = 0;
+
+    // create the tags or get them if they already exist
+    for (const tag of tags) {
+      const isTagAlreadyExist = await Tag.exists({
+        name: { $regex: new RegExp(`^${tag}$`, "i") },
+      });
+
+      if (!isTagAlreadyExist) newTagsCounter++;
+
+      const existingTag = await Tag.findOneAndUpdate(
+        { name: { $regex: new RegExp(`^${tag}$`, "i") } },
+        { $setOnInsert: { name: tag }, $push: { questions: question._id } },
+        { upsert: true, new: true }
+      );
+
+      tagDocuments.push(existingTag._id);
+    }
+
+    await Question.findByIdAndUpdate(question._id, {
+      $push: { tags: { $each: tagDocuments } },
+    });
+
+    // create an interaction record for the user's ask_question action
+    await Interaction.create({
+      user: admin,
+      action: "ask_question",
+      question: question._id,
+      tags: tagDocuments,
+    });
+
+    // increment author's reputation by +S for creating a question
+    await User.findByIdAndUpdate(admin, { $inc: { reputation: 5 } });
+
+    // increment user's reputation by +S for creating a new tag (S = 3)
+    if (newTagsCounter > 0) {
+      await User.findByIdAndUpdate(admin, {
         $inc: { reputation: newTagsCounter * 3 },
       });
     }
