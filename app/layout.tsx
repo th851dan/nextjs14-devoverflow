@@ -39,6 +39,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="c93065fd-a388-4a95-9702-5513a9fa81ec"
+          data-blockingmode="auto"
+          type="text/javascript"
+        ></script>
+      </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         <ClerkProvider
           appearance={{
