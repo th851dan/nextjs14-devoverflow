@@ -1,5 +1,5 @@
 import React from "react";
-
+import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 
 // eslint-disable-next-line camelcase
@@ -39,6 +39,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid={`${process.env.NEXT_PUBLIC_COOKIEBOT_DOMAIN_GROUP_ID}`}
+          data-blockingmode="auto"
+          type="text/javascript"
+        ></Script>
+      </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         <ClerkProvider
           appearance={{
