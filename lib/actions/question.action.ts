@@ -23,10 +23,14 @@ import type {
   QuestionVoteParams,
   RecommendedParams,
 } from "./shared.types";
+import { connectToDatabasePreview } from "../mongoosepreview";
 
 export async function createQuestion(params: CreateQuestionParams) {
   try {
-    if (process.env.NODE_ENV === "production") createQuestionDev(params);
+    if (process.env.NODE_ENV === "production") {
+      createQuestionInSubEnvironment(params, "dev");
+      createQuestionInSubEnvironment(params, "preview");
+    }
     connectToDatabase();
 
     const { title, content, tags, author, path } = params;
@@ -87,9 +91,15 @@ export async function createQuestion(params: CreateQuestionParams) {
   }
 }
 
-export async function createQuestionDev(params: CreateQuestionParams) {
+export async function createQuestionInSubEnvironment(
+  params: CreateQuestionParams,
+  environment: String
+) {
   try {
-    const devModels = await connectToDatabaseDev();
+    const devModels =
+      environment === "dev"
+        ? await connectToDatabaseDev()
+        : await connectToDatabasePreview();
     if (devModels !== null && typeof devModels === "object") {
       const { userModel, questionModel, tagModel, interactionModel } =
         devModels;
