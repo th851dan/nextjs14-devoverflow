@@ -44,7 +44,6 @@ export default function RootLayout({
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid={`${process.env.NEXT_PUBLIC_COOKIEBOT_DOMAIN_GROUP_ID}`}
-          data-blockingmode="auto"
           type="text/javascript"
         ></Script>
       </head>
