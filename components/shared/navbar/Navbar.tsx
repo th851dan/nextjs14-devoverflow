@@ -13,8 +13,8 @@ const Navbar = () => {
       <Link href="/" className="flex items-center gap-1">
         <Image
           src="/assets/images/site-logo.svg"
-          width={23}
-          height={23}
+          width={50}
+          height={50}
           alt="BuddyKnows"
         />
 
@@ -31,7 +31,6 @@ const Navbar = () => {
         <Theme />
         <SignedIn>
           <UserButton
-            afterSignOutUrl="/"
             appearance={{
               elements: {
                 avatarBox: "h-10 w-10",
