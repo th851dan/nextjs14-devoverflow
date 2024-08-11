@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-import { SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -25,7 +25,9 @@ const NavContent = () => {
         const isActive: boolean =
           (pathname.includes(link.route) && link.route.length > 1) ||
           pathname === link.route;
-
+        if (link.route === "/profile") {
+          return null;
+        }
         return (
           <SheetClose asChild key={link.route}>
             <Link
@@ -50,7 +52,42 @@ const NavContent = () => {
           </SheetClose>
         );
       })}
+      <ProfileTab />
     </section>
+  );
+};
+
+const ProfileTab = () => {
+  const { userId } = useAuth();
+  const pathname = usePathname();
+  const isProfileActive =
+    pathname.includes(`/profile/${userId}`) ||
+    pathname === `/profile/${userId}`;
+  return (
+    <SignedIn>
+      <SheetClose asChild>
+        <Link
+          key={"/profile"}
+          href={`${sidebarLinks[4].route}/${userId}`}
+          className={`${
+            isProfileActive
+              ? "primary-gradient rounded-lg text-light-900"
+              : "text-dark300_light900"
+          } flex items-center justify-start gap-4 bg-transparent p-4`}
+        >
+          <Image
+            src={sidebarLinks[4].imgURL}
+            alt={sidebarLinks[4].label}
+            width={20}
+            height={20}
+            className={`${isProfileActive ? "" : "invert-colors"}`}
+          />
+          <p className={`${isProfileActive ? "base-bold" : "base-medium"}`}>
+            {sidebarLinks[4].label}
+          </p>
+        </Link>
+      </SheetClose>
+    </SignedIn>
   );
 };
 
@@ -73,19 +110,19 @@ const Mobile = () => {
         <Link href="/" className="flex items-center gap-1">
           <Image
             src="/assets/images/site-logo.svg"
-            width={23}
-            height={23}
+            width={50}
+            height={50}
             alt="BuddyKnows"
           />
 
           <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
-            Buddy <span className="text-primary-500">Knows</span>
+            Buddy<span className="text-primary-500">Knows</span>
+            <span className="align-top text-xs">Be</span>
+            <span className="align-top text-xs text-primary-500">ta</span>
           </p>
         </Link>
         <div>
-          <SheetClose asChild>
-            <NavContent />
-          </SheetClose>
+          <NavContent />
 
           <SignedOut>
             <div className="flex flex-col gap-3">
