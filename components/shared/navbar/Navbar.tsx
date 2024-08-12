@@ -21,7 +21,7 @@ const Navbar = () => {
         <p className="h2-bold font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">
           Buddy<span className="text-primary-500">Knows</span>
           <span className="align-top text-xs">Be</span>
-          <span className="text-primary-500 align-top text-xs">ta</span>
+          <span className="align-top text-xs text-primary-500">ta</span>
         </p>
       </Link>
 

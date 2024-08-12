@@ -10,7 +10,7 @@ const Page = async () => {
       <h1 className="h1-bold text-dark100_light900">Privacy Policy</h1>
       <section className="mt-10 flex w-full flex-col gap-4">
         <div className="text-dark100_light900">
-          <p className="text-sm text-gray-500 mb-4">
+          <p className="mb-4 text-sm text-gray-500">
             Last updated: August 08, 2024
           </p>
           <p className="mb-4">
@@ -33,9 +33,9 @@ const Page = async () => {
             .
           </p>
 
-          <div className="toc mb-6">
+          <div className="mb-6">
             <h3 className="text-2xl font-semibold">Table of Contents</h3>
-            <ol className="list-decimal ml-6 mt-4">
+            <ol className="ml-6 mt-4 list-decimal">
               <li>
                 <a
                   href="#interpretation-and-definitions"
@@ -115,7 +115,7 @@ const Page = async () => {
               </li>
               <li>
                 <a href="#childrens-privacy" className="text-primary-500">
-                  Children's Privacy
+                  Children&apos;s Privacy
                 </a>
               </li>
               <li>
@@ -141,12 +141,12 @@ const Page = async () => {
 
           <h2
             id="interpretation-and-definitions"
-            className="text-2xl font-bold mb-4"
+            className="mb-4 text-2xl font-bold"
           >
             Interpretation and Definitions
           </h2>
 
-          <h3 id="interpretation" className="text-xl font-semibold mb-2">
+          <h3 id="interpretation" className="mb-2 text-xl font-semibold">
             Interpretation
           </h3>
           <p className="mb-4">
@@ -156,11 +156,11 @@ const Page = async () => {
             singular or in plural.
           </p>
 
-          <h3 id="definitions" className="text-xl font-semibold mb-2">
+          <h3 id="definitions" className="mb-2 text-xl font-semibold">
             Definitions
           </h3>
           <p className="mb-4">For the purposes of this Privacy Policy:</p>
-          <ul className="list-disc pl-6 mb-4">
+          <ul className="mb-4 list-disc pl-6">
             <li className="mb-2">
               <strong>Account</strong> means a unique account created for You to
               access our Service or parts of our Service.
@@ -168,13 +168,14 @@ const Page = async () => {
             <li className="mb-2">
               <strong>Affiliate</strong> means an entity that controls, is
               controlled by, or is under common control with a party, where
-              "control" means ownership of 50% or more of the shares, equity
-              interest, or other securities entitled to vote for election of
-              directors or other managing authority.
+              &quot;control&quot; means ownership of 50% or more of the shares,
+              equity interest, or other securities entitled to vote for election
+              of directors or other managing authority.
             </li>
             <li className="mb-2">
-              <strong>Company</strong> (referred to as either "the Company",
-              "We", "Us" or "Our" in this Agreement) refers to BuddyKnows.
+              <strong>Company</strong> (referred to as either &quot;the
+              Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot;
+              in this Agreement) refers to BuddyKnows.
             </li>
             <li className="mb-2">
               <strong>Cookies</strong> are small files that are placed on Your
@@ -234,19 +235,19 @@ const Page = async () => {
 
           <h2
             id="collecting-and-using-your-personal-data"
-            className="text-2xl font-bold mb-4"
+            className="mb-4 text-2xl font-bold"
           >
             Collecting and Using Your Personal Data
           </h2>
 
           <h3
             id="types-of-data-collected"
-            className="text-xl font-semibold mb-2"
+            className="mb-2 text-xl font-semibold"
           >
             Types of Data Collected
           </h3>
 
-          <h4 id="personal-data" className="text-lg font-semibold mb-2">
+          <h4 id="personal-data" className="mb-2 text-lg font-semibold">
             Personal Data
           </h4>
           <p className="mb-4">
@@ -255,24 +256,24 @@ const Page = async () => {
             identify You. Personally identifiable information may include, but
             is not limited to:
           </p>
-          <ul className="list-disc pl-6 mb-4">
+          <ul className="mb-4 list-disc pl-6">
             <li className="mb-2">Email address</li>
             <li className="mb-2">First name and last name</li>
             <li className="mb-2">Usage Data</li>
           </ul>
 
-          <h4 id="usage-data" className="text-lg font-semibold mb-2">
+          <h4 id="usage-data" className="mb-2 text-lg font-semibold">
             Usage Data
           </h4>
           <p className="mb-4">
             Usage Data is collected automatically when using the Service.
           </p>
           <p className="mb-4">
-            Usage Data may include information such as Your Device's Internet
-            Protocol address (e.g. IP address), browser type, browser version,
-            the pages of our Service that You visit, the time and date of Your
-            visit, the time spent on those pages, unique device identifiers, and
-            other diagnostic data.
+            Usage Data may include information such as Your Device&apos;s
+            Internet Protocol address (e.g. IP address), browser type, browser
+            version, the pages of our Service that You visit, the time and date
+            of Your visit, the time spent on those pages, unique device
+            identifiers, and other diagnostic data.
           </p>
           <p className="mb-4">
             When You access the Service by or through a mobile device, We may
@@ -290,7 +291,7 @@ const Page = async () => {
 
           <h4
             id="information-from-third-party-social-media-services"
-            className="text-lg font-semibold mb-2"
+            className="mb-2 text-lg font-semibold"
           >
             Information from Third-Party Social Media Services
           </h4>
@@ -298,7 +299,7 @@ const Page = async () => {
             The Company allows You to create an account and log in to use the
             Service through the following Third-party Social Media Services:
           </p>
-          <ul className="list-disc pl-6 mb-4">
+          <ul className="mb-4 list-disc pl-6">
             <li className="mb-2">Google</li>
             <li className="mb-2">Facebook</li>
             <li className="mb-2">Instagram</li>
@@ -308,22 +309,22 @@ const Page = async () => {
           <p className="mb-4">
             If You decide to register through or otherwise grant us access to a
             Third-Party Social Media Service, We may collect Personal data that
-            is already associated with Your Third-Party Social Media Service's
-            account, such as Your name, Your email address, Your activities, or
-            Your contact list associated with that account.
+            is already associated with Your Third-Party Social Media
+            Service&apos;s account, such as Your name, Your email address, Your
+            activities, or Your contact list associated with that account.
           </p>
           <p className="mb-4">
             You may also have the option of sharing additional information with
-            the Company through Your Third-Party Social Media Service's account.
-            If You choose to provide such information and Personal Data, during
-            registration or otherwise, You are giving the Company permission to
-            use, share, and store it in a manner consistent with this Privacy
-            Policy.
+            the Company through Your Third-Party Social Media Service&apos;s
+            account. If You choose to provide such information and Personal
+            Data, during registration or otherwise, You are giving the Company
+            permission to use, share, and store it in a manner consistent with
+            this Privacy Policy.
           </p>
 
           <h4
             id="tracking-technologies-and-cookies"
-            className="text-lg font-semibold mb-2"
+            className="mb-2 text-lg font-semibold"
           >
             Tracking Technologies and Cookies
           </h4>
@@ -334,7 +335,7 @@ const Page = async () => {
             track information and to improve and analyze Our Service. The
             technologies We use may include:
           </p>
-          <ul className="list-disc pl-6 mb-4">
+          <ul className="mb-4 list-disc pl-6">
             <li className="mb-2">
               <strong>Cookies or Browser Cookies.</strong> A cookie is a small
               file placed on Your Device. You can instruct Your browser to
@@ -357,11 +358,11 @@ const Page = async () => {
 
           <h2
             id="use-of-your-personal-data"
-            className="text-2xl font-bold mb-4"
+            className="mb-4 text-2xl font-bold"
           >
             Use of Your Personal Data
           </h2>
-          <ul className="list-disc pl-6 mb-4">
+          <ul className="mb-4 list-disc pl-6">
             <li className="mb-2">
               <strong>To provide and maintain our Service</strong>, including to
               monitor the usage of our Service.
@@ -381,10 +382,10 @@ const Page = async () => {
             <li className="mb-2">
               <strong>To contact You:</strong> To contact You by email,
               telephone calls, SMS, or other equivalent forms of electronic
-              communication, such as a mobile application's push notifications
-              regarding updates or informative communications related to the
-              functionalities, products, or contracted services, including
-              security updates, when necessary or reasonable for their
+              communication, such as a mobile application&apos;s push
+              notifications regarding updates or informative communications
+              related to the functionalities, products, or contracted services,
+              including security updates, when necessary or reasonable for their
               implementation.
             </li>
             <li className="mb-2">
@@ -418,7 +419,7 @@ const Page = async () => {
 
           <h2
             id="retention-of-your-personal-data"
-            className="text-2xl font-bold mb-4"
+            className="mb-4 text-2xl font-bold"
           >
             Retention of Your Personal Data
           </h2>
@@ -440,13 +441,13 @@ const Page = async () => {
 
           <h2
             id="transfer-of-your-personal-data"
-            className="text-2xl font-bold mb-4"
+            className="mb-4 text-2xl font-bold"
           >
             Transfer of Your Personal Data
           </h2>
           <p className="mb-4">
             Your information, including Personal Data, is processed at the
-            Company's operating offices and in any other places where the
+            Company&apos;s operating offices and in any other places where the
             parties involved in the processing are located. It means that this
             information may be transferred to — and maintained on — computers
             located outside of Your state, province, country, or other
@@ -468,7 +469,7 @@ const Page = async () => {
 
           <h2
             id="delete-your-personal-data"
-            className="text-2xl font-bold mb-4"
+            className="mb-4 text-2xl font-bold"
           >
             Delete Your Personal Data
           </h2>
@@ -494,12 +495,12 @@ const Page = async () => {
 
           <h2
             id="disclosure-of-your-personal-data"
-            className="text-2xl font-bold mb-4"
+            className="mb-4 text-2xl font-bold"
           >
             Disclosure of Your Personal Data
           </h2>
 
-          <h3 id="business-transactions" className="text-xl font-semibold mb-2">
+          <h3 id="business-transactions" className="mb-2 text-xl font-semibold">
             Business Transactions
           </h3>
           <p className="mb-4">
@@ -509,7 +510,7 @@ const Page = async () => {
             Privacy Policy.
           </p>
 
-          <h3 id="law-enforcement" className="text-xl font-semibold mb-2">
+          <h3 id="law-enforcement" className="mb-2 text-xl font-semibold">
             Law enforcement
           </h3>
           <p className="mb-4">
@@ -521,7 +522,7 @@ const Page = async () => {
 
           <h3
             id="other-legal-requirements"
-            className="text-xl font-semibold mb-2"
+            className="mb-2 text-xl font-semibold"
           >
             Other legal requirements
           </h3>
@@ -529,7 +530,7 @@ const Page = async () => {
             The Company may disclose Your Personal Data in the good faith belief
             that such action is necessary to:
           </p>
-          <ul className="list-disc pl-6 mb-4">
+          <ul className="mb-4 list-disc pl-6">
             <li className="mb-2">Comply with a legal obligation</li>
             <li className="mb-2">
               Protect and defend the rights or property of the Company
@@ -546,7 +547,7 @@ const Page = async () => {
 
           <h2
             id="security-of-your-personal-data"
-            className="text-2xl font-bold mb-4"
+            className="mb-4 text-2xl font-bold"
           >
             Security of Your Personal Data
           </h2>
@@ -558,8 +559,8 @@ const Page = async () => {
             cannot guarantee its absolute security.
           </p>
 
-          <h2 id="childrens-privacy" className="text-2xl font-bold mb-4">
-            Children's Privacy
+          <h2 id="childrens-privacy" className="mb-4 text-2xl font-bold">
+            Children&apos;s Privacy
           </h2>
           <p className="mb-4">
             Our Service does not address anyone under the age of 13. We do not
@@ -573,17 +574,17 @@ const Page = async () => {
           <p className="mb-4">
             If We need to rely on consent as a legal basis for processing Your
             information and Your country requires consent from a parent, We may
-            require Your parent's consent before We collect and use that
+            require Your parent&apos;s consent before We collect and use that
             information.
           </p>
 
-          <h2 id="links-to-other-websites" className="text-2xl font-bold mb-4">
+          <h2 id="links-to-other-websites" className="mb-4 text-2xl font-bold">
             Links to Other Websites
           </h2>
           <p className="mb-4">
             Our Service may contain links to other websites that are not
             operated by Us. If You click on a third-party link, You will be
-            directed to that third party's site. We strongly advise You to
+            directed to that third party&apos;s site. We strongly advise You to
             review the Privacy Policy of every site You visit.
           </p>
           <p className="mb-4">
@@ -594,7 +595,7 @@ const Page = async () => {
 
           <h2
             id="changes-to-this-privacy-policy"
-            className="text-2xl font-bold mb-4"
+            className="mb-4 text-2xl font-bold"
           >
             Changes to this Privacy Policy
           </h2>
@@ -604,8 +605,8 @@ const Page = async () => {
           </p>
           <p className="mb-4">
             We will let You know via email and/or a prominent notice on Our
-            Service, prior to the change becoming effective and update the "Last
-            updated" date at the top of this Privacy Policy.
+            Service, prior to the change becoming effective and update the
+            &quot;Last updated&quot; date at the top of this Privacy Policy.
           </p>
           <p className="mb-4">
             You are advised to review this Privacy Policy periodically for any
@@ -613,14 +614,14 @@ const Page = async () => {
             posted on this page.
           </p>
 
-          <h2 id="contact-us" className="text-2xl font-bold mb-4">
+          <h2 id="contact-us" className="mb-4 text-2xl font-bold">
             Contact Us
           </h2>
           <p className="mb-4">
             If you have any questions about this Privacy Policy, You can contact
             us:
           </p>
-          <ul className="list-disc pl-6 mb-4">
+          <ul className="mb-4 list-disc pl-6">
             <li className="mb-2">
               By email:{" "}
               <a

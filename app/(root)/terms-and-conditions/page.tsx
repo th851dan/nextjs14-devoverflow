@@ -10,7 +10,7 @@ const Page = async () => {
       <h1 className="h1-bold text-dark100_light900">Terms and Conditions</h1>
       <section className="mt-10 flex w-full flex-col gap-4">
         <div className="text-dark100_light900">
-          <p className="text-sm text-gray-500 mb-4">
+          <p className="mb-4 text-sm text-gray-500">
             Last updated: August 08, 2024
           </p>
           <p className="mb-4">
@@ -36,9 +36,9 @@ const Page = async () => {
             not physically signed by you, and it governs your use of the Website
             and Services.
           </p>
-          <div className="toc mb-6">
+          <div className="mb-6">
             <h3 className="text-2xl font-semibold">Table of Contents</h3>
-            <ol className="list-decimal ml-6 mt-4">
+            <ol className="ml-6 mt-4 list-decimal">
               <li>
                 <a href="#accounts-and-membership" className="text-primary-500">
                   Accounts and Membership
@@ -111,7 +111,7 @@ const Page = async () => {
             </ol>
           </div>
 
-          <h2 id="accounts-and-membership" className="text-2xl font-bold mb-4">
+          <h2 id="accounts-and-membership" className="mb-4 text-2xl font-bold">
             Accounts and Membership
           </h2>
           <p className="mb-4">
@@ -134,7 +134,7 @@ const Page = async () => {
             prevent further registration.
           </p>
 
-          <h2 id="user-content" className="text-2xl font-bold mb-4">
+          <h2 id="user-content" className="mb-4 text-2xl font-bold">
             User Content
           </h2>
           <p className="mb-4">
@@ -158,7 +158,7 @@ const Page = async () => {
             purpose.
           </p>
 
-          <h2 id="backups" className="text-2xl font-bold mb-4">
+          <h2 id="backups" className="mb-4 text-2xl font-bold">
             Backups
           </h2>
           <p className="mb-4">
@@ -173,7 +173,7 @@ const Page = async () => {
             available.
           </p>
 
-          <h2 id="links-to-other-resources" className="text-2xl font-bold mb-4">
+          <h2 id="links-to-other-resources" className="mb-4 text-2xl font-bold">
             Links to Other Resources
           </h2>
           <p className="mb-4">
@@ -191,7 +191,7 @@ const Page = async () => {
             other off-site resources is at your own risk.
           </p>
 
-          <h2 id="prohibited-uses" className="text-2xl font-bold mb-4">
+          <h2 id="prohibited-uses" className="mb-4 text-2xl font-bold">
             Prohibited Uses
           </h2>
           <p className="mb-4">
@@ -219,7 +219,7 @@ const Page = async () => {
 
           <h2
             id="intellectual-property-rights"
-            className="text-2xl font-bold mb-4"
+            className="mb-4 text-2xl font-bold"
           >
             Intellectual Property Rights
           </h2>
@@ -248,7 +248,7 @@ const Page = async () => {
             party trademarks.
           </p>
 
-          <h2 id="indemnification" className="text-2xl font-bold mb-4">
+          <h2 id="indemnification" className="mb-4 text-2xl font-bold">
             Indemnification
           </h2>
           <p className="mb-4">
@@ -262,7 +262,7 @@ const Page = async () => {
             misconduct on your part.
           </p>
 
-          <h2 id="severability" className="text-2xl font-bold mb-4">
+          <h2 id="severability" className="mb-4 text-2xl font-bold">
             Severability
           </h2>
           <p className="mb-4">
@@ -280,7 +280,7 @@ const Page = async () => {
             effect.
           </p>
 
-          <h2 id="dispute-resolution" className="text-2xl font-bold mb-4">
+          <h2 id="dispute-resolution" className="mb-4 text-2xl font-bold">
             Dispute Resolution
           </h2>
           <p className="mb-4">
@@ -297,7 +297,7 @@ const Page = async () => {
             this Agreement.
           </p>
 
-          <h2 id="changes-and-amendments" className="text-2xl font-bold mb-4">
+          <h2 id="changes-and-amendments" className="mb-4 text-2xl font-bold">
             Changes and Amendments
           </h2>
           <p className="mb-4">
@@ -317,7 +317,7 @@ const Page = async () => {
 
           <h2
             id="acceptance-of-these-terms"
-            className="text-2xl font-bold mb-4"
+            className="mb-4 text-2xl font-bold"
           >
             Acceptance of These Terms
           </h2>
@@ -337,7 +337,7 @@ const Page = async () => {
             .
           </p>
 
-          <h2 id="contacting-us" className="text-2xl font-bold mb-4">
+          <h2 id="contacting-us" className="mb-4 text-2xl font-bold">
             Contacting Us
           </h2>
           <p className="mb-4">
@@ -355,7 +355,7 @@ const Page = async () => {
           <p className="mb-4">
             This document was last updated on August 8, 2024
           </p>
-          <p className="madewith">
+          <p>
             <a
               href="https://www.websitepolicies.com/terms-and-conditions-generator?via=madewithbadge"
               className="text-primary-500"
