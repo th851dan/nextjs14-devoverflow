@@ -29,7 +29,7 @@ export async function createUser(userData: CreateUserParams) {
     connectToDatabase();
     const preciousNumber = await User.countDocuments();
     const newUser = await User.create({
-      preciousNumber: preciousNumber,
+      preciousNumber,
       ...userData,
     });
 

@@ -8,7 +8,19 @@ export const connectToDatabase = async () => {
   if (!process.env.MONGODB_URL)
     return console.log("Missing environment variable: MONGODB_URL");
 
-  if (isConnected) return;
+   // Überprüfe den aktuellen Verbindungsstatus
+   console.log("verbindungstatus " + mongoose.connection.readyState)
+   console.log("isConnected " + isConnected )
+    if (mongoose.connection.readyState === 1) {
+    // Bereits verbunden
+    console.log('MongoDB is already connected');
+    return;
+    }  
+
+  if (isConnected) {
+    console.log("check connected")
+    return;
+  }
 
   try {
     await mongoose.connect(process.env.MONGODB_URL, {
