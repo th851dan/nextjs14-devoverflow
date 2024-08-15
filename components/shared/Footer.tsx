@@ -7,26 +7,22 @@ const Footer = () => {
 
 
   return (
-    <section className="background-light900_dark200 pt-30 flex flex-1 flex-col shadow-light-300 dark:shadow-none max-md:pb-14 sm:px-14">
-    <div className="container mx-auto text-center">
-        <div className="mb-4 flex justify-center space-x-6">
-          <Link href="/agb">
-            <p className="text-dark-100 hover:underline dark:text-light-900">Unsere AGB</p>
-          </Link>
+    <section className="background-light900_dark200 mb-12 mt-6 text-center shadow-light-300 dark:shadow-none">
           <Link href="/terms-and-conditions">
-            <p className="text-dark-100 hover:underline dark:text-light-900">Datenschutzerklärung</p>
+            <p className="text-dark-100 hover:underline dark:text-light-900">Terms and Conditions</p>
+          </Link>
+          <Link href="/privacy-policy">
+            <p className="text-dark-100 hover:underline dark:text-light-900">Privacy Policy</p>
           </Link>
           <Link href="/impressum">
             <p className="text-dark-100 hover:underline dark:text-light-900">Impressum</p>
           </Link>
           <Link href="/cookie-declaration">
-            <p className="text-dark-100 hover:underline dark:text-light-900">Hinweise zu Cookies</p>
+            <p className="text-dark-100 hover:underline dark:text-light-900">Cookie Declaration</p>
           </Link>
-        </div>
-        <p className="text-dark-100 hover:underline dark:text-light-900">
+          <p className="text-dark-100 hover:underline dark:text-light-900">
           ©{currentYear} BuddyKnows
         </p>
-    </div>
   </section>
   );
 };

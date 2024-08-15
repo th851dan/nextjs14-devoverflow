@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 
 import { sidebarLinks } from "@/constants";
 
+import Footer from "@/components/shared/Footer";
+
+
 const LeftSidebar = () => {
   const { userId } = useAuth();
   const pathname = usePathname();
@@ -120,6 +123,8 @@ const LeftSidebar = () => {
           </Link>
         </div>
       </SignedOut>
+      
+      <Footer /> 
     </section>
   );
 };
