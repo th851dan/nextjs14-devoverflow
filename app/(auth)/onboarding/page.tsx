@@ -3,8 +3,7 @@ import { redirect } from "next/navigation";
 
 import Profile from "@/components/forms/Profile";
 
-import { getUserById, getUserByIdWithDelay } from "@/lib/actions/user.action";
-import User from "@/database/user.model";
+import { getUserById } from "@/lib/actions/user.action";
 import { ClerkId } from "@/lib/actions/shared.types";
 
 const getMongoUser = async ({ clerkId }: ClerkId) => {

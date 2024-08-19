@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 
 const checkUserCreatedStatus = async (userId: any) => {
