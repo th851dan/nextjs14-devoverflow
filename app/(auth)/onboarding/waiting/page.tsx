@@ -16,20 +16,23 @@ const Page = () => {
   const [isUserCreated, setUserCreated] = useState(false);
 
   useEffect(() => {
-    const timeout = setInterval(async () => {
-      const isCreated = await checkUserCreatedStatus(userId);
-      if (isCreated) {
-        console.log("Yeah");
-      } else {
-        console.log("No Why");
-      }
-      if (isCreated) {
-        setUserCreated(true);
-        clearInterval(timeout);
-      }
-    }, 5000); // Check every 5 seconds
+    const interval = setInterval(
+      async () => {
+        const isCreated = await checkUserCreatedStatus(userId);
+        if (isCreated) {
+          console.log("User exists in DB");
+        } else {
+          console.log("User does not exist in DB");
+        }
+        if (isCreated) {
+          setUserCreated(true);
+          clearInterval(interval);
+        }
+      },
+      parseInt(process.env.NEXT_PUBLIC_TIME_CHECK_USER_EXIST_IN_DB ?? "5000")
+    ); // Check every 5 seconds
 
-    return () => clearInterval(timeout); // Clean up interval on unmount
+    return () => clearInterval(interval); // Clean up interval on unmount
   }, [router]);
 
   useEffect(() => {

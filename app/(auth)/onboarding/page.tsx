@@ -10,7 +10,7 @@ const getMongoUser = async ({ clerkId }: ClerkId) => {
   try {
     return await getUserById({ userId: clerkId });
   } catch (error) {
-    console.error("Error fetching user:", error);
+    console.error("Error fetching user:");
     return null; // Return null if there's an error
   }
 };
