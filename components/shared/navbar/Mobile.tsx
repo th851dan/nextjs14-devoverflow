@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sheet";
 
 import { sidebarLinks } from "@/constants";
+import Footer from "../Footer";
 
 const NavContent = () => {
   const pathname = usePathname();
@@ -110,13 +111,15 @@ const Mobile = () => {
         <Link href="/" className="flex items-center gap-1">
           <Image
             src="/assets/images/site-logo.svg"
-            width={23}
-            height={23}
+            width={50}
+            height={50}
             alt="BuddyKnows"
           />
 
           <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
-            Buddy <span className="text-primary-500">Knows</span>
+            Buddy<span className="text-primary-500">Knows</span>
+            <span className="align-top text-xs">Be</span>
+            <span className="align-top text-xs text-primary-500">ta</span>
           </p>
         </Link>
         <div>
@@ -141,6 +144,7 @@ const Mobile = () => {
               </SheetClose>
             </div>
           </SignedOut>
+          <Footer />
         </div>
       </SheetContent>
     </Sheet>
