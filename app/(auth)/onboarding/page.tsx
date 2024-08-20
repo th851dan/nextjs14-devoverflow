@@ -3,17 +3,27 @@ import { redirect } from "next/navigation";
 
 import Profile from "@/components/forms/Profile";
 
-import { getUserByIdWithDelay } from "@/lib/actions/user.action";
+import { getUserById } from "@/lib/actions/user.action";
+import { ClerkId } from "@/lib/actions/shared.types";
+
+const getMongoUser = async ({ clerkId }: ClerkId) => {
+  try {
+    return await getUserById({ userId: clerkId });
+  } catch (error) {
+    console.error("Error fetching user");
+    return null; // Return null if there's an error
+  }
+};
 
 const Page = async () => {
   const { userId } = auth();
   if (!userId) return null;
+  const mongoUser = await getMongoUser({ clerkId: userId });
+  if (!mongoUser) return <div>Haha</div>;
 
-  const mongoUser = await getUserByIdWithDelay(
-    { userId },
-    process.env.NEXT_PUBLIC_DELAY_TIME_ONBOARDING
-  );
-  if (mongoUser?.onboarded) redirect("/");
+  if (mongoUser.onboarded) {
+    return redirect("/"); // Redirect if user is already onboarded
+  }
 
   return (
     <>

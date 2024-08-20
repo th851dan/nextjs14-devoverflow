@@ -10,8 +10,18 @@ export const AnswerValidation = z.object({
   answer: z.string().min(10),
 });
 
+const nameLengthErrorMap: z.ZodErrorMap = (issue, ctx) => {
+  if (
+    issue.code === z.ZodIssueCode.too_big ||
+    issue.code === z.ZodIssueCode.too_small
+  ) {
+    return { message: "Name must be between 5 and 50 characters." };
+  }
+  return { message: ctx.defaultError };
+};
+
 export const ProfileValidation = z.object({
-  name: z.string().min(5).max(50),
+  name: z.string({ errorMap: nameLengthErrorMap }).min(5).max(50),
   username: z.union([z.string().min(5).max(50), z.literal("")]),
   bio: z.union([z.string().min(5).max(50), z.literal("")]),
   portfolioWebsite: z.union([z.string().url(), z.literal("")]),

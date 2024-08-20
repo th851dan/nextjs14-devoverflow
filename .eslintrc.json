@@ -5,5 +5,8 @@
     "plugin:tailwindcss/recommended",
     "prettier"
   ],
+  "rules": {
+    "react/no-unescaped-entities": "error" // Enable the rule to detect unescaped entities
+  },
   "ignorePatterns": ["/components/ui/*"]
 }

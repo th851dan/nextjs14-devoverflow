@@ -29,7 +29,7 @@ export async function createUser(userData: CreateUserParams) {
     connectToDatabase();
     const preciousNumber = await User.countDocuments();
     const newUser = await User.create({
-      preciousNumber: preciousNumber,
+      preciousNumber,
       ...userData,
     });
 
@@ -92,36 +92,19 @@ export async function deleteUser(params: DeleteUserParams) {
     throw error;
   }
 }
-
+export async function checkUserCreationFlag(userId: string) {
+  try {
+    const user = await getUserById({ userId });
+    return user !== null; // Returns true if user exists, false otherwise
+  } catch (error) {
+    console.error("Error checking user creation flag");
+    return false;
+  }
+}
 export async function getUserById(params: { userId: string }) {
   try {
     connectToDatabase();
-
     const { userId } = params;
-    const user = await User.findOne({
-      clerkId: userId,
-    });
-    if (!user) {
-      throw new Error("User not found");
-    }
-    return user;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-}
-
-export async function getUserByIdWithDelay(
-  params: { userId: string },
-  delayTime = "2000"
-) {
-  try {
-    connectToDatabase();
-
-    const { userId } = params;
-    const sleep = (ms: number) =>
-      new Promise((resolve) => setTimeout(resolve, ms));
-    await sleep(parseInt(delayTime));
     const user = await User.findOne({
       clerkId: userId,
     });
