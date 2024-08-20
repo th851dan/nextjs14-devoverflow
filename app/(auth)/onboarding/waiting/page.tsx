@@ -13,6 +13,7 @@ const checkUserCreatedStatus = async (userId: any) => {
 const Page = () => {
   const router = useRouter();
   const { userId } = useAuth();
+  console.log("authID Clerk is: " + userId);
   console.log("waiting is called" + Date.now());
   useEffect(() => {
     console.log("useEffect is called");
@@ -35,7 +36,7 @@ const Page = () => {
     ); // Check every 5 seconds
 
     return () => clearInterval(interval); // Clean up interval on unmount
-  }, []);
+  }, [userId]);
 
   return <div>Waiting for your account to be set up...</div>;
 };
