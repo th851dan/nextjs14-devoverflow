@@ -10,18 +10,18 @@ const getMongoUser = async ({ clerkId }: ClerkId) => {
   try {
     return await getUserById({ userId: clerkId });
   } catch (error) {
-    console.error("Error fetching user:");
+    console.error("Error fetching user");
     return null; // Return null if there's an error
   }
 };
 
 const Page = async () => {
+  console.log("onboarding is rendered");
   const { userId } = auth();
   if (!userId) return null;
   const mongoUser = await getMongoUser({ clerkId: userId });
-  if (!mongoUser) {
-    return redirect("/onboarding/waiting"); // Redirect if user not found
-  }
+  if (!mongoUser) return <div>Haha</div>;
+  if (mongoUser) console.log("mongoUser is there");
 
   if (mongoUser.onboarded) {
     return redirect("/"); // Redirect if user is already onboarded

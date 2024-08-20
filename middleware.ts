@@ -20,6 +20,23 @@ export default clerkMiddleware((auth, req) => {
   // When user accesses /profile redirects to login or to their own profile
   if (auth().userId && req.nextUrl.pathname === "/profile")
     return NextResponse.redirect(new URL(`/profile/${auth().userId}`, req.url));
+
+  // Fix race condition BO-35
+  if (auth().userId && req.nextUrl.pathname === "/onboarding") {
+    const referer = req.headers.get("referer");
+
+    if (referer) {
+      console.log(`Request was referred from: ${referer}`);
+
+      // Perform logic based on the referer
+      if (referer.includes("/waiting")) {
+        console.log("Request came from the onboarding page");
+        return NextResponse.next();
+      }
+      if (referer === req.nextUrl.href) return NextResponse.next();
+      return NextResponse.redirect(new URL(`/onboarding/waiting`, req.url));
+    }
+  }
 });
 
 export const config = {

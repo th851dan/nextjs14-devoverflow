@@ -101,10 +101,10 @@ export async function deleteUser(params: DeleteUserParams) {
 }
 export async function checkUserCreationFlag(userId: string) {
   try {
-    const user = getUserById({ userId });
+    const user = await getUserById({ userId });
     return user !== null; // Returns true if user exists, false otherwise
   } catch (error) {
-    console.error("Error checking user creation flag:", error);
+    console.error("Error checking user creation flag");
     return false;
   }
 }
