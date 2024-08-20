@@ -21,7 +21,7 @@ const NavContent = () => {
   const pathname = usePathname();
 
   return (
-    <section className="flex h-full flex-col gap-6 pt-16">
+    <section className="flex flex-col gap-6 pt-8">
       {sidebarLinks.map((link) => {
         const isActive: boolean =
           (pathname.includes(link.route) && link.route.length > 1) ||
@@ -106,46 +106,50 @@ const Mobile = () => {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="background-light900_dark200 border-none"
+        className="background-light900_dark200 border-none flex flex-col justify-between"
       >
-        <Link href="/" className="flex items-center gap-1">
-          <Image
-            src="/assets/images/site-logo.svg"
-            width={50}
-            height={50}
-            alt="BuddyKnows"
-          />
+        <SheetClose asChild>
+          <Link href="/" className="flex items-center gap-1">
+            <Image
+              src="/assets/images/site-logo.svg"
+              width={50}
+              height={50}
+              alt="BuddyKnows"
+            />
 
-          <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
-            Buddy<span className="text-primary-500">Knows</span>
-            <span className="align-top text-xs">Be</span>
-            <span className="align-top text-xs text-primary-500">ta</span>
-          </p>
-        </Link>
-        <div>
-          <NavContent />
+            <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
+              Buddy<span className="text-primary-500">Knows</span>
+              <span className="align-top text-xs">Be</span>
+              <span className="align-top text-xs text-primary-500">ta</span>
+            </p>
+          </Link>
+        </SheetClose>
+        <div className="h-[70vh]">
+          <div className="overflow-scroll h-full">
+            <NavContent />
 
-          <SignedOut>
-            <div className="flex flex-col gap-3">
-              <SheetClose asChild>
-                <Link href="/sign-in">
-                  <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-                    <span className="primary-text-gradient">Log In</span>
-                  </Button>
-                </Link>
-              </SheetClose>
+            <SignedOut>
+              <div className="flex flex-col gap-2 mt-5">
+                <SheetClose asChild>
+                  <Link href="/sign-in">
+                    <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+                      <span className="primary-text-gradient">Log In</span>
+                    </Button>
+                  </Link>
+                </SheetClose>
 
-              <SheetClose asChild>
-                <Link href="/sign-up">
-                  <Button className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-                    Sign Up
-                  </Button>
-                </Link>
-              </SheetClose>
-            </div>
-          </SignedOut>
-          <Footer />
+                <SheetClose asChild>
+                  <Link href="/sign-up">
+                    <Button className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+                      Sign Up
+                    </Button>
+                  </Link>
+                </SheetClose>
+              </div>
+            </SignedOut>
+          </div>
         </div>
+        <Footer isInsideSheet={true} />
       </SheetContent>
     </Sheet>
   );
