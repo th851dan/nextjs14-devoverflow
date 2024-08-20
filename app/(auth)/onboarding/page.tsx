@@ -16,12 +16,10 @@ const getMongoUser = async ({ clerkId }: ClerkId) => {
 };
 
 const Page = async () => {
-  console.log("onboarding is rendered");
   const { userId } = auth();
   if (!userId) return null;
   const mongoUser = await getMongoUser({ clerkId: userId });
   if (!mongoUser) return <div>Haha</div>;
-  if (mongoUser) console.log("mongoUser is there");
 
   if (mongoUser.onboarded) {
     return redirect("/"); // Redirect if user is already onboarded

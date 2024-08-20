@@ -26,13 +26,12 @@ export default clerkMiddleware((auth, req) => {
     const referer = req.headers.get("referer");
 
     if (referer) {
-      console.log(`Request was referred from: ${referer}`);
-
       // Perform logic based on the referer
+      // redirected from /onboaring/waiting
       if (referer.includes("/waiting")) {
-        console.log("Request came from the onboarding page");
         return NextResponse.next();
       }
+      // request comes from same page, e.x by clicking submit button
       if (referer === req.nextUrl.href) return NextResponse.next();
       return NextResponse.redirect(new URL(`/onboarding/waiting`, req.url));
     }

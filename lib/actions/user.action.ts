@@ -26,13 +26,6 @@ import type { BadgeCriteriaType } from "@/types";
 
 export async function createUser(userData: CreateUserParams) {
   try {
-    const sleep = (ms: number) =>
-      new Promise((resolve) => setTimeout(resolve, ms));
-    const sleepTime = parseInt(
-      process.env.NEXT_PUBLIC_TIME_CREATE_USER_IN_DB ?? "2000"
-    );
-    console.log("Start creating user in DB in " + sleepTime + " ms");
-    await sleep(sleepTime);
     connectToDatabase();
     const preciousNumber = await User.countDocuments();
     const newUser = await User.create({

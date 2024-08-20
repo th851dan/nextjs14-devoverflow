@@ -13,18 +13,11 @@ const checkUserCreatedStatus = async (userId: any) => {
 const Page = () => {
   const router = useRouter();
   const { userId } = useAuth();
-  console.log("authID Clerk is: " + userId);
-  console.log("waiting is called" + Date.now());
   useEffect(() => {
-    console.log("useEffect is called");
     const interval = setInterval(
       async () => {
         const isCreated = await checkUserCreatedStatus(userId);
-        if (isCreated) {
-          console.log("User exists in DB");
-        } else {
-          console.log("User does not exist in DB");
-        }
+
         if (isCreated) {
           clearInterval(interval);
           console.log("Redirecting to onboarding...");
@@ -32,7 +25,7 @@ const Page = () => {
           router.refresh();
         }
       },
-      parseInt(process.env.NEXT_PUBLIC_TIME_CHECK_USER_EXIST_IN_DB ?? "5000")
+      parseInt(process.env.NEXT_PUBLIC_TIME_CHECK_USER_EXIST_IN_DB ?? "2000")
     ); // Check every 5 seconds
 
     return () => clearInterval(interval); // Clean up interval on unmount
