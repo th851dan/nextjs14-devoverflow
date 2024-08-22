@@ -15,7 +15,7 @@ import {
   getRecommendedQuestions,
 } from "@/lib/actions/question.action";
 
-import { HomePageFilters } from "@/constants/filters";
+import { HomePageFilters, QuestionFilters } from "@/constants/filters";
 
 import type { SearchParamsProps } from "@/types";
 import type { Metadata } from "next";
@@ -74,7 +74,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         <Filter
           filters={HomePageFilters}
           otherClasses="min-h-[56px] sm:min-w-[170px]"
-          containerClasses="hidden max-md:flex"
+          containerClasses="max-md:flex"
         />
       </div>
 
