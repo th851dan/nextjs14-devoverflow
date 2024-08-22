@@ -231,16 +231,18 @@ export async function getAllUsers(
     let sortOptions = {};
 
     switch (filter) {
+      case "top_contributors":
+        sortOptions = { reputation: -1 };
+        break;
       case "new_users":
         sortOptions = { joinedAt: -1 };
         break;
       case "old_users":
         sortOptions = { joinedAt: 1 };
         break;
-      case "top_contributors":
-        sortOptions = { reputation: -1 };
-        break;
+
       default:
+        sortOptions = { reputation: -1 };
         break;
     }
 
@@ -331,6 +333,7 @@ export async function getSavedQuestions(params: GetSavedQuestionParams) {
         sortOptions = { answers: -1 };
         break;
       default:
+        sortOptions = { createdAt: -1 };
         break;
     }
 

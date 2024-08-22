@@ -46,6 +46,7 @@ export async function getAllTags(params: GetAllTagsParams) {
         sortOptions = { createdAt: 1 };
         break;
       default:
+        sortOptions = { questions: -1 };
         break;
     }
 

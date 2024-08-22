@@ -15,7 +15,6 @@ import {
 import { formUrlQuery } from "@/lib/utils";
 
 import type { FilterProps } from "@/types";
-import { useEffect } from "react";
 
 interface Props {
   filters: FilterProps[];
@@ -44,10 +43,6 @@ const Filter = ({
 
     router.push(newUrl, { scroll: false });
   };
-
-  useEffect(() => {
-    handleUpdateParams(filters[0].value);
-  }, []);
 
   return (
     <div className={`relative ${containerClasses}`}>
