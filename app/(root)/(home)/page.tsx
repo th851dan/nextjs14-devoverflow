@@ -15,7 +15,7 @@ import {
   getRecommendedQuestions,
 } from "@/lib/actions/question.action";
 
-import { HomePageFilters, QuestionFilters } from "@/constants/filters";
+import { HomePageFilters } from "@/constants/filters";
 
 import type { SearchParamsProps } from "@/types";
 import type { Metadata } from "next";
