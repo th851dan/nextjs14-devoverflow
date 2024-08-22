@@ -31,7 +31,11 @@ const Page = () => {
     return () => clearInterval(interval); // Clean up interval on unmount
   }, [userId]);
 
-  return <div>Waiting for your account to be set up...</div>;
+  return (
+    <div className="text-dark-100 dark:text-light-900">
+      Waiting for your account to be set up...
+    </div>
+  );
 };
 
 export default Page;
