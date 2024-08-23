@@ -26,6 +26,10 @@ import type { BadgeCriteriaType } from "@/types";
 
 export async function createUser(userData: CreateUserParams) {
   try {
+    const sleep = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
+    console.log("Start waiting " + 2000 + " ms");
+    await sleep(2000);
     connectToDatabase();
     const preciousNumber = await User.countDocuments();
     const newUser = await User.create({
@@ -92,11 +96,18 @@ export async function deleteUser(params: DeleteUserParams) {
     throw error;
   }
 }
-
+export async function checkUserCreationFlag(userId: string) {
+  try {
+    const user = getUserById({ userId });
+    return user !== null; // Returns true if user exists, false otherwise
+  } catch (error) {
+    console.error("Error checking user creation flag:", error);
+    return false;
+  }
+}
 export async function getUserById(params: { userId: string }) {
   try {
     connectToDatabase();
-
     const { userId } = params;
     const user = await User.findOne({
       clerkId: userId,
