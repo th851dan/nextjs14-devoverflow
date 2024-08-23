@@ -194,3 +194,9 @@ export interface GetFormattedSalaryParams {
   currency: string;
   period: string;
 }
+
+export interface GetWhatsappParams  
+extends OptionalPage,
+OptionalPageSize, OptionalFilter,
+OptionalSearch,
+{}
