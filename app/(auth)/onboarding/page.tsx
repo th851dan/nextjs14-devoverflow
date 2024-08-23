@@ -3,15 +3,14 @@ import { redirect } from "next/navigation";
 
 import Profile from "@/components/forms/Profile";
 
-import { getUserById, getUserByIdWithDelay } from "@/lib/actions/user.action";
-import User from "@/database/user.model";
+import { getUserById } from "@/lib/actions/user.action";
 import { ClerkId } from "@/lib/actions/shared.types";
 
 const getMongoUser = async ({ clerkId }: ClerkId) => {
   try {
     return await getUserById({ userId: clerkId });
   } catch (error) {
-    console.error("Error fetching user:", error);
+    console.error("Error fetching user");
     return null; // Return null if there's an error
   }
 };
@@ -20,9 +19,7 @@ const Page = async () => {
   const { userId } = auth();
   if (!userId) return null;
   const mongoUser = await getMongoUser({ clerkId: userId });
-  if (!mongoUser) {
-    return redirect("/onboarding/waiting"); // Redirect if user not found
-  }
+  if (!mongoUser) return <div>Haha</div>;
 
   if (mongoUser.onboarded) {
     return redirect("/"); // Redirect if user is already onboarded

@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 
 const checkUserCreatedStatus = async (userId: any) => {
@@ -13,33 +13,29 @@ const checkUserCreatedStatus = async (userId: any) => {
 const Page = () => {
   const router = useRouter();
   const { userId } = useAuth();
-  const [isUserCreated, setUserCreated] = useState(false);
-
   useEffect(() => {
-    const timeout = setInterval(async () => {
-      const isCreated = await checkUserCreatedStatus(userId);
-      if (isCreated) {
-        console.log("Yeah");
-      } else {
-        console.log("No Why");
-      }
-      if (isCreated) {
-        setUserCreated(true);
-        clearInterval(timeout);
-      }
-    }, 5000); // Check every 5 seconds
+    const interval = setInterval(
+      async () => {
+        const isCreated = await checkUserCreatedStatus(userId);
 
-    return () => clearInterval(timeout); // Clean up interval on unmount
-  }, [router]);
+        if (isCreated) {
+          clearInterval(interval);
+          console.log("Redirecting to onboarding...");
+          router.push("/onboarding");
+          router.refresh();
+        }
+      },
+      parseInt(process.env.NEXT_PUBLIC_TIME_CHECK_USER_EXIST_IN_DB ?? "2000")
+    ); // Check every 5 seconds
 
-  useEffect(() => {
-    if (isUserCreated) {
-      console.log("Redirecting to onboarding...");
-      router.push("/onboarding");
-    }
-  }, [isUserCreated]);
+    return () => clearInterval(interval); // Clean up interval on unmount
+  }, [userId]);
 
-  return <div>Waiting for your account to be set up...</div>;
+  return (
+    <div className="text-dark-100 dark:text-light-900">
+      Waiting for your account to be set up...
+    </div>
+  );
 };
 
 export default Page;

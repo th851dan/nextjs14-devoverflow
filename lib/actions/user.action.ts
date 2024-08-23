@@ -26,10 +26,6 @@ import type { BadgeCriteriaType } from "@/types";
 
 export async function createUser(userData: CreateUserParams) {
   try {
-    const sleep = (ms: number) =>
-      new Promise((resolve) => setTimeout(resolve, ms));
-    console.log("Start waiting " + 2000 + " ms");
-    await sleep(2000);
     connectToDatabase();
     const preciousNumber = await User.countDocuments();
     const newUser = await User.create({
@@ -98,10 +94,10 @@ export async function deleteUser(params: DeleteUserParams) {
 }
 export async function checkUserCreationFlag(userId: string) {
   try {
-    const user = getUserById({ userId });
+    const user = await getUserById({ userId });
     return user !== null; // Returns true if user exists, false otherwise
   } catch (error) {
-    console.error("Error checking user creation flag:", error);
+    console.error("Error checking user creation flag");
     return false;
   }
 }
@@ -109,30 +105,6 @@ export async function getUserById(params: { userId: string }) {
   try {
     connectToDatabase();
     const { userId } = params;
-    const user = await User.findOne({
-      clerkId: userId,
-    });
-    if (!user) {
-      throw new Error("User not found");
-    }
-    return user;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-}
-
-export async function getUserByIdWithDelay(
-  params: { userId: string },
-  delayTime = "2000"
-) {
-  try {
-    connectToDatabase();
-
-    const { userId } = params;
-    const sleep = (ms: number) =>
-      new Promise((resolve) => setTimeout(resolve, ms));
-    await sleep(parseInt(delayTime));
     const user = await User.findOne({
       clerkId: userId,
     });
@@ -259,16 +231,18 @@ export async function getAllUsers(
     let sortOptions = {};
 
     switch (filter) {
+      case "top_contributors":
+        sortOptions = { reputation: -1 };
+        break;
       case "new_users":
         sortOptions = { joinedAt: -1 };
         break;
       case "old_users":
         sortOptions = { joinedAt: 1 };
         break;
-      case "top_contributors":
-        sortOptions = { reputation: -1 };
-        break;
+
       default:
+        sortOptions = { reputation: -1 };
         break;
     }
 
@@ -359,6 +333,7 @@ export async function getSavedQuestions(params: GetSavedQuestionParams) {
         sortOptions = { answers: -1 };
         break;
       default:
+        sortOptions = { createdAt: -1 };
         break;
     }
 

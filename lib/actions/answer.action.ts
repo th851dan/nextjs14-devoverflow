@@ -132,6 +132,7 @@ export async function getAnswers(params: GetAnswersParams) {
         sortOptions = { createdAt: 1 };
         break;
       default:
+        sortOptions = { upvotes: -1 };
         break;
     }
 
