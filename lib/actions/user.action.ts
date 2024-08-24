@@ -23,6 +23,7 @@ import type {
   UpdateUserParams,
 } from "./shared.types";
 import type { BadgeCriteriaType } from "@/types";
+import { waitForDebugger } from "inspector";
 
 export async function createUser(userData: CreateUserParams) {
   try {
@@ -92,6 +93,42 @@ export async function deleteUser(params: DeleteUserParams) {
     throw error;
   }
 }
+
+export async function deleteUserWithFacebook(params: DeleteUserParams) {
+  try {
+    connectToDatabase();
+
+    const { clerkId } = params;
+
+    const questions = await Question.updateMany({author: clerkId}, {$set: {author: "anonym"}});
+
+    const answers = await Answer.updateMany({author: clerkId}, {$set: {author: "anonym"}})
+
+    const user = await  User.findOneAndUpdate(
+      { clerkId },
+      { 
+        name: "",
+        username: "",
+        email_addresses: "",
+        password: "",
+        bio: "",
+        picture: "",
+        location: "",
+        portfolioWebsite: "",
+        reputation: "",
+        isDeleted: true ,
+        deletedAt: Date.now},
+      { new: true }
+    );
+  
+    return {clerkId: clerkId }
+
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 export async function checkUserCreationFlag(userId: string) {
   try {
     const user = await getUserById({ userId });
