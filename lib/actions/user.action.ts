@@ -23,7 +23,7 @@ import type {
   UpdateUserParams,
 } from "./shared.types";
 import type { BadgeCriteriaType } from "@/types";
-import { waitForDebugger } from "inspector";
+import { clerkClient } from '@clerk/nextjs/server'
 
 export async function createUser(userData: CreateUserParams) {
   try {
@@ -94,21 +94,21 @@ export async function deleteUser(params: DeleteUserParams) {
   }
 }
 
-export async function deleteUserWithFacebook(params: DeleteUserParams) {
+export async function deleteUserV2(params: DeleteUserParams) {
   try {
     connectToDatabase();
 
     const { clerkId } = params;
 
-    const questions = await Question.updateMany({author: clerkId}, {$set: {author: "anonym"}});
+  // await Question.updateMany({author: clerkId}, {$set: {author: "anonym"}});
 
-    const answers = await Answer.updateMany({author: clerkId}, {$set: {author: "anonym"}})
+  // await Answer.updateMany({author: clerkId}, {$set: {author: "anonym"}})
 
-    const user = await  User.findOneAndUpdate(
+   await  User.findOneAndUpdate(
       { clerkId },
       { 
-        name: "",
-        username: "",
+        name: "Anonym",
+        username: "Anonym",
         email_addresses: "",
         password: "",
         bio: "",
@@ -120,8 +120,10 @@ export async function deleteUserWithFacebook(params: DeleteUserParams) {
         deletedAt: Date.now},
       { new: true }
     );
+
+    await clerkClient.users.deleteUser(clerkId)
   
-    return {clerkId: clerkId }
+    return {clerkId }
 
   } catch (error) {
     console.log(error);

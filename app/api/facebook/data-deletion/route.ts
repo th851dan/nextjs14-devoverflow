@@ -1,6 +1,6 @@
 import { NextApiResponse, NextApiRequest } from "next";
 import crypto from 'crypto';
-import { deleteUserWithFacebook } from "@/lib/actions/user.action";
+import { deleteUserV2 } from "@/lib/actions/user.action";
 
 const APP_SECRET = process.env.FACEBOOK_APP_SECRET || '';
 
@@ -25,20 +25,20 @@ const parseSignedRequest = (signedRequest: string): any => {
 export const POST = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
 
-    const { signed_request } = await req.body();
+     const  { signedRequest }   = await req.body();
 
-    if(!signed_request) {
+    if(!signedRequest) {
         return res.status(400).json({error: "signed_request error"});
-    }
+    } 
 
-    const data = parseSignedRequest(signed_request);
+    const data = parseSignedRequest(signedRequest);
     const userId = data.user_id;
 
-    const { clerkId } = await deleteUserWithFacebook({
+    const { clerkId } = await deleteUserV2({
         clerkId: userId!,
       });
 
-    const statusUrl = `https://beta.buddyknows.org/api/users/deletion?id=${userId}`;
+    const statusUrl = `https://beta.2hand2chance.com/api/users/deletion-status?id=${userId}`;
     const confirmationCode = clerkId; // Verwende die user_id als Bestätigungscode
 
     const responseData = {
