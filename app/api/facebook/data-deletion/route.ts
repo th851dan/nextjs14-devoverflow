@@ -1,4 +1,4 @@
-import { NextApiResponse, NextApiRequest } from "next";
+import { NextResponse, NextRequest } from "next/server";
 import crypto from 'crypto';
 import { deleteUserV2 } from "@/lib/actions/user.action";
 
@@ -22,13 +22,13 @@ const parseSignedRequest = (signedRequest: string): any => {
     return data;
   };
 
-export const POST = async (req: NextApiRequest, res: NextApiResponse) => {
+export const POST = async (req: NextRequest, res: NextResponse) => {
   try {
 
-     const  { signedRequest }   = await req.body();
+     const  { signedRequest }   = await req.json();
 
     if(!signedRequest) {
-        return res.status(400).json({error: "signed_request error"});
+        return NextResponse.json({error: "signed_request error"});
     } 
 
     const data = parseSignedRequest(signedRequest);
@@ -46,9 +46,9 @@ export const POST = async (req: NextApiRequest, res: NextApiResponse) => {
       confirmation_code: confirmationCode,
     };
 
-    return res.status(200).json(responseData);
+    return NextResponse.json(responseData);
 
   } catch (error: any) {
-    return res.status(400).json({ error: error.message });
+    return NextResponse.json({ error: error.message });
   }
 };
