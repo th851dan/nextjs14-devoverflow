@@ -1,5 +1,4 @@
 import { getUserById } from "@/lib/actions/user.action";
-import { error } from "console";
 import { NextRequest, NextResponse } from "next/server";
 
 
@@ -17,15 +16,18 @@ export const GET = async (req: NextRequest) => {
       });
 
       if(!user) {
-        return NextResponse.json({"Error": "User not found"})
+        return NextResponse.json({
+          "Status": "User not found"})
       }
-  
-      return NextResponse.json({ 
-        "algorithm": "HMAC-SHA256",
-        "expires": user.deletedAt,
-        "issued_at": user.joinedAt,
-        "user_id": userId
-      });
+
+      if(user.isDeleted){
+        return NextResponse.json({ 
+          "user_id": userId,
+          "status": "User was deleted",
+          "delete_at": user.deletedAt
+        });
+      }
+
     
     } catch (error) {
       console.error('Failed to fetch tags:', error);
