@@ -34,15 +34,17 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
     console.log("Start to delete user data: ")
 
-    console.log("Request headers:", req.headers);
+    const bodyText = await req.text();
 
-    console.log("Request body debug:", await req.text());
+    console.log("Raw body text:", bodyText);
 
-    const body = await req.json();
+    // Verwandle den URL-encoded Body in ein Objekt
+    const urlParams = new URLSearchParams(bodyText);
+    const body = Object.fromEntries(urlParams.entries());
+    
+    console.log("Parsed body:", body);
 
-    console.log("Request body:", body);
-
-    const signedRequest  = body.signedRequest;
+    const { signedRequest } = body;
 
     console.log("get signedRequest: ") 
     console.log(signedRequest)
