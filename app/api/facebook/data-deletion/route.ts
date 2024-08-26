@@ -40,11 +40,11 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
     // Verwandle den URL-encoded Body in ein Objekt
     const urlParams = new URLSearchParams(bodyText);
-    const body = Object.fromEntries(urlParams.entries());
-    
-    console.log("Parsed body:", body);
+    // const body = Object.fromEntries(urlParams.entries());
 
-    const { signedRequest } = body;
+    console.log("Parsed body:", urlParams);
+
+    const signedRequest = urlParams.get('signed_request')
 
     console.log("get signedRequest: ") 
     console.log(signedRequest)
