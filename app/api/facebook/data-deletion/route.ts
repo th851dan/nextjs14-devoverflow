@@ -28,22 +28,22 @@ const parseSignedRequest = (signedRequest: string): any => {
     return data;
 };
 
+
 export const POST = async (req: NextRequest, res: NextResponse) => {
   try {
 
-    console.log("Start to delete user data: " + req)
+    console.log("Start to delete user data: ")
 
     console.log(req)
 
      const { signedRequest } = await req.json();
 
-    console.log("get signedRequest: " + signedRequest) 
+    console.log("get signedRequest: ") 
     console.log(signedRequest)
 
-    console.log("print body: " + req.body)
-    console.log(req.body)
 
     if(!signedRequest) {
+        console.log("signed_request error")
         return NextResponse.json({error: "signed_request error"});
     } 
 
@@ -55,12 +55,12 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
     const userId = data.user_id;
 
-    const { clerkId } = await deleteUserV2({
+  /*   const { clerkId } = await deleteUserV2({
         clerkId: userId!,
-      });
+      }); */
 
     const statusUrl = `https://beta.2hand2chance.com/api/users/deletion-status?id=${userId}`;
-    const confirmationCode = clerkId; // Verwende die user_id als Bestätigungscode
+    const confirmationCode = userId; // Verwende die user_id als Bestätigungscode
 
     const responseData = {
       url: statusUrl,
