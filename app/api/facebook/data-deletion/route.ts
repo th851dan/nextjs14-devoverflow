@@ -13,11 +13,17 @@ const parseSignedRequest = (signedRequest: string): any => {
   
     const sig = Buffer.from(encodedSig, 'base64').toString('hex');
     const data = JSON.parse(Buffer.from(payload, 'base64').toString('utf8'));
+
+    console.log("APP_SECRET: " + APP_SECRET);
+
+    console.log("sig: " + sig)
   
     const expectedSig = crypto
       .createHmac('sha256', APP_SECRET)
       .update(payload)
       .digest('hex');
+
+    console.log("expectedSig: " + expectedSig);
   
     if (sig !== expectedSig) {
       throw new Error('Ungültige Signatur des signed_request!');
