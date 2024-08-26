@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import crypto from 'crypto';
-import { deleteUserV2 } from "@/lib/actions/user.action";
+// import { deleteUserV2 } from "@/lib/actions/user.action";
 
 const APP_SECRET = process.env.FACEBOOK_APP_SECRET || '';
 
