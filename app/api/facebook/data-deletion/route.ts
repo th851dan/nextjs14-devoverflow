@@ -29,15 +29,16 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
     console.log(req)
 
-    const  signedRequest  = await req.json();
+     const { signedRequest } = await req.json();
 
-    console.log(signedRequest)
+    console.log(req.body)
 
     if(!signedRequest) {
         return NextResponse.json({error: "signed_request error"});
     } 
 
     const data = parseSignedRequest(signedRequest);
+
     const userId = data.user_id;
 
     const { clerkId } = await deleteUserV2({
