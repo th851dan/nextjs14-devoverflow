@@ -25,7 +25,9 @@ const parseSignedRequest = (signedRequest: string): any => {
 export const POST = async (req: NextRequest, res: NextResponse) => {
   try {
 
-    console.log("Start to delete user data")
+    console.log("Start to delete user data: " + req)
+
+    console.log(req)
 
     const  signedRequest  = await req.json();
 
