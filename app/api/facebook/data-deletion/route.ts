@@ -34,13 +34,14 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
     console.log("Start to delete user data: ")
 
-    console.log(req)
+    const body = await req.json();
 
-     const { signedRequest } = await req.json();
+    console.log("Request body:", body);
+
+    const signedRequest  = body.signedRequest;
 
     console.log("get signedRequest: ") 
     console.log(signedRequest)
-
 
     if(!signedRequest) {
         console.log("signed_request error")
