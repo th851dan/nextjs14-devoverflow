@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import crypto from 'crypto';
 // import { deleteUserV2 } from "@/lib/actions/user.action";
 
-const APP_SECRET = process.env.FACEBOOK_APP_SECRET || '';
+const APP_SECRET = process.env.FB_APP_SECRET || '';
 
 const parseSignedRequest = (signedRequest: string): any => {
     const [encodedSig, payload] = signedRequest.split('.', 2);
