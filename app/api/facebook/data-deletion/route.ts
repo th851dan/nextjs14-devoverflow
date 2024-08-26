@@ -6,6 +6,10 @@ const APP_SECRET = process.env.FACEBOOK_APP_SECRET || '';
 
 const parseSignedRequest = (signedRequest: string): any => {
     const [encodedSig, payload] = signedRequest.split('.', 2);
+
+    console.log("encodedSig: " + encodedSig);
+
+    console.log("payload: " + payload);
   
     const sig = Buffer.from(encodedSig, 'base64').toString('hex');
     const data = JSON.parse(Buffer.from(payload, 'base64').toString('utf8'));
@@ -18,6 +22,8 @@ const parseSignedRequest = (signedRequest: string): any => {
     if (sig !== expectedSig) {
       throw new Error('Ungültige Signatur des signed_request!');
     }
+
+    console.log("encodedData: " + data)
   
     return data;
 };
@@ -31,6 +37,10 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
      const { signedRequest } = await req.json();
 
+    console.log("get signedRequest: " + signedRequest) 
+    console.log(signedRequest)
+
+    console.log("print body: " + req.body)
     console.log(req.body)
 
     if(!signedRequest) {
@@ -38,6 +48,10 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     } 
 
     const data = parseSignedRequest(signedRequest);
+
+
+    console.log("end parseSignedRequest: ")
+    console.log(data)
 
     const userId = data.user_id;
 
@@ -52,6 +66,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       url: statusUrl,
       confirmation_code: confirmationCode,
     };
+
+    console.log("ended to delete data user")
 
     return NextResponse.json(responseData);
 

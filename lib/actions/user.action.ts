@@ -100,6 +100,9 @@ export async function deleteUserV2(params: DeleteUserParams) {
 
     const { clerkId } = params;
 
+
+    console.log("try to update user data on DB")
+
   // await Question.updateMany({author: clerkId}, {$set: {author: "anonym"}});
 
   // await Answer.updateMany({author: clerkId}, {$set: {author: "anonym"}})
