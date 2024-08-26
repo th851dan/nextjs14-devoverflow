@@ -34,6 +34,10 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
     console.log("Start to delete user data: ")
 
+    console.log("Request headers:", req.headers);
+
+    console.log("Request body debug:", await req.text());
+
     const body = await req.json();
 
     console.log("Request body:", body);
