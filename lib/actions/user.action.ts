@@ -473,8 +473,8 @@ export async function getUserByFacebookUserId(params: GetUserByFacebookUserIdPar
   connectToDatabase();
 
   console.log("try to get user with facebookId: ", params.facebookUserId)
-  const users = await User.find({facebookId: params.facebookUserId, isDeleted: false})
+  const user = await User.findOne({facebookId: params.facebookUserId, isDeleted: false})
 
-  return {users}
+  return {user}
 
 }

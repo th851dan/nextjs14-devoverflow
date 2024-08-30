@@ -68,23 +68,22 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
     const facebookUserId = data.user_id;
 
-    const { users } = await getUserByFacebookUserId({
+    const { user } = await getUserByFacebookUserId({
           facebookUserId
     })
 
-    console.log(users)
+    console.log(user)
 
-    if(users) {
-      users.forEach(async user =>{
+    if(user) {
         console.log("try to delete: " + user.clerkId)
         await deleteUserV2({
           clerkId: user.clerkId!,
         });
-      })
+     
     }
 
-    const statusUrl = `https://beta.2hand2chance.com/api/users/deletion-status?id=${users[0]?.clerkId}`;
-    const confirmationCode = users[0]?.clerkId; // Verwende die user_id als Bestätigungscode
+    const statusUrl = `https://beta.2hand2chance.com/api/users/deletion-status?id=${user?.clerkId}`;
+    const confirmationCode = user?.clerkId; // Verwende die user_id als Bestätigungscode
 
     const responseData = {
       url: statusUrl,
