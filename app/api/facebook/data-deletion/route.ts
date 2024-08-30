@@ -69,7 +69,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
     const userId = data.user_id;
 
-    getUserByFacebookUserId({
+    await getUserByFacebookUserId({
       facebookUserId: userId
     })
 
