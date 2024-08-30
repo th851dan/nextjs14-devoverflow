@@ -72,8 +72,11 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
           facebookUserId
     })
 
+    console.log(users)
+
     if(users) {
       users.forEach(async user =>{
+        console.log("try to delete: " + user.clerkId)
         await deleteUserV2({
           clerkId: user.clerkId!,
         });
