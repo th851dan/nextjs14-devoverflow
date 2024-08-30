@@ -57,10 +57,15 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if (eventType === "user.created") {
-    const { id, email_addresses, image_url, username, first_name, last_name } =
+    const { id, email_addresses, image_url, username, first_name, last_name, external_accounts } =
       evt.data;
 
     const parts = email_addresses[0].email_address.split("@");
+ 
+    console.log("check external_accounts")
+    external_accounts.forEach(account => {
+      console.log(account)
+    })
 
     // create a new user in database
     const mongoUser = await createUser({
