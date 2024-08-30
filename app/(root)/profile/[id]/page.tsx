@@ -37,7 +37,25 @@ const Page = async ({ params, searchParams }: URLProps) => {
   if (user.isDeleted) {
     return (
       <>
-        <h1>User not found</h1>
+        <div className="flex flex-col-reverse items-start justify-between sm:flex-row">
+          <div className="flex flex-col items-start gap-4 lg:flex-row">
+            <Image
+              src={userInfo?.user.picture}
+              alt="profile picture"
+              width={140}
+              height={140}
+              className="rounded-full object-cover"
+            />
+
+            <div className="mt-3">
+              <h2 className="h2-bold text-dark100_light900">
+                {userInfo.user.isDeleted
+                  ? "DeletedUser" + userInfo.user.preciousNumber
+                  : userInfo.user.name}
+              </h2>
+            </div>
+          </div>
+        </div>
       </>
     )
   } else {
