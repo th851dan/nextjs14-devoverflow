@@ -119,7 +119,7 @@ export async function deleteUserV2(params: DeleteUserParams) {
         portfolioWebsite: "",
         reputation: "",
         isDeleted: true ,
-        deletedAt: Date.now},
+        deletedAt: Date.now()},
       { new: true }
     );
 
