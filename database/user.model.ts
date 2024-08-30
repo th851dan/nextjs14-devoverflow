@@ -36,6 +36,7 @@ export const UserSchema = new Schema({
   preciousNumber: { type: Number, default: -1, unique: true, require: true },
   isDeleted: { type: Boolean, default: false },
   deletedAt: { type: Date },
+  facebookId: { type: String }
 });
 
 const User = models.User || model("User", UserSchema);

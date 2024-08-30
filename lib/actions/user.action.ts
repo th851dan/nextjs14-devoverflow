@@ -67,6 +67,8 @@ export async function deleteUser(params: DeleteUserParams) {
       { new: true }
     );
 
+    console.log("try to delete user data on DB v1")
+
     if (!deletedUser) {
       throw new Error("User not found");
     }
@@ -98,7 +100,7 @@ export async function deleteUserV2(params: DeleteUserParams) {
     const { clerkId } = params;
 
 
-    console.log("try to update user data on DB")
+    console.log("try to delete user data on DB v2")
 
   // await Question.updateMany({author: clerkId}, {$set: {author: "anonym"}});
 
@@ -107,8 +109,8 @@ export async function deleteUserV2(params: DeleteUserParams) {
    await  User.findOneAndUpdate(
       { clerkId },
       { 
-        name: "Anonym",
-        username: "Anonym",
+        name: "",
+        username: "",
         email_addresses: "",
         password: "",
         bio: "",

@@ -61,11 +61,14 @@ export async function POST(req: Request) {
       evt.data;
 
     const parts = email_addresses[0].email_address.split("@");
+
+    let facebook_id = "";
  
-    console.log("check external_accounts")
     external_accounts.forEach(account => {
-      console.log(account)
-    })
+      if ((account as any).object === "facebook_account") {
+        facebook_id = (account as any).facebook_id
+      }
+    });
 
     // create a new user in database
     const mongoUser = await createUser({
@@ -76,6 +79,7 @@ export async function POST(req: Request) {
         (emailJSON) => emailJSON.email_address
       ),
       picture: image_url,
+      facebookId: facebook_id
     });
 
     console.log(mongoUser);
