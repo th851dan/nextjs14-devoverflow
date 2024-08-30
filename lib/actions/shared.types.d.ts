@@ -45,6 +45,10 @@ interface Content {
   content: string;
 }
 
+interface FacebookUserId {
+  facebookUserId: string
+}
+
 interface Voting {
   hasupVoted: boolean;
   hasdownVoted: boolean;
@@ -199,4 +203,15 @@ export interface GetWhatsappParams
 extends OptionalPage,
 OptionalPageSize, OptionalFilter,
 OptionalSearch,
-{}
+{
+
+}
+
+
+export interface GetUserByFacebookUserIdParams
+extends OptionalPage,
+OptionalPageSize, 
+FacebookUserId 
+{
+
+}

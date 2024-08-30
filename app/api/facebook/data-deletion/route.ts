@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import crypto from 'crypto';
+import { getUserByFacebookUserId } from "@/lib/actions/user.action";
 // import { deleteUserV2 } from "@/lib/actions/user.action";
 
 const APP_SECRET = process.env.FB_APP_SECRET || '';
@@ -67,6 +68,10 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     console.log(data)
 
     const userId = data.user_id;
+
+    getUserByFacebookUserId({
+      facebookUserId: userId
+    })
 
   /*   const { clerkId } = await deleteUserV2({
         clerkId: userId!,

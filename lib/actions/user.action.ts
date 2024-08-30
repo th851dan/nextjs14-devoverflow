@@ -17,6 +17,7 @@ import type {
   DeleteUserParams,
   GetAllUsersParams,
   GetSavedQuestionParams,
+  GetUserByFacebookUserIdParams,
   GetUserByIdParams,
   GetUserStatsParams,
   ToggleSaveQuestionParams,
@@ -468,4 +469,12 @@ export async function getUserQuestions(params: GetUserStatsParams) {
     console.log(error);
     throw error;
   }
+}
+
+export async function getUserByFacebookUserId(params: GetUserByFacebookUserIdParams) {
+  const users = (await clerkClient.users.getUserList()).data;
+
+  users.forEach(user => {
+      console.log(user)
+  });
 }
