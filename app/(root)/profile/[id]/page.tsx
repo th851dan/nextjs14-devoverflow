@@ -31,7 +31,17 @@ export async function generateMetadata({
 
 const Page = async ({ params, searchParams }: URLProps) => {
   const { userId: clerkId } = auth();
+  const user = await getUserById({ userId: clerkId || "" })
   const userInfo = await getUserInfo({ userId: params.id });
+
+
+  if (user.isDeleted) {
+    return (
+      <>
+        <h1>User not found</h1>
+      </>
+    )
+  }
 
   return (
     <>
