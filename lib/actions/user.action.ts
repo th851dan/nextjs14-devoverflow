@@ -152,6 +152,7 @@ export async function getUserById(params: { userId: string }) {
     if (!user) {
       throw new Error("User not found");
     }
+    console.log(user)
     return user;
   } catch (error) {
     console.log(error);
