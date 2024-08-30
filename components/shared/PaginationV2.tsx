@@ -22,7 +22,7 @@ const PaginationV2 = ({ title, pageNumber, isNext, onPageChange, children }: Pro
 
   };
 
-  if (!isNext && pageNumber === 1) return null; // hide pagination if there is only one page
+  if (!isNext && pageNumber === 0) return null; // hide pagination if there is only one page
 
   return (
 

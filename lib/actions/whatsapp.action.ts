@@ -3,11 +3,11 @@ import { connectToDatabase } from "@/lib/mongoose";
 import Whatsapp from "@/database/whatsapp.model";
 
 import type {
-  GetWhatsappParams
+  GetWhatsappParams,
+  WhatsappGroupData
 } from "./shared.types";
 
 import { FilterQuery } from "mongoose";
-
 
 export async function getWhatsappGroups(params: GetWhatsappParams) {
    
@@ -63,4 +63,47 @@ export async function getWhatsappGroups(params: GetWhatsappParams) {
       console.log(error);
       throw error;
     }
+}
+
+export async function saveWhatsappGroup(params: WhatsappGroupData) {
+  try {
+    connectToDatabase();
+
+    const { name, invitationLink, shortDescription , numberOfMembers } = params;
+
+    await Whatsapp.create({
+      name, invitationLink, shortDescription , numberOfMembers
+    })
+
+    return params;
+  
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function editWhatsappGroup(params: WhatsappGroupData) {
+  try {
+    connectToDatabase();
+
+    const { id, name, invitationLink, shortDescription , numberOfMembers } = params;
+
+    const group = await Whatsapp.findById({_id: id});
+
+    if(group) {
+        group.name = name;
+        group.invitationLink = invitationLink;
+        group.shortDescription = shortDescription;
+        group.numberOfMembers = numberOfMembers;
+
+        group.save();
+    }
+
+    return group;
+  
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }

@@ -208,6 +208,15 @@ OptionalSearch,
 
 }
 
+export interface WhatsappGroupData
+{
+  id: Number,
+  name: String,
+  invitationLink: String,
+  shortDescription: String,
+  numberOfMembers: Number
+}
+
 
 export interface GetUserByFacebookUserIdParams
 extends OptionalPage,

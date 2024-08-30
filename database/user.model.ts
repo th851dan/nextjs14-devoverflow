@@ -16,7 +16,8 @@ export interface IUser extends Document {
   joinedAt: Date;
   preciousNumber: Number;
   isDeleted: boolean;
-  deletedAt: Date
+  deletedAt: Date;
+  facebookId: String
 }
 
 export const UserSchema = new Schema({

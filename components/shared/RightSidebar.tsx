@@ -9,9 +9,9 @@ import PaginationV2 from "./PaginationV2";
 
 
 interface Question {
-  _id: string;
-  title: string;
-  content: string;
+  _id: String;
+  title: String;
+  content: String;
 }
 
 interface QuestionResponse {
@@ -20,9 +20,11 @@ interface QuestionResponse {
 }
 
 interface Whatsapp {
-  _id: string;
-  name: string
-
+  _id: String;
+  name: String;
+  invitationLink: String;
+  shortDescription: String;
+  numberOfMembers: String;
 }
 
 interface WhatsappResponse {
@@ -31,9 +33,9 @@ interface WhatsappResponse {
 }
 
 interface Tag {
-  _id: string;
-  name: string;
-  description: string;
+  _id: String;
+  name: String;
+  description: String;
 }
 
 interface TagResponse {
@@ -48,7 +50,7 @@ function RightSidebar() {
   const [questionPageNumber, setQuestionPageNumber] = useState<number>(1);
   const [questionNext, setQuestionNext] = useState<boolean>(false);
 
-  const [allWhatsapp, setAllWhatsapp] = useState<Whatsapp[]>([])
+  const [allWhatsapps, setAllWhatsapps] = useState<Whatsapp[]>([])
   const [whatsappPageNumber, setWhatsappPageNumber] = useState<number>(1);
   const [whatsappNext, setWhatsappNext] = useState<boolean>(false);
 
@@ -58,7 +60,7 @@ function RightSidebar() {
 
 
   useEffect(() => {
-    const fetchTags = async () => {
+    const fetchQuestions = async () => {
       // setLoading(true);
       try {
         const response = await fetch(`/api/questions?page=${questionPageNumber}&pageSize=3&filter=''`);
@@ -74,28 +76,29 @@ function RightSidebar() {
       }
     };
 
-    fetchTags();
+    fetchQuestions();
   }, [questionPageNumber]);
 
 
   useEffect(() => {
-    const fetchTags = async () => {
+    const fetchWhatsappGroup = async () => {
       // setLoading(true);
       try {
         const response = await fetch(`/api/whatsapp?page=${whatsappPageNumber}&pageSize=3&filter=''`);
         const data: WhatsappResponse = await response.json();
 
-        setAllWhatsapp(data.whatsappGroup)
+        setAllWhatsapps(data.whatsappGroup)
         setWhatsappNext(data.isNext)
 
       } catch (error) {
-        console.error('Failed to fetch tags:', error);
+        console.error('Failed to fetch whatsapp:', error);
       } finally {
         // setLoading(false);
       }
     };
 
-    fetchTags();
+    fetchWhatsappGroup();
+
   }, [whatsappPageNumber]);
 
 
@@ -167,14 +170,14 @@ function RightSidebar() {
         isNext={whatsappNext}
         onPageChange={handleNavigationWhatsapp}
       >
-        {allWhatsapp && allWhatsapp.map((question: any) => (
+        {allWhatsapps && allWhatsapps.map((group: any) => (
           <Link
-            href={`/question/${question._id}`}
-            key={question._id}
+            href={`/whatsapp/${group._id}`}
+            key={group._id}
             className="flex cursor-pointer items-center justify-between gap-7"
           >
             <p className="body-medium text-dark500_light700">
-              {question.title}
+              {group.name}
             </p>
             <Image
               src="/assets/icons/chevron-right.svg"
