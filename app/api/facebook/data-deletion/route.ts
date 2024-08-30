@@ -1,7 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import crypto from 'crypto';
-import { getUserByFacebookUserId } from "@/lib/actions/user.action";
-// import { deleteUserV2 } from "@/lib/actions/user.action";
+import { getUserByFacebookUserId , deleteUserV2 } from "@/lib/actions/user.action";
 
 const APP_SECRET = process.env.FB_APP_SECRET || '';
 
@@ -67,18 +66,20 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     console.log("end parseSignedRequest: ")
     console.log(data)
 
-    const userId = data.user_id;
+    const facebookUserId = data.user_id;
 
-    await getUserByFacebookUserId({
-      facebookUserId: userId
+    const { user } = await getUserByFacebookUserId({
+          facebookUserId
     })
 
-  /*   const { clerkId } = await deleteUserV2({
-        clerkId: userId!,
-      }); */
+    if(user) {
+      await deleteUserV2({
+        clerkId: user.clerkId!,
+      });
+    }
 
-    const statusUrl = `https://beta.2hand2chance.com/api/users/deletion-status?id=${userId}`;
-    const confirmationCode = userId; // Verwende die user_id als Bestätigungscode
+    const statusUrl = `https://beta.2hand2chance.com/api/users/deletion-status?id=${user.clerkId}`;
+    const confirmationCode = user.clerkId; // Verwende die user_id als Bestätigungscode
 
     const responseData = {
       url: statusUrl,

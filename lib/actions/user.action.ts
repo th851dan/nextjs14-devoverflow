@@ -470,10 +470,11 @@ export async function getUserQuestions(params: GetUserStatsParams) {
 }
 
 export async function getUserByFacebookUserId(params: GetUserByFacebookUserIdParams) {
+  connectToDatabase();
+
   console.log("try to get user with facebookId: ", params.facebookUserId)
-  const users = (await clerkClient.users.getUserList()).data;
-  console.log(users)
-  users.forEach(user => {
-      console.log(user)
-  });
+  const user = await User.findOne({facebookId: params.facebookUserId})
+
+  return {user}
+
 }
