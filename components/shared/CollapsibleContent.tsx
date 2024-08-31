@@ -30,18 +30,28 @@ const CollapsibleContent = ({ content }: Content) => {
     <div>
       <div
         ref={contentRef}
-        className={`${isExpanded ? '' : 'line-clamp-3'} my-4`}
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? '' : 'line-clamp-3'
+          } my-4`}
         dangerouslySetInnerHTML={{ __html: content }}
       />
 
       {isOverflowing && (
-        <div className="mt-2 text-right">
-          <span
-            onClick={toggleExpand}
-            className="cursor-pointer text-blue-500"
-          >
-            {isExpanded ? 'Less' : 'More'}
-          </span>
+        <div className="text-right mt-2">
+          {isExpanded ? (
+            <span
+              onClick={toggleExpand}
+              className="text-blue-500 cursor-pointer"
+            >
+              Less
+            </span>
+          ) : (
+            <span
+              onClick={toggleExpand}
+              className="text-blue-500 cursor-pointer"
+            >
+              More
+            </span>
+          )}
         </div>
       )}
     </div>
