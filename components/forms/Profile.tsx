@@ -46,41 +46,45 @@ const Profile = ({ clerkId, user }: Props) => {
     },
   });
 
+  /*   async function onSubmit(values: z.infer<typeof ProfileValidation>) {
+  
+      console.log("try to submit profile")
+      setIsSubmitting(true);
+  
+      try {
+        await updateUser({
+          clerkId,
+          updateData: {
+            name: values.name,
+            username: values.username,
+            portfolioWebsite: values.portfolioWebsite,
+            location: values.location,
+            bio: values.bio,
+            onboarded: true,
+          },
+          path: pathname,
+        });
+  
+        router.push("/");
+      } catch (error) {
+        toast({
+          title: "Error updating profile ⚠️",
+          variant: "destructive",
+        });
+  
+        console.log(error);
+      } finally {
+        setIsSubmitting(false);
+  
+        toast({
+          title: "Profile updated successfully 🎉",
+          variant: "default",
+        });
+      }
+    } */
+
   async function onSubmit(values: z.infer<typeof ProfileValidation>) {
-
-    console.log("try to submit profile")
-    setIsSubmitting(true);
-
-    try {
-      await updateUser({
-        clerkId,
-        updateData: {
-          name: values.name,
-          username: values.username,
-          portfolioWebsite: values.portfolioWebsite,
-          location: values.location,
-          bio: values.bio,
-          onboarded: true,
-        },
-        path: pathname,
-      });
-
-      router.push("/");
-    } catch (error) {
-      toast({
-        title: "Error updating profile ⚠️",
-        variant: "destructive",
-      });
-
-      console.log(error);
-    } finally {
-      setIsSubmitting(false);
-
-      toast({
-        title: "Profile updated successfully 🎉",
-        variant: "default",
-      });
-    }
+    console.log("test update profile")
   }
 
   return (
