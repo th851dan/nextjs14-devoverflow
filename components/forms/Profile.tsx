@@ -83,7 +83,7 @@ const Profile = ({ clerkId, user }: Props) => {
       }
     } */
 
-  async function onSubmit(values: z.infer<typeof ProfileValidation>) {
+  async function onSubmit() {
     setIsSubmitting(true);
     console.log("test update profile")
   }
