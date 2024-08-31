@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-// import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -17,9 +17,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-// import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/components/ui/use-toast";
 
-// import { updateUser } from "@/lib/actions/user.action";
+import { updateUser } from "@/lib/actions/user.action";
 import { ProfileValidation } from "@/lib/validations";
 
 import type { ClerkId } from "@/lib/actions/shared.types";
@@ -28,8 +28,8 @@ interface Props extends ClerkId {
   user: string;
 }
 const Profile = ({ clerkId, user }: Props) => {
-  // const router = useRouter();
-  // const pathname = usePathname();
+  const router = useRouter();
+  const pathname = usePathname();
   const parsedUser = JSON.parse(user);
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -46,46 +46,41 @@ const Profile = ({ clerkId, user }: Props) => {
     },
   });
 
-  /*   async function onSubmit(values: z.infer<typeof ProfileValidation>) {
-  
-      console.log("try to submit profile")
-      setIsSubmitting(true);
-  
-      try {
-        await updateUser({
-          clerkId,
-          updateData: {
-            name: values.name,
-            username: values.username,
-            portfolioWebsite: values.portfolioWebsite,
-            location: values.location,
-            bio: values.bio,
-            onboarded: true,
-          },
-          path: pathname,
-        });
-  
-        router.push("/");
-      } catch (error) {
-        toast({
-          title: "Error updating profile ⚠️",
-          variant: "destructive",
-        });
-  
-        console.log(error);
-      } finally {
-        setIsSubmitting(false);
-  
-        toast({
-          title: "Profile updated successfully 🎉",
-          variant: "default",
-        });
-      }
-    } */
+  async function onSubmit(values: z.infer<typeof ProfileValidation>) {
 
-  async function onSubmit() {
+    console.log("try to submit profile")
     setIsSubmitting(true);
-    console.log("test update profile")
+
+    try {
+      await updateUser({
+        clerkId,
+        updateData: {
+          name: values.name,
+          username: values.username,
+          portfolioWebsite: values.portfolioWebsite,
+          location: values.location,
+          bio: values.bio,
+          onboarded: true,
+        },
+        path: pathname,
+      });
+
+      router.push("/");
+    } catch (error) {
+      toast({
+        title: "Error updating profile ⚠️",
+        variant: "destructive",
+      });
+
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+
+      toast({
+        title: "Profile updated successfully 🎉",
+        variant: "default",
+      });
+    }
   }
 
   return (
