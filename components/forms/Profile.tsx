@@ -17,9 +17,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/use-toast";
+// import { toast } from "@/components/ui/use-toast";
 
-import { updateUser } from "@/lib/actions/user.action";
+// import { updateUser } from "@/lib/actions/user.action";
 import { ProfileValidation } from "@/lib/validations";
 
 import type { ClerkId } from "@/lib/actions/shared.types";
@@ -28,8 +28,8 @@ interface Props extends ClerkId {
   user: string;
 }
 const Profile = ({ clerkId, user }: Props) => {
-  const router = useRouter();
-  const pathname = usePathname();
+  // const router = useRouter();
+  // const pathname = usePathname();
   const parsedUser = JSON.parse(user);
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -84,6 +84,7 @@ const Profile = ({ clerkId, user }: Props) => {
     } */
 
   async function onSubmit(values: z.infer<typeof ProfileValidation>) {
+    setIsSubmitting(true);
     console.log("test update profile")
   }
 
