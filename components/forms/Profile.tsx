@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
   Form,
@@ -35,7 +35,7 @@ const Profile = ({ clerkId, user }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof ProfileValidation>>({
-    // resolver: zodResolver(ProfileValidation),
+    resolver: zodResolver(ProfileValidation),
     defaultValues: {
       name:
         parsedUser?.name !== "null" && parsedUser?.name ? parsedUser?.name : "",
