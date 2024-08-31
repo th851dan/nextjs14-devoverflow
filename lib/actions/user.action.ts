@@ -48,6 +48,10 @@ export async function updateUser(params: UpdateUserParams) {
       new: true,
     });
 
+    await clerkClient.users.updateUser(clerkId, {
+      username: updateData.name,
+    })
+
     revalidatePath(path);
   } catch (error) {
     console.log(error);
