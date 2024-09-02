@@ -48,7 +48,7 @@ export async function updateUser(params: UpdateUserParams) {
       new: true,
     });
 
- /*    await clerkClient.users.updateUser(clerkId, {
+    /*    await clerkClient.users.updateUser(clerkId, {
       username: updateData.name,
     }) */
 
@@ -71,7 +71,7 @@ export async function deleteUser(params: DeleteUserParams) {
       { new: true }
     );
 
-    console.log("try to delete user data on DB v1")
+    console.log("try to delete user data on DB v1");
 
     if (!deletedUser) {
       throw new Error("User not found");
@@ -103,34 +103,34 @@ export async function deleteUserV2(params: DeleteUserParams) {
 
     const { clerkId } = params;
 
+    console.log("try to delete user data on DB v2");
 
-    console.log("try to delete user data on DB v2")
+    // await Question.updateMany({author: clerkId}, {$set: {author: "anonym"}});
 
-  // await Question.updateMany({author: clerkId}, {$set: {author: "anonym"}});
+    // await Answer.updateMany({author: clerkId}, {$set: {author: "anonym"}})
 
-  // await Answer.updateMany({author: clerkId}, {$set: {author: "anonym"}})
-
-   await  User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { clerkId },
-      { 
+      {
         name: "",
         username: "",
         email_addresses: "",
         password: "",
         bio: "",
-        picture: "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yaXl0b2ZLZ1BnZzRQUjMydmxZdTM0TlpiS2IiLCJyaWQiOiJ1c2VyXzJsRWN4ZUlSclRtVEdGa1lJOTJvWVV5R1A3bSJ9",
+        picture:
+          "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yaXl0b2ZLZ1BnZzRQUjMydmxZdTM0TlpiS2IiLCJyaWQiOiJ1c2VyXzJsRWN4ZUlSclRtVEdGa1lJOTJvWVV5R1A3bSJ9",
         location: "",
         portfolioWebsite: "",
         reputation: "",
-        isDeleted: true ,
-        deletedAt: Date.now()},
+        isDeleted: true,
+        deletedAt: Date.now(),
+      },
       { new: true }
     );
 
-    await clerkClient.users.deleteUser(clerkId)
-  
-    return {clerkId }
+    await clerkClient.users.deleteUser(clerkId);
 
+    return { clerkId };
   } catch (error) {
     console.log(error);
     throw error;
@@ -156,7 +156,7 @@ export async function getUserById(params: { userId: string }) {
     if (!user) {
       throw new Error("User not found");
     }
-    console.log(user)
+    console.log(user);
     return user;
   } catch (error) {
     console.log(error);
@@ -474,11 +474,19 @@ export async function getUserQuestions(params: GetUserStatsParams) {
   }
 }
 
-export async function getUserByFacebookUserId(params: GetUserByFacebookUserIdParams) {
+export async function getUserByFacebookUserId(
+  params: GetUserByFacebookUserIdParams
+) {
   connectToDatabase();
 
-  console.log("try to get user with facebookId: ", params.facebookUserId)
-  const user = await User.findOne({facebookId: params.facebookUserId, isDeleted: false})
+  console.log("try to get user with facebookId: ", params.facebookUserId);
+  const user = await User.findOne({
+    facebookId: params.facebookUserId,
+    isDeleted: false,
+  });
+  return { user };
+}
+
 export async function getUserByFacebookUserId2(
   params: GetUserByFacebookUserIdParams
 ) {
