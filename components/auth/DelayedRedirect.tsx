@@ -19,5 +19,5 @@ export default function DelayedRedirect({ delay, redirectTo }: DelayedRedirectPr
         return () => clearTimeout(timer); // Cleanup the timer on component unmount
     }, [delay, redirectTo, router]);
 
-    return <div>Syncing with database...</div>;
+    return <div className='text-dark300_light700'>Syncing with database...</div>;
 }

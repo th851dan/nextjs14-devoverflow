@@ -497,7 +497,7 @@ export async function getUserByFacebookUserId2(
 
   const allUsers = await clerkClient().users.getUserList();
   const user = allUsers.data.find(
-    (user) => user.publicMetadata["facebook_id"] === params.facebookUserId
+    (user) => user.publicMetadata.facebook_id === params.facebookUserId
   );
 
   return { user };
