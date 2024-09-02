@@ -104,7 +104,7 @@ const Profile = ({ clerkId, user }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-dark300_light700" />
             </FormItem>
           )}
         />
