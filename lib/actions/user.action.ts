@@ -474,19 +474,6 @@ export async function getUserQuestions(params: GetUserStatsParams) {
   }
 }
 
-export async function getUserByFacebookUserId(
-  params: GetUserByFacebookUserIdParams
-) {
-  connectToDatabase();
-
-  console.log("try to get user with facebookId: ", params.facebookUserId);
-  const user = await User.findOne({
-    facebookId: params.facebookUserId,
-    isDeleted: false,
-  });
-  return { user };
-}
-
 export async function getUserByFacebookUserId2(
   params: GetUserByFacebookUserIdParams
 ) {
