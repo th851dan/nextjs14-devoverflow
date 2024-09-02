@@ -1,7 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import crypto from "crypto";
 import {
-  getUserByFacebookUserId,
   deleteUserV2,
   getUserByFacebookUserId2,
 } from "@/lib/actions/user.action";
