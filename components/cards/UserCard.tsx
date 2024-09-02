@@ -42,20 +42,22 @@ const UserCard = async ({ user }: Props) => {
         </div>
       </Link>
 
-      <div className="mt-5">
-        {interactedTags && interactedTags.length > 0 ? (
-          <div className="flex items-center gap-2">
+      <div className="mt-2">
+        {interactedTags.length > 0 ? (
+          <div className="flex items-center flex-wrap justify-center gap-1">
             {interactedTags.map((tag: any) => (
               <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
             ))}
           </div>
         ) : (
-          <Badge>No tags yet</Badge>
+          <Badge>
+            <span className="text-dark100_light900">No tags yet </span>
+          </Badge>
         )}
       </div>
-    </article>
 
-  )
+    </article>
+  );
 };
 
 export default UserCard;
