@@ -479,7 +479,18 @@ export async function getUserByFacebookUserId(params: GetUserByFacebookUserIdPar
 
   console.log("try to get user with facebookId: ", params.facebookUserId)
   const user = await User.findOne({facebookId: params.facebookUserId, isDeleted: false})
+export async function getUserByFacebookUserId2(
+  params: GetUserByFacebookUserIdParams
+) {
+  console.log(
+    "try to get user with facebookId by Clerk Backend API: ",
+    params.facebookUserId
+  );
 
-  return {user}
+  const allUsers = await clerkClient().users.getUserList();
+  const user = allUsers.data.find(
+    (user) => user.publicMetadata["facebook_id"] === params.facebookUserId
+  );
 
+  return { user };
 }
