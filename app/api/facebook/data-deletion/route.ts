@@ -80,6 +80,10 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       await deleteUserV2({
         clerkId: user.id!,
       });
+    } else {
+      return NextResponse.json({
+        error: `User with facebook_id ${facebookUserId} not found`,
+      });
     }
 
     const statusUrl = `https://beta.2hand2chance.com/api/users/deletion-status?id=${user?.id}`;
