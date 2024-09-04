@@ -477,9 +477,9 @@ export async function getUserQuestions(params: GetUserStatsParams) {
 export async function getUserByFacebookUserId(
   params: GetUserByFacebookUserIdParams
 ) {
-  //Clerk BackendAPI only yields certain nummber of User, in this case 50.
-  //Therefore, we need to iterate through all pages until the respective User found,
-  //with the help of variables limit and offset
+  // Clerk BackendAPI only yields certain nummber of User, in this case 50.
+  // Therefore, we need to iterate through all pages until the respective User found,
+  // with the help of variables limit and offset
   const limit = 50;
   let offset = 0;
   let foundUser = null;
