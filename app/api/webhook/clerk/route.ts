@@ -90,7 +90,7 @@ export async function POST(req: Request) {
     });
     console.log(mongoUser);
     if (facebook_id) {
-      const clerkUser = await clerkClient().users.updateUser(id, {
+      const clerkUser = await clerkClient().users.updateUserMetadata(id, {
         publicMetadata: { facebook_id },
       });
       return NextResponse.json({
