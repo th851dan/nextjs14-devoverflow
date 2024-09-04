@@ -172,7 +172,7 @@ function RightSidebar() {
       >
         {allWhatsapps && allWhatsapps.map((group: any) => (
           <Link
-            href={`/whatsapp/${group._id}`}
+            href={`${group.invitationLink}`}
             key={group._id}
             className="flex cursor-pointer items-center justify-between gap-7"
           >
