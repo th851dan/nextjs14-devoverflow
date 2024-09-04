@@ -1,9 +1,9 @@
 import { NextResponse, NextRequest } from "next/server";
 import crypto from "crypto";
 import {
-  deleteUserV2,
   getUserByFacebookUserId,
 } from "@/lib/actions/user.action";
+import { deleteUserWithClerkClient } from "@/lib/clerkclient";
 
 const APP_SECRET = process.env.FB_APP_SECRET || '';
 
@@ -67,8 +67,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
 
     console.log("end parseSignedRequest: ")
-    console.log(data)
-
+ 
     const facebookUserId = data.user_id;
 
     const { user } = await getUserByFacebookUserId({
@@ -77,9 +76,11 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
     if (user) {
       console.log("try to delete: " + user.id);
-      await deleteUserV2({
+
+      await deleteUserWithClerkClient({
         clerkId: user.id!,
       });
+
     } else {
       console.error(`User with facebook_id ${facebookUserId} not found`);
       return NextResponse.json({

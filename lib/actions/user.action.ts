@@ -65,9 +65,29 @@ export async function deleteUser(params: DeleteUserParams) {
 
     const { clerkId } = params;
 
-    const deletedUser = await User.findOneAndUpdate(
+/*     const deletedUser = await User.findOneAndUpdate(
       { clerkId },
       { isDeleted: true },
+      { new: true }
+    ); */
+
+
+    const deletedUser = await User.findOneAndUpdate(
+      { clerkId },
+      {
+        name: "",
+        username: "",
+        email_addresses: "",
+        password: "",
+        bio: "",
+        picture:
+          "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yaXl0b2ZLZ1BnZzRQUjMydmxZdTM0TlpiS2IiLCJyaWQiOiJ1c2VyXzJsRWN4ZUlSclRtVEdGa1lJOTJvWVV5R1A3bSJ9",
+        location: "",
+        portfolioWebsite: "",
+        reputation: "",
+        isDeleted: true,
+        deletedAt: Date.now(),
+      },
       { new: true }
     );
 
@@ -97,7 +117,7 @@ export async function deleteUser(params: DeleteUserParams) {
   }
 }
 
-export async function deleteUserV2(params: DeleteUserParams) {
+/* export async function deleteUserV2(params: DeleteUserParams) {
   try {
     connectToDatabase();
 
@@ -135,7 +155,7 @@ export async function deleteUserV2(params: DeleteUserParams) {
     console.log(error);
     throw error;
   }
-}
+} */
 
 export async function checkUserCreationFlag(userId: string) {
   try {
