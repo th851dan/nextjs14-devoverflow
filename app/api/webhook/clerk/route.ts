@@ -86,7 +86,6 @@ export async function POST(req: Request) {
         (emailJSON) => emailJSON.email_address
       ),
       picture: image_url,
-      facebookId: facebook_id,
     });
     console.log(mongoUser);
     if (facebook_id) {

@@ -45,10 +45,6 @@ interface Content {
   content: string;
 }
 
-interface FacebookUserId {
-  facebookUserId: string
-}
-
 interface Voting {
   hasupVoted: boolean;
   hasdownVoted: boolean;
@@ -68,7 +64,6 @@ export interface CreateUserParams extends ClerkId {
   username: string;
   email_addresses: string[];
   picture: string;
-  facebookId: string
 }
 
 export interface GetUserByIdParams extends UserId {}
