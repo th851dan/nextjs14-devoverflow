@@ -214,9 +214,7 @@ export interface WhatsappGroupData
 
 
 export interface GetUserByFacebookUserIdParams
-extends OptionalPage,
-OptionalPageSize, 
-FacebookUserId 
-{
-
+  extends OptionalPage,
+    OptionalPageSize {
+  facebookUserId: string;
 }
