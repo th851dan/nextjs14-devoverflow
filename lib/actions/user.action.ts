@@ -474,18 +474,30 @@ export async function getUserQuestions(params: GetUserStatsParams) {
   }
 }
 
-export async function getUserByFacebookUserId2(
+export async function getUserByFacebookUserId(
   params: GetUserByFacebookUserIdParams
 ) {
-  console.log(
-    "try to get user with facebookId by Clerk Backend API: ",
-    params.facebookUserId
-  );
+  //Clerk BackendAPI only yields certain nummber of User, in this case 50.
+  //Therefore, we need to iterate through all pages until the respective User found,
+  //with the help of variables limit and offset
+  const limit = 50;
+  let offset = 0;
+  let foundUser = null;
+  try {
+    while (true) {
+      const users = await clerkClient().users.getUserList({ limit, offset });
+      if (users.data.length === 0) {
+        break;
+      }
+      foundUser = users.data.find(
+        (user) => user.publicMetadata.facebook_id === params.facebookUserId
+      );
+      offset += limit;
+    }
 
-  const allUsers = await clerkClient().users.getUserList();
-  const user = allUsers.data.find(
-    (user) => user.publicMetadata.facebook_id === params.facebookUserId
-  );
-
-  return { user };
+    return { user: foundUser };
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }

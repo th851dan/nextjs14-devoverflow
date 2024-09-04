@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import crypto from "crypto";
 import {
   deleteUserV2,
-  getUserByFacebookUserId2,
+  getUserByFacebookUserId,
 } from "@/lib/actions/user.action";
 
 const APP_SECRET = process.env.FB_APP_SECRET || '';
@@ -71,7 +71,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
     const facebookUserId = data.user_id;
 
-    const { user } = await getUserByFacebookUserId2({
+    const { user } = await getUserByFacebookUserId({
       facebookUserId,
     });
 
@@ -81,6 +81,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
         clerkId: user.id!,
       });
     } else {
+      console.error(`User with facebook_id ${facebookUserId} not found`);
       return NextResponse.json({
         error: `User with facebook_id ${facebookUserId} not found`,
       });
