@@ -88,7 +88,11 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       });
     }
 
-    const statusUrl = `https://beta.2hand2chance.com/api/users/deletion-status?id=${user?.id}`;
+    const protocol = req.headers.get("x-forwarded-proto") || "http";
+    const host = req.headers.get("host");
+    const fullUrl = `${protocol}://${host}`;
+    console.log("The hostname with full address: " + fullUrl);
+    const statusUrl = `${fullUrl}/api/users/deletion-status?id=${user?.id}`;
     const confirmationCode = user?.id; // Verwende die user_id als Bestätigungscode
 
     const responseData = {
