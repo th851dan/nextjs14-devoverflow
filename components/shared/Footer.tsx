@@ -10,8 +10,9 @@ const Footer = ({ isInsideSheet = false }) => {
   };
 
   return (
+    <>
     <section className="background-light900_dark200 shadow-light-300 dark:shadow-none">
-      <div className="flex flex-row flex-wrap justify-center text-xs space-x-2 text-dark-100 dark:text-light-900">
+      <div className="flex flex-row flex-wrap justify-center space-x-2 text-xs text-dark-100 dark:text-light-900">
         {convertToSheetClose(
           <Link href="/terms-and-conditions">
             <p className="hover:underline">Terms and Conditions</p>
@@ -42,6 +43,21 @@ const Footer = ({ isInsideSheet = false }) => {
         </p>
       </div>
     </section>
+    <div className=" background-light900_dark200 container mx-auto mt-5 flex flex-col items-center justify-center space-y-2 text-xs text-dark-100 dark:text-light-900 md:invisible">
+    <p>
+      Whatsapp:{" "}
+      <Link href="tel:+4917634160625" className="hover:underline">
+        +4917634160625
+      </Link>
+    </p>
+    <p>
+      E-Mail:{" "}
+      <Link href="mailto:support@buddyknows.org" className="hover:underline">
+        support@buddyknows.org
+      </Link>
+    </p>
+  </div>
+    </>
   );
 };
 
