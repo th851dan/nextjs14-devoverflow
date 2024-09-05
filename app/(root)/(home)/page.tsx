@@ -88,6 +88,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
               _id={question._id}
               clerkId={clerkId}
               title={question.title}
+              content={question.content}
               tags={question.tags}
               author={question.author}
               upvotes={question.upvotes}

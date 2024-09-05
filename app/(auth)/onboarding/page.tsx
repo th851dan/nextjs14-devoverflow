@@ -5,6 +5,7 @@ import Profile from "@/components/forms/Profile";
 
 import { getUserById } from "@/lib/actions/user.action";
 import { ClerkId } from "@/lib/actions/shared.types";
+import DelayedRedirect from "@/components/auth/DelayedRedirect";
 
 const getMongoUser = async ({ clerkId }: ClerkId) => {
   try {
@@ -19,7 +20,7 @@ const Page = async () => {
   const { userId } = auth();
   if (!userId) return null;
   const mongoUser = await getMongoUser({ clerkId: userId });
-  if (!mongoUser) return <div>Haha</div>;
+  if (!mongoUser) return <DelayedRedirect delay={1500} redirectTo="/onboarding/waiting" />;
 
   if (mongoUser.onboarded) {
     return redirect("/"); // Redirect if user is already onboarded

@@ -7,10 +7,12 @@ import Metric from "@/components/shared/Metric";
 import EditDeleteAction from "@/components/shared/EditDeleteAction";
 
 import { getFormattedNumber, getTimestamp } from "@/lib/utils";
+import CollapsibleContent from "../shared/CollapsibleContent";
 
 interface QuestionProps {
   _id: string;
   title: string;
+  content: string;
   tags: Array<{ _id: string; name: string }>;
   author: {
     _id: string;
@@ -30,6 +32,7 @@ interface QuestionProps {
 const QuestionCard = ({
   _id,
   title,
+  content,
   tags,
   author,
   upvotes,
@@ -48,10 +51,13 @@ const QuestionCard = ({
             {getTimestamp(createdAt)}
           </span>
           <Link href={`/question/${_id}`}>
-            <h3 className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-1 flex-1">
+            <h3 className="sm:h3-semibold base-semibold text-dark200_light900 flex-1" >
               {title}
             </h3>
           </Link>
+
+          <CollapsibleContent content={content} />
+
         </div>
 
         <SignedIn>

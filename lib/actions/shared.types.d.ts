@@ -194,3 +194,27 @@ export interface GetFormattedSalaryParams {
   currency: string;
   period: string;
 }
+
+export interface GetWhatsappParams  
+extends OptionalPage,
+OptionalPageSize, OptionalFilter,
+OptionalSearch,
+{
+
+}
+
+export interface WhatsappGroupData
+{
+  id: Number,
+  name: String,
+  invitationLink: String,
+  shortDescription: String,
+  numberOfMembers: Number
+}
+
+
+export interface GetUserByFacebookUserIdParams
+  extends OptionalPage,
+    OptionalPageSize {
+  facebookUserId: string;
+}
