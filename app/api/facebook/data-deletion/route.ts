@@ -88,6 +88,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       });
     }
 
+    console.log(`header 1: ${req.headers.get("host")}`);
+    console.log(`header 2: ${headers().get("host")}`);
     const statusUrl = `${req.headers.get("host")}/api/users/deletion-status?id=${user?.id}`;
     const confirmationCode = user?.id; // Verwende die user_id als Bestätigungscode
 
