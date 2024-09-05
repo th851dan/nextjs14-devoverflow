@@ -47,6 +47,8 @@ const Profile = ({ clerkId, user }: Props) => {
   });
 
   async function onSubmit(values: z.infer<typeof ProfileValidation>) {
+
+    console.log("try to submit profile")
     setIsSubmitting(true);
 
     try {
@@ -102,7 +104,7 @@ const Profile = ({ clerkId, user }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-dark300_light700" />
             </FormItem>
           )}
         />

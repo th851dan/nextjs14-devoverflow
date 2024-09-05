@@ -17,12 +17,14 @@ import type {
   DeleteUserParams,
   GetAllUsersParams,
   GetSavedQuestionParams,
+  GetUserByFacebookUserIdParams,
   GetUserByIdParams,
   GetUserStatsParams,
   ToggleSaveQuestionParams,
   UpdateUserParams,
 } from "./shared.types";
 import type { BadgeCriteriaType } from "@/types";
+import { clerkClient } from "@clerk/nextjs/server";
 
 export async function createUser(userData: CreateUserParams) {
   try {
@@ -46,6 +48,10 @@ export async function updateUser(params: UpdateUserParams) {
       new: true,
     });
 
+    /*    await clerkClient.users.updateUser(clerkId, {
+      username: updateData.name,
+    }) */
+
     revalidatePath(path);
   } catch (error) {
     console.log(error);
@@ -61,26 +67,28 @@ export async function deleteUser(params: DeleteUserParams) {
 
     const deletedUser = await User.findOneAndUpdate(
       { clerkId },
-      { isDeleted: true },
+      {
+        name: "",
+        username: "",
+        email_addresses: "",
+        password: "",
+        bio: "",
+        picture:
+          "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yaXl0b2ZLZ1BnZzRQUjMydmxZdTM0TlpiS2IiLCJyaWQiOiJ1c2VyXzJsRWN4ZUlSclRtVEdGa1lJOTJvWVV5R1A3bSJ9",
+        location: "",
+        portfolioWebsite: "",
+        reputation: "",
+        isDeleted: true,
+        deletedAt: Date.now(),
+      },
       { new: true }
     );
+
+    console.log("try to delete user data on DB v1");
 
     if (!deletedUser) {
       throw new Error("User not found");
     }
-
-    // get user question ids
-
-    // const userQuestionIds = await Question.find({ author: user._id }).distinct(
-    //   "_id"
-    // );
-
-    // not delete user questions
-    // await Question.deleteMany({ author: user._id });
-
-    // TODO: Delete user answers, comments, etc
-
-    // const deletedUser = await User.findByIdAndDelete(user._id);
 
     return deletedUser;
   } catch (error) {
@@ -88,6 +96,7 @@ export async function deleteUser(params: DeleteUserParams) {
     throw error;
   }
 }
+
 export async function checkUserCreationFlag(userId: string) {
   try {
     const user = await getUserById({ userId });
@@ -107,6 +116,7 @@ export async function getUserById(params: { userId: string }) {
     if (!user) {
       throw new Error("User not found");
     }
+    console.log(user);
     return user;
   } catch (error) {
     console.log(error);
@@ -420,6 +430,34 @@ export async function getUserQuestions(params: GetUserStatsParams) {
     return { totalQuestions, questions: userQuestions, isNext };
   } catch (error) {
     console.log(error);
+    throw error;
+  }
+}
+
+export async function getUserByFacebookUserId(
+  params: GetUserByFacebookUserIdParams
+) {
+  // Clerk BackendAPI only yields certain nummber of User, in this case 50.
+  // Therefore, we need to iterate through all pages until the respective User found,
+  // with the help of variables limit and offset
+  const limit = 50;
+  let offset = 0;
+  let foundUser = null;
+  try {
+    while (true) {
+      const users = await clerkClient().users.getUserList({ limit, offset });
+      if (users.data.length === 0) {
+        break;
+      }
+      foundUser = users.data.find(
+        (user) => user.publicMetadata.facebook_id === params.facebookUserId
+      );
+      offset += limit;
+    }
+
+    return { user: foundUser };
+  } catch (error) {
+    console.error(error);
     throw error;
   }
 }

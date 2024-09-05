@@ -23,11 +23,8 @@ const UserCard = async ({ user }: Props) => {
   });
 
   return (
-    <Link
-      href={`/profile/${user.clerkId}`}
-      className="shadow-light100_darknone w-full max-xs:min-w-full xs:w-[260px]"
-    >
-      <article className="background-light900_dark200 light-border flex w-full flex-col items-center justify-center rounded-2xl border p-4">
+    <article className="shadow-light100_darknone background-light900_dark200 light-border flex w-full flex-col items-center justify-center rounded-2xl border p-8 max-xs:min-w-full xs:w-[260px]">
+      <Link href={`/profile/${user.clerkId}`} className="flex w-full flex-col items-center justify-center">
         <Image
           src={user.picture}
           alt="User profile picture"
@@ -43,22 +40,23 @@ const UserCard = async ({ user }: Props) => {
             @BKBeta{user.preciousNumber.toString()}
           </p>
         </div>
+      </Link>
 
-        <div className="mt-2">
-          {interactedTags.length > 0 ? (
-            <div className="flex items-center flex-wrap justify-center gap-1">
-              {interactedTags.map((tag: any) => (
-                <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
-              ))}
-            </div>
-          ) : (
-            <Badge>
-              <span className="text-dark100_light900">No tags yet </span>
-            </Badge>
-          )}
-        </div>
-      </article>
-    </Link>
+      <div className="mt-2">
+        {interactedTags.length > 0 ? (
+          <div className="flex items-center flex-wrap justify-center gap-1">
+            {interactedTags.map((tag: any) => (
+              <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
+            ))}
+          </div>
+        ) : (
+          <Badge>
+            <span className="text-dark100_light900">No tags yet </span>
+          </Badge>
+        )}
+      </div>
+
+    </article>
   );
 };
 

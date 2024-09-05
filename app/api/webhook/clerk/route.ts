@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 
 import { Webhook } from "svix";
-import { WebhookEvent } from "@clerk/nextjs/server";
+import { clerkClient, WebhookEvent } from "@clerk/nextjs/server";
 
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.action";
 
@@ -57,10 +57,25 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if (eventType === "user.created") {
-    const { id, email_addresses, image_url, username, first_name, last_name } =
-      evt.data;
+    const {
+      id,
+      email_addresses,
+      image_url,
+      username,
+      first_name,
+      last_name,
+      external_accounts,
+    } = evt.data;
 
     const parts = email_addresses[0].email_address.split("@");
+
+    let facebook_id = "";
+
+    external_accounts.forEach((account) => {
+      if ((account as any).object === "facebook_account") {
+        facebook_id = (account as any).facebook_id;
+      }
+    });
 
     // create a new user in database
     const mongoUser = await createUser({
@@ -72,10 +87,19 @@ export async function POST(req: Request) {
       ),
       picture: image_url,
     });
-
     console.log(mongoUser);
+    if (facebook_id) {
+      const clerkUser = await clerkClient().users.updateUserMetadata(id, {
+        publicMetadata: { facebook_id },
+      });
+      return NextResponse.json({
+        message: "User created with Facebook",
+        mongoUser,
+        clerkUser,
+      });
+    }
 
-    return NextResponse.json({ message: "User created", user: mongoUser });
+    return NextResponse.json({ message: "User created", mongoUser });
   }
 
   if (eventType === "user.updated") {

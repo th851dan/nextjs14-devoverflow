@@ -16,6 +16,8 @@ export interface IUser extends Document {
   joinedAt: Date;
   preciousNumber: Number;
   isDeleted: boolean;
+  deletedAt: Date;
+  facebookId: String
 }
 
 export const UserSchema = new Schema({
@@ -34,6 +36,8 @@ export const UserSchema = new Schema({
   joinedAt: { type: Date, default: Date.now },
   preciousNumber: { type: Number, default: -1, unique: true, require: true },
   isDeleted: { type: Boolean, default: false },
+  deletedAt: { type: Date },
+  facebookId: { type: String }
 });
 
 const User = models.User || model("User", UserSchema);
