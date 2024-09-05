@@ -106,7 +106,7 @@ const Mobile = () => {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="background-light900_dark200 border-none flex flex-col justify-between"
+        className="background-light900_dark200 flex flex-col justify-between border-none"
       >
         <SheetClose asChild>
           <Link href="/" className="flex items-center gap-1">
@@ -125,11 +125,11 @@ const Mobile = () => {
           </Link>
         </SheetClose>
         <div className="h-[70vh]">
-          <div className="overflow-scroll h-full">
+          <div className="h-full overflow-scroll">
             <NavContent />
 
             <SignedOut>
-              <div className="flex flex-col gap-2 mt-5">
+              <div className="mt-5 flex flex-col gap-2">
                 <SheetClose asChild>
                   <Link href="/sign-in">
                     <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
