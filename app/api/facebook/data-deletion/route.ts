@@ -88,7 +88,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       });
     }
 
-    const statusUrl = `https://beta.2hand2chance.com/api/users/deletion-status?id=${user?.id}`;
+    const statusUrl = `${req.headers.get("host")}/api/users/deletion-status?id=${user?.id}`;
     const confirmationCode = user?.id; // Verwende die user_id als Bestätigungscode
 
     const responseData = {
