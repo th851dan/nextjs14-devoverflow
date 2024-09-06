@@ -24,7 +24,7 @@ import type {
   UpdateUserParams,
 } from "./shared.types";
 import type { BadgeCriteriaType } from "@/types";
-import { clerkClient } from "@clerk/nextjs/server";
+import { getUserListApi } from "../clerkclient";
 
 export async function createUser(userData: CreateUserParams) {
   try {
@@ -444,13 +444,16 @@ export async function getUserByFacebookUserId(
   let foundUser = null;
   try {
     while (true) {
-      const users = await clerkClient().users.getUserList({ limit, offset });
-      if (users.data.length === 0) {
+      const users = await getUserListApi({ limit, offset });
+      if (users.length === 0) {
         break;
       }
-      foundUser = users.data.find(
-        (user) => user.publicMetadata.facebook_id === params.facebookUserId
+      foundUser = users.find((user: any) =>
+        user.external_accounts.find(
+          (account: any) => account.facebook_id === params.facebookUserId
+        )
       );
+      if (foundUser) return { user: foundUser };
       offset += limit;
     }
 
