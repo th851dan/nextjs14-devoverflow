@@ -13,7 +13,7 @@ const ContactBanner = () => {
           height={20}
           className="rounded-full object-cover"
         />
-        <a href="tel:+4917634160625" className="hover:underline"> +4917634160625</a>
+        <a href="https://wa.me/4917634160625" className="hover:underline"> +4917634160625</a>
         <Image
           src="/assets/icons/email.png"
           alt="profile picture"

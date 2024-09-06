@@ -53,7 +53,7 @@ const Footer = ({ isInsideSheet = false }) => {
             height={20}
             className="rounded-full object-cover"
           />{" "}
-          <a href="tel:+4917634160625" className="hover:underline">
+          <a href="https://wa.me/4917634160625" className="hover:underline">
             +4917634160625
           </a>
         </div>
