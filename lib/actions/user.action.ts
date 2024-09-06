@@ -73,8 +73,7 @@ export async function deleteUser(params: DeleteUserParams) {
         email_addresses: "",
         password: "",
         bio: "",
-        picture:
-          "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yaXl0b2ZLZ1BnZzRQUjMydmxZdTM0TlpiS2IiLCJyaWQiOiJ1c2VyXzJsRWN4ZUlSclRtVEdGa1lJOTJvWVV5R1A3bSJ9",
+        picture: "",
         location: "",
         portfolioWebsite: "",
         reputation: "",
