@@ -2,6 +2,7 @@ import React from "react";
 import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 
 // eslint-disable-next-line camelcase
@@ -61,6 +62,7 @@ export default function RootLayout({
           <ThemeProvider>{children}</ThemeProvider>
         </ClerkProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
