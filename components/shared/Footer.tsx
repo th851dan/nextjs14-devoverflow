@@ -44,7 +44,7 @@ const Footer = ({ isInsideSheet = false }) => {
           </p>
         </div>
       </section>
-      <div className="primary-gradient container mx-auto mt-5 flex flex-col items-center justify-center space-y-2 py-2 text-xs text-white dark:text-light-900 md:invisible">
+      <div className="primary-gradient container mx-auto mt-5 flex flex-col items-center justify-center space-y-2 py-2 text-xs text-white dark:text-light-900 md:hidden">
         <div className="flex items-center space-x-2">
           <Image
             src="/assets/icons/whatsapp.png"
