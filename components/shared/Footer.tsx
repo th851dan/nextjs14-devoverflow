@@ -28,8 +28,8 @@ const Footer = ({ isInsideSheet = false }) => {
           <span>|</span>
 
           {convertToSheetClose(
-            <Link href="/impressum">
-              <p className="hover:underline ">Impressum</p>
+            <Link href="/imprint">
+              <p className="hover:underline ">Imprint</p>
             </Link>
           )}
           <span>|</span>
