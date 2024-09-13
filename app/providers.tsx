@@ -1,7 +1,6 @@
 // app/providers.js
 'use client'
-import { useEffect } from 'react'
-import React from "react";
+import React, { useEffect } from 'react'
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
 import { useCookiebotCallbacks } from '@/lib/cookiebot'
