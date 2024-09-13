@@ -19,18 +19,17 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
 
     useCookiebotCallbacks(
         {
-            CookiebotOnAcceptCallback: () => {
+            CookiebotOnLoadCallback: () => {
                 if (window.Cookiebot.consent.statistics) {
                     posthog.set_config({ persistence: "localStorage+cookie" })
-                    console.log("set posthog to cookie")
+                    console.log("set posthog to cookie", window.Cookiebot)
+                    console.log("Consent date", window.Cookiebot.consentUTC)
                 } else {
                     posthog.set_config({ persistence: "memory" })
                     console.log("set posthog to memory")
                 }
-            },
-            CookiebotOnDeclineCallback: () => {
-                posthog.set_config({ persistence: "memory" })
-                console.log("set posthog to memory")
+
+                posthog.identify(window.Cookiebot.consent.stamp, { CookiebotConsentDate: window.Cookiebot.consentUTC.toString() })
             }
         })
 
