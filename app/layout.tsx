@@ -13,6 +13,12 @@ import { ThemeProvider } from "@/context/ThemeProvider";
 import type { Metadata } from "next";
 
 import "./globals.css";
+import { PHProvider } from "./providers";
+import dynamic from 'next/dynamic'
+
+const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
+  ssr: false,
+})
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,20 +56,23 @@ export default function RootLayout({
           type="text/javascript"
         ></Script>
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
-        <ClerkProvider
-          appearance={{
-            elements: {
-              formButtonPrimary: "primary-gradient",
-              footerActionLink: "primary-text-gradient hover:text-primary-500",
-            },
-          }}
-        >
-          <ThemeProvider>{children}</ThemeProvider>
-        </ClerkProvider>
-        <Analytics />
-        <SpeedInsights />
-      </body>
+      <PHProvider>
+        <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+          <PostHogPageView />
+          <ClerkProvider
+            appearance={{
+              elements: {
+                formButtonPrimary: "primary-gradient",
+                footerActionLink: "primary-text-gradient hover:text-primary-500",
+              },
+            }}
+          >
+            <ThemeProvider>{children}</ThemeProvider>
+          </ClerkProvider>
+          <Analytics />
+          <SpeedInsights />
+        </body>
+      </PHProvider>
     </html>
   );
 }
