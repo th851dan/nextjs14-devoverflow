@@ -20,7 +20,7 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
     useCookiebotCallbacks(
         {
             CookiebotOnAcceptCallback: () => {
-                if (Cookiebot?.consent.statistics) {
+                if (window.Cookiebot.consent.statistics) {
                     posthog.set_config({ persistence: "localStorage+cookie" })
                     console.log("set posthog to cookie")
                 } else {

@@ -12,7 +12,7 @@ export const useCookiebotCallbacks = ({
   useEffect(() => {
     // Ensure Cookiebot is available before assigning callbacks
     const initializeCookiebotCallbacks = () => {
-      if (typeof Cookiebot !== "undefined") {
+      if (typeof window.Cookiebot !== "undefined") {
         window.addEventListener("CookiebotOnAccept", CookiebotOnAcceptCallback);
         window.addEventListener(
           "CookiebotOnDecline",
