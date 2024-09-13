@@ -5,6 +5,9 @@
     "plugin:tailwindcss/recommended",
     "prettier"
   ],
+  "env": {
+    "browser": true // Ensure ESLint knows it's running in a browser environment
+  },
   "rules": {
     "react/no-unescaped-entities": "error" // Enable the rule to detect unescaped entities
   },
