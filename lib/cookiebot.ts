@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
 interface UseCookiebotCallbacksProps {
-  CookiebotOnAcceptCallback: EventListenerOrEventListenerObject;
-  CookiebotOnDeclineCallback: EventListenerOrEventListenerObject;
+  CookiebotOnAcceptCallback: EventListener;
+  CookiebotOnDeclineCallback: EventListener;
 }
 // Hook to initialize Cookiebot callbacks
 export const useCookiebotCallbacks = ({
