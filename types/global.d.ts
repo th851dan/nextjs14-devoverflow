@@ -6,7 +6,9 @@ declare global {
         preferences: boolean;
         statistics: boolean;
         marketing: boolean;
+        stamp: string;
       };
+      consentUTC: Date;
     };
   }
 }
