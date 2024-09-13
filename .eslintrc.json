@@ -6,7 +6,8 @@
     "prettier"
   ],
   "env": {
-    "browser": true // Ensure ESLint knows it's running in a browser environment
+    "browser": true, // Ensure ESLint knows it's running in a browser environment
+    "es2021": true
   },
   "rules": {
     "react/no-unescaped-entities": "error" // Enable the rule to detect unescaped entities
