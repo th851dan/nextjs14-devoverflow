@@ -28,7 +28,11 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
                     posthog.set_config({ persistence: "memory" })
                     console.log("set posthog to memory")
                 }
-
+                const consentIdElement = ReactDOM.findDOMNode(document.querySelector("#CookiebotWidget"));
+                if (consentIdElement && consentIdElement instanceof Element)
+                    if (consentIdElement) {
+                        consentIdElement.classList.add("ph-no-capture"); // Add custom class at runtime
+                    }
                 posthog.identify(window.Cookiebot.consent.stamp, { CookiebotConsentDate: window.Cookiebot.consentUTC.toString() })
             }
         })
