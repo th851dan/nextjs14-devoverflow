@@ -1,6 +1,6 @@
 // app/providers.js
 'use client'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
 import { useCookiebotCallbacks } from '@/lib/cookiebot'
@@ -10,7 +10,7 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
         posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
             api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
             persistence: "memory",
-            //person_profiles: 'identified_only',
+            // person_profiles: 'identified_only',
             capture_pageview: false, // Disable automatic pageview capture, as we capture manually
             capture_pageleave: true // Enable pageleave capture
         })
@@ -19,18 +19,17 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
 
     useCookiebotCallbacks(
         {
-            CookiebotOnAcceptCallback: () => {
-                if (Cookiebot.consent.statistics) {
+            CookiebotOnLoadCallback: () => {
+                if (window.Cookiebot.consent.statistics) {
                     posthog.set_config({ persistence: "localStorage+cookie" })
-                    console.log("set posthog to cookie")
+                    console.log("set posthog to cookie", window.Cookiebot)
+                    console.log("Consent date", window.Cookiebot.consentUTC)
                 } else {
                     posthog.set_config({ persistence: "memory" })
                     console.log("set posthog to memory")
                 }
-            },
-            CookiebotOnDeclineCallback: () => {
-                posthog.set_config({ persistence: "memory" })
-                console.log("set posthog to memory")
+
+                posthog.identify(window.Cookiebot.consent.stamp, { CookiebotConsentDate: window.Cookiebot.consentUTC.toString() })
             }
         })
 

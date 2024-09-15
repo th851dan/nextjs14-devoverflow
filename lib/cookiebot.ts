@@ -1,23 +1,17 @@
 import { useEffect } from "react";
 
 interface UseCookiebotCallbacksProps {
-  CookiebotOnAcceptCallback: EventListenerOrEventListenerObject;
-  CookiebotOnDeclineCallback: EventListenerOrEventListenerObject;
+  CookiebotOnLoadCallback: EventListener;
 }
 // Hook to initialize Cookiebot callbacks
 export const useCookiebotCallbacks = ({
-  CookiebotOnAcceptCallback,
-  CookiebotOnDeclineCallback,
+  CookiebotOnLoadCallback,
 }: UseCookiebotCallbacksProps) => {
   useEffect(() => {
     // Ensure Cookiebot is available before assigning callbacks
     const initializeCookiebotCallbacks = () => {
-      if (typeof Cookiebot !== "undefined") {
-        window.addEventListener("CookiebotOnAccept", CookiebotOnAcceptCallback);
-        window.addEventListener(
-          "CookiebotOnDecline",
-          CookiebotOnDeclineCallback
-        );
+      if (typeof window.Cookiebot !== "undefined") {
+        window.addEventListener("CookiebotOnLoad", CookiebotOnLoadCallback);
       } else {
         console.error("Cookiebot is not loaded yet.");
       }
