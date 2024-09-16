@@ -35,12 +35,12 @@ const nameLengthErrorMap: z.ZodErrorMap = (issue, ctx) => {
 };
 
 export const ProfileValidation = z.object({
-  name: z
+  username: z
     .string({ errorMap: nameLengthErrorMap })
     .min(5)
     .max(50)
     .regex(namePattern),
-  username: z.union([z.string().min(5).max(50), z.literal("")]),
+  name: z.union([z.string().min(5).max(50), z.literal("")]),
   bio: z.union([z.string().min(5).max(50), z.literal("")]),
   portfolioWebsite: z.union([z.string().url(), z.literal("")]),
   location: z.union([z.string().min(5).max(50), z.literal("")]),

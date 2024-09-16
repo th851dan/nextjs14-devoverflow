@@ -50,7 +50,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
               <h2 className="h2-bold text-dark100_light900">
                 {userInfo.user.isDeleted
                   ? "DeletedUser" + userInfo.user.preciousNumber
-                  : userInfo.user.name}
+                  : userInfo.user.username}
               </h2>
             </div>
           </div>
@@ -75,7 +75,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
               <h2 className="h2-bold text-dark100_light900">
                 {userInfo.user.isDeleted
                   ? "DeletedUser" + userInfo.user.preciousNumber
-                  : userInfo.user.name}
+                  : userInfo.user.username}
               </h2>
               <p className="paragraph-regular text-dark200_light800">
                 @BKBeta{userInfo.user.preciousNumber.toString()}

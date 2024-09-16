@@ -19,10 +19,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 
-import { updateUser } from "@/lib/actions/user.action";
 import { ProfileValidation } from "@/lib/validations";
 
 import type { ClerkId } from "@/lib/actions/shared.types";
+
+import { updateUserWithClerkClient } from "@/lib/clerkclient";
 
 interface Props extends ClerkId {
   user: string;
@@ -48,11 +49,10 @@ const Profile = ({ clerkId, user }: Props) => {
 
   async function onSubmit(values: z.infer<typeof ProfileValidation>) {
 
-    console.log("try to submit profile")
     setIsSubmitting(true);
 
     try {
-      await updateUser({
+      await updateUserWithClerkClient({
         clerkId,
         updateData: {
           name: values.name,
@@ -66,6 +66,7 @@ const Profile = ({ clerkId, user }: Props) => {
       });
 
       router.push("/");
+
     } catch (error) {
       toast({
         title: "Error updating profile ⚠️",
@@ -91,7 +92,7 @@ const Profile = ({ clerkId, user }: Props) => {
       >
         <FormField
           control={form.control}
-          name="name"
+          name="username"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
               <FormLabel className="paragraph-semibold text-dark400_light800">

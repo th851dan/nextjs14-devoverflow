@@ -48,10 +48,6 @@ export async function updateUser(params: UpdateUserParams) {
       new: true,
     });
 
-    /*    await clerkClient.users.updateUser(clerkId, {
-      username: updateData.name,
-    }) */
-
     revalidatePath(path);
   } catch (error) {
     console.log(error);
@@ -115,7 +111,6 @@ export async function getUserById(params: { userId: string }) {
     if (!user) {
       throw new Error("User not found");
     }
-    console.log(user);
     return user;
   } catch (error) {
     console.log(error);

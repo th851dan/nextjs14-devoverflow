@@ -20,7 +20,6 @@ const Page = () => {
 
         if (isCreated) {
           clearInterval(interval);
-          console.log("Redirecting to onboarding...");
           router.push("/onboarding");
           router.refresh();
         }
