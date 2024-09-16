@@ -1,6 +1,7 @@
 // app/providers.js
 'use client'
 import React, { useEffect } from 'react'
+import ReactDOM from 'react-dom';
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
 import { useCookiebotCallbacks } from '@/lib/cookiebot'
@@ -54,6 +55,8 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
                     posthog.set_config({ persistence: "memory" })
                     console.log("set posthog to memory")
                 }
+
+                // Capture CookiebotWidget at runtime and not capture by Posthog
                 const consentIdElement = ReactDOM.findDOMNode(document.querySelector("#CookiebotWidget"));
                 if (consentIdElement && consentIdElement instanceof Element)
                     if (consentIdElement) {
