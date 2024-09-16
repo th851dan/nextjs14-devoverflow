@@ -1,7 +1,6 @@
 // app/providers.js
 'use client'
 import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom';
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
 import { useCookiebotCallbacks } from '@/lib/cookiebot'
@@ -52,7 +51,7 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
                 }
 
                 // Capture CookiebotWidget at runtime and not capture by Posthog
-                const consentIdElement = ReactDOM.findDOMNode(document.querySelector("#CookiebotWidget"));
+                const consentIdElement = document.querySelector("#CookiebotWidget");
                 if (consentIdElement && consentIdElement instanceof Element)
                     if (consentIdElement) {
                         consentIdElement.classList.add("ph-no-capture"); // Add custom class at runtime
