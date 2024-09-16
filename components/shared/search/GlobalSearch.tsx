@@ -81,7 +81,7 @@ const GlobalSearch = () => {
 
         <Input
           type="text"
-          placeholder="Search globally..."
+          placeholder="Search everything on BuddyKnows..."
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);

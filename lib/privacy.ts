@@ -1,3 +1,4 @@
+// Function to recursively mask userId in all properties of the event
 export function maskUserIdInEvent(event: any): any {
   const regex = /(user_)[^&]+/; // Regex to detect and mask userId in URLs
   const maskedUserId = "maskedUserId"; // The string to replace the userId with

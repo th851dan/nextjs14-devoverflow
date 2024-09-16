@@ -11,9 +11,6 @@ import { maskUserIdInEvent } from '@/lib/privacy';
 export function PHProvider({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    // Function to recursively mask userId in all properties of the event
-
-
     // Override the global PostHog capture method to mask userId
     const originalCapture = posthog.capture.bind(posthog);
 
@@ -43,14 +40,12 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
         })
     }, [])
 
-
     useCookiebotCallbacks(
         {
             CookiebotOnLoadCallback: () => {
                 if (window.Cookiebot.consent.statistics) {
                     posthog.set_config({ persistence: "localStorage+cookie" })
-                    console.log("set posthog to cookie", window.Cookiebot)
-                    console.log("Consent date", window.Cookiebot.consentUTC)
+                    console.log("set posthog to cookie")
                 } else {
                     posthog.set_config({ persistence: "memory" })
                     console.log("set posthog to memory")
@@ -65,7 +60,6 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
                 posthog.identify(window.Cookiebot.consent.stamp, { CookiebotConsentDate: window.Cookiebot.consentUTC.toString() })
             }
         })
-
 
     return <PostHogProvider client={posthog}>{children}</PostHogProvider>
 }
