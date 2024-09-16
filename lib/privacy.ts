@@ -10,7 +10,7 @@ export function maskUserIdInEvent(event: any): any {
     } else if (typeof data === "object" && data !== null) {
       // If it's an object or array, recursively go through all its properties
       for (const key in data) {
-        if (data.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
           data[key] = recurseMask(data[key]);
         }
       }
