@@ -17,21 +17,21 @@ export interface IUser extends Document {
   preciousNumber: Number;
   isDeleted: boolean;
   deletedAt: Date;
-  facebookId: String
+  facebookId: String;
 }
 
 export const UserSchema = new Schema({
   clerkId: { type: String, required: true },
   name: { type: String, required: true },
   username: { type: String, required: true },
-  first_name: { type: String, required: true },
-  last_name: { type: String, required: true },
+  first_name: { type: String },
+  last_name: { type: String },
   email_addresses: [{ type: String, required: true }],
   password: { type: String },
   bio: { type: String },
   picture: { type: String, required: true },
-  profile_image_url: { type: String, required: true },
-  image_url: { type: String, required: true },
+  profile_image_url: { type: String },
+  image_url: { type: String },
   has_image: { type: Boolean, default: false },
   location: { type: String },
   portfolioWebsite: { type: String },
@@ -42,7 +42,7 @@ export const UserSchema = new Schema({
   preciousNumber: { type: Number, default: -1, unique: true, require: true },
   isDeleted: { type: Boolean, default: false },
   deletedAt: { type: Date },
-  facebookId: { type: String }
+  facebookId: { type: String },
 });
 
 const User = models.User || model("User", UserSchema);

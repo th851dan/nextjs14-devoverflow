@@ -23,7 +23,7 @@ import { ProfileValidation } from "@/lib/validations";
 
 import type { ClerkId } from "@/lib/actions/shared.types";
 
-import { updateUserWithClerkClient } from "@/lib/clerkclient";
+import { updateUser } from "@/lib/actions/user.action";
 
 interface Props extends ClerkId {
   user: string;
@@ -52,14 +52,15 @@ const Profile = ({ clerkId, user }: Props) => {
     setIsSubmitting(true);
 
     try {
-      await updateUserWithClerkClient({
+      await updateUser({
         clerkId,
         updateData: {
           name: values.name,
-          username: values.username,
+          // no need to update these properties, since we only allow users to update name for now
+          /* username: values.username,
           portfolioWebsite: values.portfolioWebsite,
           location: values.location,
-          bio: values.bio,
+          bio: values.bio, */
           onboarded: true,
         },
         path: pathname,
@@ -92,7 +93,7 @@ const Profile = ({ clerkId, user }: Props) => {
       >
         <FormField
           control={form.control}
-          name="username"
+          name="name"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
               <FormLabel className="paragraph-semibold text-dark400_light800">
