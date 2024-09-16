@@ -57,34 +57,29 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if (eventType === "user.created") {
-    const { id, email_addresses, image_url, username, first_name, last_name } =
-      evt.data;
+    const { id, email_addresses, image_url, username } = evt.data;
 
     const parts = email_addresses[0].email_address.split("@");
 
     // create a new user in database
     const mongoUser = await createUser({
       clerkId: id,
-      name: `${first_name}${last_name ? ` ${last_name}` : ""}`,
       username: username || `${parts[0]}-${parts[1].split(".")[0]}`,
       email_addresses: email_addresses.map(
         (emailJSON) => emailJSON.email_address
       ),
       picture: image_url,
     });
-    console.log(mongoUser);
     return NextResponse.json({ message: "User created", mongoUser });
   }
 
   if (eventType === "user.updated") {
-    const { id, email_addresses, image_url, username, first_name, last_name } =
-      evt.data;
+    const { id, email_addresses, image_url, username } = evt.data;
 
     // create a new user in database
     const mongoUser = await updateUser({
       clerkId: id,
       updateData: {
-        name: `${first_name}${last_name ? ` ${last_name}` : ""}`,
         username: username!,
         email_addresses: email_addresses.map(
           (emailJSON) => emailJSON.email_address

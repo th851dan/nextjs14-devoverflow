@@ -19,10 +19,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 
-import { updateUser } from "@/lib/actions/user.action";
 import { ProfileValidation } from "@/lib/validations";
 
 import type { ClerkId } from "@/lib/actions/shared.types";
+
+import { updateUser } from "@/lib/actions/user.action";
 
 interface Props extends ClerkId {
   user: string;
@@ -48,7 +49,6 @@ const Profile = ({ clerkId, user }: Props) => {
 
   async function onSubmit(values: z.infer<typeof ProfileValidation>) {
 
-    console.log("try to submit profile")
     setIsSubmitting(true);
 
     try {
@@ -56,16 +56,18 @@ const Profile = ({ clerkId, user }: Props) => {
         clerkId,
         updateData: {
           name: values.name,
-          username: values.username,
+          // no need to update these properties, since we only allow users to update name for now
+          /* username: values.username,
           portfolioWebsite: values.portfolioWebsite,
           location: values.location,
-          bio: values.bio,
+          bio: values.bio, */
           onboarded: true,
         },
         path: pathname,
       });
 
       router.push("/");
+
     } catch (error) {
       toast({
         title: "Error updating profile ⚠️",

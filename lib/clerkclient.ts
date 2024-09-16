@@ -1,5 +1,6 @@
+"use server";
 import { clerkClient } from "@clerk/nextjs/server";
-import { DeleteUserParams } from "./actions/shared.types";
+import { DeleteUserParams, UpdateUserParams } from "./actions/shared.types";
 
 
 
@@ -34,11 +35,18 @@ export async function getUserListApi(params: {
 
     // Parse the response as JSON
     const data = await response.json();
-    console.log("Clerk Users:", data);
+
     return data;
   } catch (error: any) {
     // Error handling
     console.error("Error fetching users from Clerk API:", error.message);
     throw error;
   }
+}
+
+
+export async function updateUserWithClerkClient(params: UpdateUserParams) {
+   console.log("clerk update")
+   console.log(params)
+   await clerkClient.users.updateUser(params.clerkId, params.updateData);
 }

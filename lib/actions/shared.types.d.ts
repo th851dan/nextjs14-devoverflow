@@ -60,7 +60,7 @@ interface Searchable
  * Interfaces for user actions
  */
 export interface CreateUserParams extends ClerkId {
-  name: string;
+  name?: string;
   username: string;
   email_addresses: string[];
   picture: string;

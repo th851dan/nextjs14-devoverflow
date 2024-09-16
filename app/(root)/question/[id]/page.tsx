@@ -48,7 +48,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
   const showActionButtons = clerkId && clerkId === result?.author.clerkId;
 
   return (
-    <>
+    <div className={`${showActionButtons && "ph-no-capture"}`}>
       <div className="flex-start w-full flex-col">
         <div className="flex w-full flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
           <Link
@@ -143,7 +143,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
         questionId={JSON.stringify(result._id)}
         authorId={JSON.stringify(mongoUser._id)}
       />
-    </>
+    </div>
   );
 };
 
