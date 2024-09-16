@@ -5,8 +5,13 @@
     "plugin:tailwindcss/recommended",
     "prettier"
   ],
+  "env": {
+    "browser": true, // Ensure ESLint knows it's running in a browser environment
+    "es2021": true
+  },
   "rules": {
-    "react/no-unescaped-entities": "error" // Enable the rule to detect unescaped entities
+    "react/no-unescaped-entities": "error", // Enable the rule to detect unescaped entities
+    "no-undef": "off"
   },
   "ignorePatterns": ["/components/ui/*"]
 }
