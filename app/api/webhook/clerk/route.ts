@@ -57,8 +57,7 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if (eventType === "user.created") {
-    const { id, email_addresses, image_url, username, first_name, last_name } =
-      evt.data;
+    const { id, email_addresses, image_url, username } = evt.data;
 
     const parts = email_addresses[0].email_address.split("@");
 
@@ -75,8 +74,7 @@ export async function POST(req: Request) {
   }
 
   if (eventType === "user.updated") {
-    const { id, email_addresses, image_url, username, first_name, last_name } =
-      evt.data;
+    const { id, email_addresses, image_url, username } = evt.data;
 
     // create a new user in database
     const mongoUser = await updateUser({
