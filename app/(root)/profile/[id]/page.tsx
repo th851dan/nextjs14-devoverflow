@@ -20,12 +20,13 @@ import type { Metadata } from "next";
 export async function generateMetadata({
   params,
 }: Omit<URLProps, "searchParams">): Promise<Metadata> {
+  const { userId: clerkId } = auth();
   const user = await getUserById({ userId: params.id });
   const username = user.isDeleted
     ? "DeletedUser" + user.preciousNumber
     : user.username;
   return {
-    title: `${username}'s Profile — BuddyKnows`,
+    title: `${clerkId === user.clerkId ? "Your" : username + "'s"} Profile — BuddyKnows`,
   };
 }
 
@@ -61,7 +62,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
 
     return (
       <>
-        <div className="flex flex-col-reverse items-start justify-between sm:flex-row">
+        <div className={`flex flex-col-reverse items-start justify-between sm:flex-row ${userInfo.user.clerkId === clerkId && "ph-no-capture"}`}>
           <div className="flex flex-col items-start gap-4 lg:flex-row">
             <Image
               src={userInfo?.user.picture}
