@@ -101,7 +101,7 @@ const Answer = ({
   }
 
   return (
-    <div>
+    <div className="ph-no-capture">
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
         {type === "Create" && (
           <h4 className="paragraph-semibold text-dark400_light800">

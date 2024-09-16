@@ -51,7 +51,7 @@ export default async function Collection({ searchParams }: SearchParamsProps) {
         />
       </div>
 
-      <div className="mt-10 flex w-full flex-col gap-6">
+      <div className="mt-10 flex w-full flex-col gap-6 ph-no-capture">
         {result.questions.length > 0 ? (
           result.questions.map((question: any) => (
             <QuestionCard
