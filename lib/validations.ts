@@ -27,7 +27,7 @@ const nameLengthErrorMap: z.ZodErrorMap = (issue, ctx) => {
   if (issue.code === z.ZodIssueCode.invalid_string) {
     return {
       message:
-        'Name must not have spaces at the start or end. Words can be separated by either an underscore "_" or a single space, but not both together.',
+        'Names cannot contain numbers, start/end with spaces. Words can be separated by either an underscore "_" or a single space, but not both together.',
     };
   }
 
