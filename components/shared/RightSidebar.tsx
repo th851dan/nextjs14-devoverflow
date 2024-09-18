@@ -149,7 +149,7 @@ function RightSidebar() {
           <Link
             href={`/question/${question._id}`}
             key={question._id}
-            className="flex cursor-pointer items-center justify-between gap-7"
+            className="flex cursor-pointer items-center justify-between"
           >
             <p className="body-medium text-dark500_light700">
               {question.title}
@@ -176,7 +176,7 @@ function RightSidebar() {
           <Link
             href={`${group.invitationLink}`}
             key={group._id}
-            className="flex cursor-pointer items-center justify-between gap-7"
+            className="flex cursor-pointer items-center justify-between"
           >
             <p className="body-medium text-dark500_light700">
               {group.name}
