@@ -106,7 +106,7 @@ function RightSidebar() {
     const fetchTags = async () => {
       // setLoading(true);
       try {
-        const response = await fetch(`/api/tags?page=${tagPageNumber}&pageSize=3&filter=''`);
+        const response = await fetch(`/api/tags?page=${tagPageNumber}&pageSize=12&filter=''`);
         const data: TagResponse = await response.json();
 
         setAllTags(data.tags)
@@ -143,12 +143,13 @@ function RightSidebar() {
         pageNumber={questionPageNumber}
         isNext={questionNext}
         onPageChange={handleNavigationQuestion}
+        optionalClassName="mt-16"
       >
         {allQuestions && allQuestions.map((question: any) => (
           <Link
             href={`/question/${question._id}`}
             key={question._id}
-            className="flex cursor-pointer items-center justify-between gap-7"
+            className="flex cursor-pointer items-center justify-between"
           >
             <p className="body-medium text-dark500_light700">
               {question.title}
@@ -165,16 +166,17 @@ function RightSidebar() {
       </PaginationV2>
 
       <PaginationV2
-        title="Whatsapp Groups"
+        title="WhatsApp Groups"
         pageNumber={whatsappPageNumber}
         isNext={whatsappNext}
         onPageChange={handleNavigationWhatsapp}
+        optionalClassName="mt-5"
       >
         {allWhatsapps && allWhatsapps.map((group: any) => (
           <Link
             href={`${group.invitationLink}`}
             key={group._id}
-            className="flex cursor-pointer items-center justify-between gap-7"
+            className="flex cursor-pointer items-center justify-between"
           >
             <p className="body-medium text-dark500_light700">
               {group.name}
@@ -195,16 +197,19 @@ function RightSidebar() {
         pageNumber={tagPageNumber}
         isNext={tagNext}
         onPageChange={handleNavigationTag}
+        optionalClassName="mt-5"
       >
-        {allTags && allTags.map((tag: any) => (
-          <RenderTag
-            key={tag._id}
-            _id={tag._id}
-            name={tag.name}
-          // totalQuestions={tag.questions.length}
-          // showCount
-          />
-        ))}
+        <div className="flex flex-wrap gap-1">
+          {allTags && allTags.map((tag: any) => (
+            <RenderTag
+              key={tag._id}
+              _id={tag._id}
+              name={tag.name}
+            // totalQuestions={tag.questions.length}
+            // showCount
+            />
+          ))}
+        </div>
       </PaginationV2>
 
     </section>
