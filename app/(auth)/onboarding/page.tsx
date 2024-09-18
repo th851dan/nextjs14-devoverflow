@@ -34,7 +34,7 @@ const Page = async () => {
           Complete your profile now to use BuddyKnows
         </p>
 
-        <div className="background-light850_dark100 mt-9 p-10">
+        <div className="background-light850_dark100 mt-9 p-10 rounded-2xl border border-primary-100 opacity-75">
           <Profile clerkId={userId} user={JSON.stringify(mongoUser)} />
         </div>
       </main>
