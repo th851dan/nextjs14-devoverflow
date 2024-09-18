@@ -169,7 +169,7 @@ const Answer = ({
                         "bold italic forecolor | alignleft aligncenter |" +
                         "alignright alignjustify | bullist numlist outdent indent",
                       content_style:
-                        "body { font-family:Inter; font-size:16px }",
+                        "body { font-family:helvetica; font-size:16px }",
                       skin: mode === "dark" ? "oxide-dark" : "oxide",
                       content_css: mode === "dark" ? "dark" : "default",
                     }}
