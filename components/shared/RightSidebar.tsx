@@ -106,7 +106,7 @@ function RightSidebar() {
     const fetchTags = async () => {
       // setLoading(true);
       try {
-        const response = await fetch(`/api/tags?page=${tagPageNumber}&pageSize=3&filter=''`);
+        const response = await fetch(`/api/tags?page=${tagPageNumber}&pageSize=12&filter=''`);
         const data: TagResponse = await response.json();
 
         setAllTags(data.tags)
@@ -196,15 +196,17 @@ function RightSidebar() {
         isNext={tagNext}
         onPageChange={handleNavigationTag}
       >
-        {allTags && allTags.map((tag: any) => (
-          <RenderTag
-            key={tag._id}
-            _id={tag._id}
-            name={tag.name}
-          // totalQuestions={tag.questions.length}
-          // showCount
-          />
-        ))}
+        <div className="flex flex-wrap gap-1">
+          {allTags && allTags.map((tag: any) => (
+            <RenderTag
+              key={tag._id}
+              _id={tag._id}
+              name={tag.name}
+            // totalQuestions={tag.questions.length}
+            // showCount
+            />
+          ))}
+        </div>
       </PaginationV2>
 
     </section>
