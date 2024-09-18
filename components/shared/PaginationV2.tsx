@@ -10,9 +10,10 @@ interface Props {
   isNext: boolean;
   onPageChange: (newPageNumber: number) => void;
   children?: React.ReactNode;
+  optionalClassName?: string;
 }
 
-const PaginationV2 = ({ title, pageNumber, isNext, onPageChange, children }: Props) => {
+const PaginationV2 = ({ title, pageNumber, isNext, onPageChange, children, optionalClassName }: Props) => {
 
   const handleNavigation = (direction: string) => {
     const nextPageNumber =
@@ -26,11 +27,11 @@ const PaginationV2 = ({ title, pageNumber, isNext, onPageChange, children }: Pro
 
   return (
 
-    <div className="mt-16">
+    <div className={optionalClassName}>
       <h3 className="h3-bold text-dark200_light900">{title}</h3>
       <div className="mt-7 flex flex-col gap-4">
         {children}
-        <div className="mt-10">
+        <div className="mt-1">
           <div className="flex w-full items-center justify-center gap-2">
             <Button
               disabled={pageNumber === 1}

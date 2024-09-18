@@ -143,6 +143,7 @@ function RightSidebar() {
         pageNumber={questionPageNumber}
         isNext={questionNext}
         onPageChange={handleNavigationQuestion}
+        optionalClassName="mt-16"
       >
         {allQuestions && allQuestions.map((question: any) => (
           <Link
@@ -165,10 +166,11 @@ function RightSidebar() {
       </PaginationV2>
 
       <PaginationV2
-        title="Whatsapp Groups"
+        title="WhatsApp Groups"
         pageNumber={whatsappPageNumber}
         isNext={whatsappNext}
         onPageChange={handleNavigationWhatsapp}
+        optionalClassName="mt-5"
       >
         {allWhatsapps && allWhatsapps.map((group: any) => (
           <Link
@@ -195,6 +197,7 @@ function RightSidebar() {
         pageNumber={tagPageNumber}
         isNext={tagNext}
         onPageChange={handleNavigationTag}
+        optionalClassName="mt-5"
       >
         <div className="flex flex-wrap gap-1">
           {allTags && allTags.map((tag: any) => (
