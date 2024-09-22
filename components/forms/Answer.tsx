@@ -101,7 +101,7 @@ const Answer = ({
   }
 
   return (
-    <div>
+    <div className="ph-no-capture">
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
         {type === "Create" && (
           <h4 className="paragraph-semibold text-dark400_light800">
@@ -158,7 +158,6 @@ const Answer = ({
                         "anchor",
                         "searchreplace",
                         "visualblocks",
-                        "codesample",
                         "fullscreen",
                         "insertdatetime",
                         "media",
@@ -167,10 +166,10 @@ const Answer = ({
                       ],
                       toolbar:
                         "undo redo | " +
-                        "codesample | bold italic forecolor | alignleft aligncenter |" +
+                        "bold italic forecolor | alignleft aligncenter |" +
                         "alignright alignjustify | bullist numlist outdent indent",
                       content_style:
-                        "body { font-family:Inter; font-size:16px }",
+                        "body { font-family:helvetica; font-size:16px }",
                       skin: mode === "dark" ? "oxide-dark" : "oxide",
                       content_css: mode === "dark" ? "dark" : "default",
                     }}

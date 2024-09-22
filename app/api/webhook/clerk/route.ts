@@ -67,7 +67,6 @@ export async function POST(req: Request) {
     // create a new user in database
     const mongoUser = await createUser({
       clerkId: id,
-      name: `${first_name}${last_name ? ` ${last_name}` : ""}`,
       username: username || `${parts[0]}-${parts[1].split(".")[0]}`,
       email_addresses: email_addresses.map(
         (emailJSON) => emailJSON.email_address
@@ -81,14 +80,12 @@ export async function POST(req: Request) {
   }
 
   if (eventType === "user.updated") {
-    const { id, email_addresses, image_url, username, first_name, last_name } =
-      evt.data;
+    const { id, email_addresses, image_url, username } = evt.data;
 
     // create a new user in database
     const mongoUser = await updateUser({
       clerkId: id,
       updateData: {
-        name: `${first_name}${last_name ? ` ${last_name}` : ""}`,
         username: username!,
         email_addresses: email_addresses.map(
           (emailJSON) => emailJSON.email_address

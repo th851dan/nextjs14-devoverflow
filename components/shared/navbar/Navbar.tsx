@@ -35,10 +35,22 @@ const Navbar = () => {
             appearance={{
               elements: {
                 avatarBox: "h-10 w-10",
+                avatarImage: "ph-no-capture",
+                userPreview: "ph-no-capture",
               },
               variables: {
                 colorPrimary: "#afd602",
               },
+            }}
+            userProfileProps={{
+              appearance: {
+                elements: {
+                  avatarBox: "ph-no-capture",
+                  profileSection__emailAddresses: "ph-no-capture",
+                  profileSection__connectedAccounts: "ph-no-capture",
+                  profileSection__activeDevices: "ph-no-capture",
+                }
+              }
             }}
           />
         </SignedIn>
