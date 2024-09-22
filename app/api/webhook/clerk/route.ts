@@ -57,6 +57,8 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if (eventType === "user.created") {
+    console.log("user create webhook");
+    console.log(evt.data)
     const { id, email_addresses, image_url, username, first_name, last_name } =
       evt.data;
 
@@ -70,6 +72,9 @@ export async function POST(req: Request) {
       email_addresses: email_addresses.map(
         (emailJSON) => emailJSON.email_address
       ),
+      first_name: first_name || "",
+      last_name: last_name || "",
+      image_url, 
       picture: image_url,
     });
     return NextResponse.json({ message: "User created", mongoUser });
