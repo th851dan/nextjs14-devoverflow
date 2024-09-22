@@ -64,6 +64,9 @@ export interface CreateUserParams extends ClerkId {
   username: string;
   email_addresses: string[];
   picture: string;
+  first_name: string;
+  last_name: string;
+  image_url: string
 }
 
 export interface GetUserByIdParams extends UserId {}
