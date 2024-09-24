@@ -16,7 +16,7 @@ export async function saveCookieConsent(params: CookieConsentData) {
       consents,
     });
 
-    return params;
+    return { params, success: true };
   } catch (error) {
     console.log(error);
     throw error;
@@ -36,7 +36,7 @@ export async function updateCookieConsent(params: CookieConsentData) {
         new: true,
       }
     );
-    return params;
+    return { params, success: true };
   } catch (error) {
     console.log(error);
     throw error;
