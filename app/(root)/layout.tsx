@@ -6,6 +6,7 @@ import LeftSidebar from "@/components/shared/LeftSidebar";
 import RightSidebar from "@/components/shared/RightSidebar";
 import Footer from "@/components/shared/Footer";
 import ContactBanner from "@/components/shared/ContactBanner";
+import CookieConsentBanner from "@/components/cookie/cookie-consent-banner";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -24,6 +25,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
         <RightSidebar />
       </div>
+      <CookieConsentBanner />
       <Toaster />
     </main>
   );

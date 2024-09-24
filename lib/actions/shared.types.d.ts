@@ -213,6 +213,10 @@ export interface WhatsappGroupData
   invitationLink: String,
   shortDescription: String,
   numberOfMembers: Number
+export interface CookieConsentData {
+  consentID: string;
+  consentUTC: string;
+  consents: string[];
 }
 
 
