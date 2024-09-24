@@ -48,14 +48,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid={`${process.env.NEXT_PUBLIC_COOKIEBOT_DOMAIN_GROUP_ID}`}
-          type="text/javascript"
-        ></Script>
-      </head>
       <PHProvider>
         <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
           <PostHogPageView />
