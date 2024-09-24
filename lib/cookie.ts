@@ -22,7 +22,7 @@ export function setCookie(name: string, value: string, days: number) {
 
 export function getCookie(name: string): string | null {
   const cookies = document.cookie.split(";");
-  for (let cookie of cookies) {
+  for (const cookie of cookies) {
     const [cookieName, cookieValue] = cookie.split("=").map((c) => c.trim());
     if (cookieName === name) {
       return decodeURIComponent(cookieValue);

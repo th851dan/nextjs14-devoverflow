@@ -1,5 +1,4 @@
 import React from "react";
-import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';

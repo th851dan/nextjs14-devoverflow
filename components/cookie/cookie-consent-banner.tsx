@@ -84,7 +84,7 @@ export default function CookieConsentBanner() {
                     <div>
                         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">We value your privacy</h2>
                         <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                            We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of all cookies. By clicking "Accept Necessary", you consent to only necessary cookies.
+                            We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking &quot;Accept All&quot;, you consent to our use of all cookies. By clicking &quot;Accept Necessary&quot;, you consent to only necessary cookies.
                         </p>
                     </div>
                     <div className="flex items-center gap-4">
