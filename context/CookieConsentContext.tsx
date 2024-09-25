@@ -60,16 +60,21 @@ export const CookieConsentProvider: React.FC<{ children: React.ReactNode }> = ({
     useEffect(() => {
         const storedCookieConsent = getCookie(process.env.NEXT_PUBLIC_COOKIE_CONSENT_NAME || "CookieConsent")
 
-        if (storedCookieConsent) {
-            const parseCookieConsentData: CookieConsentData = JSON.parse(storedCookieConsent)
-            setCookieConsentData(parseCookieConsentData)
-            setCookiePreferences(parseCookieConsentData.cookiePreferences)
-            setConsentGiven(true)
-        }
-        else {
+        try {
+            if (storedCookieConsent) {
+                const parseCookieConsentData: CookieConsentData = JSON.parse(storedCookieConsent)
+                setCookieConsentData(parseCookieConsentData)
+                setCookiePreferences(parseCookieConsentData.cookiePreferences)
+                setConsentGiven(true)
+            }
+            else {
+                setCookieConsentData(createNewCookieConsentData(defaultCookiePreferences))
+            }
+        } catch (error) {
+            console.error("Cannot parse CookieConsent in Cookies")
+            console.log("Create new CookieConsent instance")
             setCookieConsentData(createNewCookieConsentData(defaultCookiePreferences))
         }
-
     }, [])
 
     useEffect(() => {
