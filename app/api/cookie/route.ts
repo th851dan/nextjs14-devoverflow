@@ -1,13 +1,10 @@
-import {
-  saveCookieConsent,
-  updateCookieConsent,
-} from "@/lib/actions/cookie.action";
+import { updateCookieConsent } from "@/lib/actions/cookie.action";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
   try {
     const data = await req.json();
-    const { success } = await saveCookieConsent(data);
+    const { success } = await updateCookieConsent(data);
 
     return NextResponse.json({ success });
   } catch (error) {

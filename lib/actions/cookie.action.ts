@@ -1,39 +1,20 @@
 import { connectToDatabase } from "@/lib/mongoose";
 
-import type { CookieConsentData } from "./shared.types";
-
 import CookieConsent from "@/database/cookieConsent.model";
-
-export async function saveCookieConsent(params: CookieConsentData) {
-  try {
-    connectToDatabase();
-
-    const { consentID, consentUTC, consents } = params;
-
-    await CookieConsent.create({
-      consentID,
-      consentUTC,
-      consents,
-    });
-
-    return { params, success: true };
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-}
+import { CookieConsentData } from "@/context/CookieConsentContext";
 
 export async function updateCookieConsent(params: CookieConsentData) {
   try {
     connectToDatabase();
 
-    const { consentID, consentUTC, consents } = params;
+    const { consentID, consentUTC, cookiePreferences } = params;
 
-    await CookieConsent.findOneAndUpdate(
+    await CookieConsent.updateOne(
       { consentID },
-      { consentUTC, consents },
+      { consentUTC, cookiePreferences },
       {
         new: true,
+        upsert: true,
       }
     );
     return { params, success: true };
