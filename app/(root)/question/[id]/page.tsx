@@ -20,6 +20,7 @@ import { getFormattedNumber, getTimestamp } from "@/lib/utils";
 
 import type { URLProps } from "@/types";
 import type { Metadata } from "next";
+import CopyClipBoard from "@/components/shared/CopyClipBoard";
 
 export async function generateMetadata({
   params,
@@ -108,6 +109,8 @@ const Page = async ({ params, searchParams }: URLProps) => {
           title=" Views"
           textStyles="small-medium text-dark400_light800"
         />
+
+        <CopyClipBoard link={`${process.env.BUDDYKNOWS_API}/question/${result._id}`} />
       </div>
 
       <ParseHTML data={result.content} />
