@@ -19,6 +19,7 @@ export type CookieConsentData = {
 
 type CookieConsentContextType = {
     cookiePreferences: CookiePreferences
+    changeCookiePreferences: (preferences: Partial<CookiePreferences>) => void
     updateCookiePreferences: (preferences: Partial<CookiePreferences>) => void
     consentGiven: boolean
     setConsentGiven: (given: boolean) => void
@@ -87,20 +88,22 @@ export const CookieConsentProvider: React.FC<{ children: React.ReactNode }> = ({
             update()
             console.log("cookieConsentData update " + JSON.stringify(cookieConsentData))
             setTriggerUpdateconsentToDatabase(false)
+
+            if (cookieConsentData.cookiePreferences.analytics) {
+                posthog.set_config({ persistence: "localStorage+cookie" });
+                console.log("set posthog to cookie");
+            }
+            else {
+                posthog.set_config({ persistence: "memory" });
+                console.log("set posthog to memory");
+            }
         }
     }, [cookieConsentData])
 
-    useEffect(() => {
-        if (cookiePreferences.analytics) {
-            posthog.set_config({ persistence: "localStorage+cookie" });
-            console.log("set posthog to cookie");
-        }
-        else {
-            posthog.set_config({ persistence: "memory" });
-            console.log("set posthog to memory");
-        }
-
-    }, [cookiePreferences])
+    const changeCookiePreferences = async (preferences: Partial<CookiePreferences>) => {
+        const updatedPreferences = { ...cookiePreferences, ...preferences }
+        setCookiePreferences(updatedPreferences)
+    }
 
     const updateCookiePreferences = async (preferences: Partial<CookiePreferences>) => {
         const updatedPreferences = { ...cookiePreferences, ...preferences }
@@ -118,6 +121,7 @@ export const CookieConsentProvider: React.FC<{ children: React.ReactNode }> = ({
             value={{
                 cookiePreferences,
                 updateCookiePreferences,
+                changeCookiePreferences,
                 consentGiven,
                 setConsentGiven: updateConsentGiven
             }}
