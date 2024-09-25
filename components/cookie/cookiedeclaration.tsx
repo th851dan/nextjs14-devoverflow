@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
 import { useCookieConsent } from "@/context/CookieConsentContext"
+import { toast } from "@/components/ui/use-toast";
 
 export default function CookieDeclaration() {
   const { cookiePreferences, changeCookiePreferences, updateCookiePreferences, setConsentGiven } = useCookieConsent()
@@ -15,7 +16,10 @@ export default function CookieDeclaration() {
   const handleSave = () => {
     updateCookiePreferences(cookiePreferences)
     setConsentGiven(true)
-    alert("Your cookie preferences have been updated.")
+    toast({
+      title: "Cookie Preferences updated successfully 🎉",
+      variant: "default",
+    });
   }
 
   return (
