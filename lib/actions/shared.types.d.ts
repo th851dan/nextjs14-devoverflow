@@ -66,7 +66,7 @@ export interface CreateUserParams extends ClerkId {
   picture: string;
   first_name: string;
   last_name: string;
-  image_url: string
+  image_url: string;
 }
 
 export interface GetUserByIdParams extends UserId {}
@@ -198,23 +198,25 @@ export interface GetFormattedSalaryParams {
   period: string;
 }
 
-export interface GetWhatsappParams  
-extends OptionalPage,
-OptionalPageSize, OptionalFilter,
-OptionalSearch,
-{
+export interface GetWhatsappParams
+  extends OptionalPage,
+    OptionalPageSize,
+    OptionalFilter,
+    OptionalSearch {}
 
+export interface WhatsappGroupData {
+  id: Number;
+  name: String;
+  invitationLink: String;
+  shortDescription: String;
+  numberOfMembers: Number;
 }
 
-export interface WhatsappGroupData
-{
-  id: Number,
-  name: String,
-  invitationLink: String,
-  shortDescription: String,
-  numberOfMembers: Number
+export interface CookieConsentData {
+  consentID: string;
+  consentUTC: string;
+  consents: string[];
 }
-
 
 export interface GetUserByFacebookUserIdParams
   extends OptionalPage,

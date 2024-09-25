@@ -1,5 +1,4 @@
 import React from "react";
-import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -48,14 +47,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid={`${process.env.NEXT_PUBLIC_COOKIEBOT_DOMAIN_GROUP_ID}`}
-          type="text/javascript"
-        ></Script>
-      </head>
       <PHProvider>
         <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
           <PostHogPageView />
