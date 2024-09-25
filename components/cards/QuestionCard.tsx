@@ -8,6 +8,7 @@ import EditDeleteAction from "@/components/shared/EditDeleteAction";
 
 import { getFormattedNumber, getTimestamp } from "@/lib/utils";
 import CollapsibleContent from "../shared/CollapsibleContent";
+import CopyClipBoard from "../shared/CopyClipBoard";
 
 interface QuestionProps {
   _id: string;
@@ -110,6 +111,9 @@ const QuestionCard = ({
             title=" Views"
             textStyles="small-medium text-dark400_light800"
           />
+
+          <CopyClipBoard link={`${process.env.BUDDYKNOWS_API}/question/${_id}`} />
+
         </div>
       </div>
     </div>

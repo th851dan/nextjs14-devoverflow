@@ -30,7 +30,6 @@ export const UserSchema = new Schema({
   password: { type: String },
   bio: { type: String },
   picture: { type: String, required: true },
-  profile_image_url: { type: String},
   image_url: { type: String },
   has_image: { type: Boolean, default: false },
   location: { type: String },
