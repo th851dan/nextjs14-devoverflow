@@ -1,15 +1,17 @@
-import { Schema, model, models, Document } from "mongoose";
-
-export interface ICookieConsent extends Document {
-  consentID: string;
-  consentUTC: string;
-  consents: string[];
-}
+import { Schema, model, models } from "mongoose";
 
 export const CookieConsentSchema = new Schema({
   consentID: { type: String, required: true, unique: true },
   consentUTC: { type: Date, default: Date.now, required: true },
-  consents: [{ type: String, required: true }],
+  cookiePreferences: {
+    type: {
+      necessary: { type: Boolean, default: true },
+      functional: { type: Boolean, default: false },
+      analytics: { type: Boolean, default: false },
+      marketing: { type: Boolean, default: false },
+    },
+    required: true,
+  },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date },
 });
