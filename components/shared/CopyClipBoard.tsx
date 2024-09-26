@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from "next/image";
+import { toast } from '../ui/use-toast';
 
 interface CopyProps {
     link: string;
@@ -11,10 +12,17 @@ const CopyClipBoard = ({ link }: CopyProps) => {
     const copyToClipboard = () => {
         navigator.clipboard.writeText(link)
             .then(() => {
-                alert('Link copied');
+                toast({
+                    title: `Link copied to clipboard🎉`,
+                    variant: "default",
+                });
             })
             .catch(err => {
                 console.error('Failed to copy: ', err);
+                toast({
+                    title: `Error copying link to clipboard ⚠️`,
+                    variant: "destructive",
+                });
             });
     };
 
