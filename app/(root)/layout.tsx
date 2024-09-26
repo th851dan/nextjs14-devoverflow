@@ -5,12 +5,10 @@ import Navbar from "@/components/shared/navbar/Navbar";
 import LeftSidebar from "@/components/shared/LeftSidebar";
 import RightSidebar from "@/components/shared/RightSidebar";
 import Footer from "@/components/shared/Footer";
-import ContactBanner from "@/components/shared/ContactBanner";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="background-light850_dark100 relative">
-      <ContactBanner />
       <Navbar />
       <div className="flex">
         <LeftSidebar />

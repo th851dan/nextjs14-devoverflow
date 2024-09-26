@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 
 import { auth } from "@clerk/nextjs/server";
 import { SignedIn } from "@clerk/nextjs";
@@ -20,6 +21,7 @@ import { getFormattedNumber, getTimestamp } from "@/lib/utils";
 
 import type { URLProps } from "@/types";
 import type { Metadata } from "next";
+import CopyClipBoard from "@/components/shared/CopyClipBoard";
 
 export async function generateMetadata({
   params,
@@ -33,6 +35,9 @@ export async function generateMetadata({
 
 const Page = async ({ params, searchParams }: URLProps) => {
   const { userId: clerkId } = auth();
+  const protocol = headers().get("x-forwarded-proto") || "http";
+  const host = headers().get("host");
+  const fullUrl = `${protocol}://${host}`;
 
   let mongoUser;
 
@@ -108,6 +113,8 @@ const Page = async ({ params, searchParams }: URLProps) => {
           title=" Views"
           textStyles="small-medium text-dark400_light800"
         />
+
+        <CopyClipBoard link={`${fullUrl}/question/${result._id}`} />
       </div>
 
       <ParseHTML data={result.content} />
