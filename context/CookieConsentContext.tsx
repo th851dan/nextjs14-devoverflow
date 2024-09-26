@@ -82,7 +82,6 @@ export const CookieConsentProvider: React.FC<{ children: React.ReactNode }> = ({
             posthog.identify(cookieConsentData.consentID, {
                 CookieConsentDate: cookieConsentData.consentUTC,
             });
-            console.log("user identified")
         }
         console.log("cookieConsentData changed" + JSON.stringify(cookieConsentData))
 
