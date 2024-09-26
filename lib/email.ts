@@ -7,22 +7,22 @@ export default async function handlerEmail() {
 
     // Configure the transporter
     const transporter = nodemailer.createTransport({
-      host: 'smtp.mail.me.com',  // iCloud SMTP server
+      host: 'smtp.beta.buddyknows.org',
       port: 587,
-      secure: false,  // true for 465, false for other ports
+      secure: false,  
       auth: {
-        user: process.env.ICLOUD_EMAIL, // Your iCloud email address
-        pass: process.env.ICLOUD_APP_PASSWORD,  // Your iCloud app-specific password
+        user: process.env.ICLOUD_EMAIL, 
+        pass: process.env.ICLOUD_APP_PASSWORD,  
       },
     });
 
     try {
       // Send mail
       await transporter.sendMail({
-        from: process.env.ICLOUD_EMAIL,  // Your iCloud email
-        to: "diepbui.qn@gmail.com",              // Recipient's email
-        subject: "Nofication",                // Email subject
-        text: "Hello",                      // Email body
+        from: process.env.ICLOUD_EMAIL,  
+        to: "diepbui.qn@gmail.com",             
+        subject: "Nofication",               
+        text: "Hello",              
       });
 
       console.log("Send email successful")
