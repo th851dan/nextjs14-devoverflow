@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 
 import { auth } from "@clerk/nextjs/server";
 import { SignedIn } from "@clerk/nextjs";
@@ -34,6 +35,9 @@ export async function generateMetadata({
 
 const Page = async ({ params, searchParams }: URLProps) => {
   const { userId: clerkId } = auth();
+  const protocol = headers().get("x-forwarded-proto") || "http";
+  const host = headers().get("host");
+  const fullUrl = `${protocol}://${host}`;
 
   let mongoUser;
 
@@ -110,7 +114,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
           textStyles="small-medium text-dark400_light800"
         />
 
-        <CopyClipBoard link={`${process.env.BUDDYKNOWS_API}/question/${result._id}`} />
+        <CopyClipBoard link={`${fullUrl}/question/${result._id}`} />
       </div>
 
       <ParseHTML data={result.content} />
