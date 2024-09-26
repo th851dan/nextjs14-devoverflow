@@ -43,8 +43,6 @@ export const POST = async (req: NextRequest) => {
     // Token verifizieren
     let verifiedToken = null;
     try {
-
-      console.log()
       verifiedToken = await verifyToken(token, {
         secretKey: process.env.CLERK_SECRET_KEY,
       })
@@ -56,7 +54,6 @@ export const POST = async (req: NextRequest) => {
     if (verifiedToken != null) {
       user = await getUserById({ userId: verifiedToken.sub });
     }
-
     if (user !== undefined && user !== null) {
 
       const numbersString = process.env.PRECIOUS_NUMBER || "";
