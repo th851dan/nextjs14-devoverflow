@@ -212,12 +212,6 @@ export interface WhatsappGroupData {
   numberOfMembers: Number;
 }
 
-export interface CookieConsentData {
-  consentID: string;
-  consentUTC: string;
-  consents: string[];
-}
-
 export interface GetUserByFacebookUserIdParams
   extends OptionalPage,
     OptionalPageSize {

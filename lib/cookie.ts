@@ -1,4 +1,4 @@
-import { CookieConsentData } from "./actions/shared.types";
+import { CookieConsentData } from "@/context/CookieConsentContext";
 import crypto from "crypto";
 
 export function generateUniqueID(length: number = 44): string {
@@ -31,7 +31,7 @@ export function getCookie(name: string): string | null {
   return null;
 }
 
-export async function saveConsentToDatabase(consentData: CookieConsentData) {
+export async function updateConsentToDatabase(consentData: CookieConsentData) {
   try {
     const response = await fetch("/api/cookie", {
       method: "POST",

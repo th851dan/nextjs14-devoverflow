@@ -9,6 +9,7 @@ import EditDeleteAction from "@/components/shared/EditDeleteAction";
 import { getFormattedNumber, getTimestamp } from "@/lib/utils";
 import CollapsibleContent from "../shared/CollapsibleContent";
 import CopyClipBoard from "../shared/CopyClipBoard";
+import { headers } from "next/headers";
 
 interface QuestionProps {
   _id: string;
@@ -43,6 +44,9 @@ const QuestionCard = ({
   clerkId,
 }: QuestionProps) => {
   const showActionButtons = clerkId && clerkId === author.clerkId;
+  const protocol = headers().get("x-forwarded-proto") || "http";
+  const host = headers().get("host");
+  const fullUrl = `${protocol}://${host}`;
 
   return (
     <div className={`card-wrapper rounded-[10px] p-9 sm:px-11 ${showActionButtons && `ph-no-capture`}`}>
@@ -112,7 +116,7 @@ const QuestionCard = ({
             textStyles="small-medium text-dark400_light800"
           />
 
-          <CopyClipBoard link={`${process.env.BUDDYKNOWS_API}/question/${_id}`} />
+          <CopyClipBoard link={`${fullUrl}/question/${_id}`} />
 
         </div>
       </div>

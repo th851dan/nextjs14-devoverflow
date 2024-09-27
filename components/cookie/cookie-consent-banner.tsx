@@ -1,67 +1,35 @@
 "use client"
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { X } from 'lucide-react'
-import { CookieConsentData } from '@/lib/actions/shared.types'
-import { generateUniqueID, getCookie, saveConsentToDatabase, setCookie } from '@/lib/cookie'
-import { usePostHog } from 'posthog-js/react'
 import Image from 'next/image'
-
-const COOKIE_NAME = 'CookieConsent'
+import { useCookieConsent } from '@/context/CookieConsentContext'
 
 export default function CookieConsentBanner() {
-    const posthog = usePostHog()
-    const [isVisible, setIsVisible] = useState(false)
+    const { consentGiven, setConsentGiven, updateCookiePreferences } = useCookieConsent()
 
-    useEffect(() => {
-        const consentData = getCookie(COOKIE_NAME)
-        if (!consentData) {
-            setIsVisible(true)
-        }
-        else {
-            try {
-                const parsedConsentData: CookieConsentData = JSON.parse(consentData)
-                posthog.identify(parsedConsentData.consentID, { CookieConsentDate: parsedConsentData.consentUTC })
-                if (parsedConsentData.consents.includes("analytics")) {
-                    posthog.set_config({ persistence: "localStorage+cookie" })
-                    console.log("set posthog to cookie")
-                }
-                setIsVisible(false)
-            } catch (error) {
-                console.error('Error parsing consent data from cookie:', error)
-            }
-        }
-    }, [])
-
-    const handleConsent = async (consents: string[]) => {
-        const consentData: CookieConsentData = {
-            consentID: generateUniqueID(),
-            consentUTC: new Date().toISOString(),
-            consents: consents,
-        }
-        setCookie(COOKIE_NAME, JSON.stringify(consentData), 365) // Cookie expires after 1 year
-        setIsVisible(false)
-        posthog.identify(consentData.consentID, { CookieConsentDate: consentData.consentUTC })
-        if (consents.includes("analytics")) {
-            posthog.set_config({ persistence: "localStorage+cookie" })
-            console.log("set posthog to cookie")
-        } else {
-            posthog.set_config({ persistence: "memory" })
-            console.log("set posthog to memory")
-        }
-        await saveConsentToDatabase(consentData)
+    if (consentGiven) {
+        return null
     }
 
     const handleAcceptAll = () => {
-        handleConsent(['necessary', 'analytics'])
+        updateCookiePreferences({
+            functional: true,
+            analytics: true,
+            marketing: true
+        })
+        setConsentGiven(true)
     }
 
     const handleAcceptNecessary = () => {
-        handleConsent(['necessary'])
+        updateCookiePreferences({
+            functional: false,
+            analytics: false,
+            marketing: false
+        })
+        setConsentGiven(true)
     }
 
-    if (!isVisible) return null
 
     return (
         <motion.div
