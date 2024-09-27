@@ -50,7 +50,16 @@ export async function createAnswer(params: CreateAnswerParams) {
     // increment author's reputation by +S for creating a answer
     await User.findByIdAndUpdate(author, { $inc: { reputation: 10 } });
 
-    handlerEmail();
+    const authorOfQuestion = await User.findById(questionObj.author);
+
+    if(!authorOfQuestion.isDeleted) {
+      handlerEmail({
+        toMail: authorOfQuestion.email_addresses[0],
+        username: authorOfQuestion.name,
+        questionId: question
+      });
+    }
+
 
     revalidatePath(path);
   } catch (error) {

@@ -1,13 +1,22 @@
 import nodemailer from 'nodemailer';
+import path from 'path';
+import hbs from 'nodemailer-express-handlebars';
+import { create } from 'express-handlebars';
+import { headers } from 'next/headers'; 
 
+interface MailOptions {
+  toMail: string
+  username: string
+  questionId: string
+}
 
-export default async function handlerEmail() {
+export default async function handlerEmail(params: MailOptions) {
 
     console.log("try to send email")
 
     // Configure the transporter
     const transporter = nodemailer.createTransport({
-      host: 'smtp.beta.buddyknows.org',
+      host: 'smtp.mail.me.com',  
       port: 587,
       secure: false,  
       auth: {
@@ -16,14 +25,37 @@ export default async function handlerEmail() {
       },
     });
 
+    const handlebarOptions = {
+      viewEngine: create({
+        extname: '.handlebars',
+        partialsDir: path.resolve('./content/emails'),
+        defaultLayout: false,
+      }),
+      viewPath: path.resolve('./content/emails'),
+      extName: '.handlebars',
+    };
+
+    transporter.use('compile', hbs(handlebarOptions));
+
+    const headersList = headers(); 
+
+    const host = headersList.get('host'); 
+    const questionLink = "http://" + host + "/question/" + params.questionId;
+
+    const mailOptions = {
+      from: process.env.ICLOUD_EMAIL_FROM, 
+      to: params.toMail, 
+      subject: 'New Answer', 
+      template: 'notification-new-answer', 
+      context: {
+        name: params.username,
+        linkToQuestion: questionLink
+      },
+    };
+
     try {
-      // Send mail
-      await transporter.sendMail({
-        from: process.env.ICLOUD_EMAIL,  
-        to: "diepbui.qn@gmail.com",             
-        subject: "Nofication",               
-        text: "Hello",              
-      });
+
+      await transporter.sendMail(mailOptions);
 
       console.log("Send email successful")
 
