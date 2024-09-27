@@ -37,11 +37,15 @@ export default async function handlerEmail(params: MailOptions) {
 
     transporter.use('compile', hbs(handlebarOptions));
 
-    const headersList = headers(); 
+    const headersList = headers();
+    const xForwardedProto = headersList.get('x-forwarded-proto');
+    const host = headersList.get('host');
 
-    const host = headersList.get('host'); 
-    const questionLink = "http://" + host + "/question/" + params.questionId;
+    // Fallback to 'http' if the 'x-forwarded-proto' is not available
+    const protocol = xForwardedProto || 'http';
 
+    const questionLink = `${protocol}://${host}/question/${params.questionId}`;
+    
     const mailOptions = {
       from: process.env.ICLOUD_EMAIL_FROM, 
       to: params.toMail, 
