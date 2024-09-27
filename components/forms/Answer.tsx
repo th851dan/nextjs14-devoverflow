@@ -80,6 +80,7 @@ const Answer = ({
 
         editor.setContent("");
       }
+
     } catch (error) {
       toast({
         title: `Error ${type === "Edit" ? "editing" : "submitting"} answer ⚠️`,
@@ -92,9 +93,8 @@ const Answer = ({
       setIsSubmitting(false);
 
       toast({
-        title: `Answer ${
-          type === "Edit" ? "edited" : "submitted"
-        } successfully 🎉`,
+        title: `Answer ${type === "Edit" ? "edited" : "submitted"
+          } successfully 🎉`,
         variant: "default",
       });
     }

@@ -18,6 +18,7 @@ import type {
   GetAnswerByIdParams,
   GetAnswersParams,
 } from "./shared.types";
+import handlerEmail from "../email";
 
 export async function createAnswer(params: CreateAnswerParams) {
   try {
@@ -48,6 +49,17 @@ export async function createAnswer(params: CreateAnswerParams) {
 
     // increment author's reputation by +S for creating a answer
     await User.findByIdAndUpdate(author, { $inc: { reputation: 10 } });
+
+    const authorOfQuestion = await User.findById(questionObj.author);
+
+    if(!authorOfQuestion.isDeleted) {
+      handlerEmail({
+        toMail: authorOfQuestion.email_addresses[0],
+        username: authorOfQuestion.name,
+        questionId: question
+      });
+    }
+
 
     revalidatePath(path);
   } catch (error) {
