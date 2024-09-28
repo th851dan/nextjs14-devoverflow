@@ -487,3 +487,28 @@ export async function getRecommendedQuestions(params: RecommendedParams) {
     throw error;
   }
 }
+
+
+export async function countQuestion() {
+  try {
+    connectToDatabase();
+
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0); // Set time to 00:00:00 to mark the start of the day
+
+    const endOfDay = new Date();
+    endOfDay.setHours(23, 59, 59, 999);
+
+    const todayQuestionCount = await Question.find({
+      createdAt: {
+        $gte: startOfDay,  // Greater than or equal to start of the day
+        $lte: endOfDay,    // Less than or equal to end of the day
+      }
+    }).count();
+
+    return todayQuestionCount;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
