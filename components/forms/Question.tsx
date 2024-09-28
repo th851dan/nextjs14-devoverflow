@@ -17,16 +17,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { toast } from "@/components/ui/use-toast";
+} from "@components/ui/form";
+import { Input } from "@components/ui/input";
+import { Button } from "@components/ui/button";
+import { Badge } from "@components/ui/badge";
+import { toast } from "@components/ui/use-toast";
 
-import { useTheme } from "@/context/ThemeProvider";
+import { useTheme } from "@context/ThemeProvider";
 
-import { createQuestion, editQuestion } from "@/lib/actions/question.action";
-import { QuestionValidation } from "@/lib/validations";
+import { createQuestion, editQuestion } from "@lib/actions/question.action";
+import { QuestionValidation } from "@lib/validations";
 
 interface Props {
   type: string;
@@ -90,9 +90,8 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
       setIsSubmitting(false);
 
       toast({
-        title: `Question ${
-          type === "Edit" ? "edited" : "posted"
-        } successfully 🎉`,
+        title: `Question ${type === "Edit" ? "edited" : "posted"
+          } successfully 🎉`,
         variant: "default",
       });
     }
@@ -247,7 +246,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
                           onClick={() =>
                             type !== "Edit"
                               ? handleTagRemove(tag, field)
-                              : () => {}
+                              : () => { }
                           }
                         >
                           {tag}

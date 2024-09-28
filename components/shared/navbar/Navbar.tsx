@@ -3,9 +3,9 @@ import Image from "next/image";
 
 import { SignedIn, UserButton } from "@clerk/nextjs";
 
-import Theme from "@/components/shared/navbar/Theme";
-import Mobile from "@/components/shared/navbar/Mobile";
-import GlobalSearch from "@/components/shared/search/GlobalSearch";
+import Theme from "@components/shared/navbar/Theme";
+import Mobile from "@components/shared/navbar/Mobile";
+import GlobalSearch from "@components/shared/search/GlobalSearch";
 
 const Navbar = () => {
   return (

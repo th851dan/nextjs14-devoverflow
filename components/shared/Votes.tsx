@@ -4,18 +4,18 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@components/ui/use-toast";
 
-import { upvoteAnswer, downvoteAnswer } from "@/lib/actions/answer.action";
-import { viewQuestion } from "@/lib/actions/interaction.action";
+import { upvoteAnswer, downvoteAnswer } from "@lib/actions/answer.action";
+import { viewQuestion } from "@lib/actions/interaction.action";
 import {
   downvoteQuestion,
   upvoteQuestion,
-} from "@/lib/actions/question.action";
-import { toggleSaveQuestion } from "@/lib/actions/user.action";
-import { getFormattedNumber } from "@/lib/utils";
+} from "@lib/actions/question.action";
+import { toggleSaveQuestion } from "@lib/actions/user.action";
+import { getFormattedNumber } from "@lib/utils";
 
-import type { UserId, Voting } from "@/lib/actions/shared.types";
+import type { UserId, Voting } from "@lib/actions/shared.types";
 
 interface Props extends UserId, Voting {
   type: string;
@@ -53,9 +53,8 @@ const Votes = ({
     });
 
     toast({
-      title: `Question ${
-        !hasSaved ? "saved" : "removed from your collection"
-      } 🎉`,
+      title: `Question ${!hasSaved ? "saved" : "removed from your collection"
+        } 🎉`,
       variant: !hasSaved ? "default" : "destructive",
     });
   };

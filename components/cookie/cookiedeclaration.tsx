@@ -1,10 +1,10 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Switch } from "@/components/ui/switch"
-import { useCookieConsent } from "@/context/CookieConsentContext"
-import { toast } from "@/components/ui/use-toast";
+import { Button } from "@components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@components/ui/card"
+import { Switch } from "@components/ui/switch"
+import { useCookieConsent } from "@context/CookieConsentContext"
+import { toast } from "@components/ui/use-toast";
 
 export default function CookieDeclaration() {
   const { cookiePreferences, changeCookiePreferences, updateCookiePreferences, setConsentGiven } = useCookieConsent()

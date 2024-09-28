@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { useTheme } from "@/context/ThemeProvider";
+import { useTheme } from "@context/ThemeProvider";
 
 import {
   Menubar,
@@ -10,7 +10,7 @@ import {
   MenubarItem,
   MenubarMenu,
   MenubarTrigger,
-} from "@/components/ui/menubar";
+} from "@components/ui/menubar";
 
 import { themes } from "@/constants";
 
@@ -62,11 +62,10 @@ const Theme = () => {
                 className={`${mode === theme.value && "active-theme"}`}
               />
               <p
-                className={`body-semibold text-light-500 ${
-                  mode === theme.value
-                    ? "text-primary-500"
-                    : "text-dark100_light900"
-                }`}
+                className={`body-semibold text-light-500 ${mode === theme.value
+                  ? "text-primary-500"
+                  : "text-dark100_light900"
+                  }`}
               >
                 {theme.label}
               </p>

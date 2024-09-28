@@ -10,11 +10,11 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@components/ui/select";
 
-import { formUrlQuery } from "@/lib/utils";
+import { formUrlQuery } from "@lib/utils";
 
-import type { FilterProps } from "@/types";
+import type { FilterProps } from "@/types"
 
 interface Props {
   filters: FilterProps[];
@@ -60,9 +60,8 @@ const Filter = ({
           </div>
         </SelectTrigger>
         <SelectContent
-          className={`text-dark500_light700 small-regular border-none bg-light-900 dark:bg-dark-300 ${
-            jobFilter && "max-h-[12rem] overflow-y-auto"
-          }`}
+          className={`text-dark500_light700 small-regular border-none bg-light-900 dark:bg-dark-300 ${jobFilter && "max-h-[12rem] overflow-y-auto"
+            }`}
         >
           <SelectGroup>
             {filters.map((filter) => (

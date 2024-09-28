@@ -5,13 +5,13 @@ import { revalidatePath } from "next/cache";
 
 import { FilterQuery } from "mongoose";
 
-import Question from "@/database/question.model";
-import Tag from "@/database/tag.model";
-import User from "@/database/user.model";
-import Answer from "@/database/answer.model";
-import Interaction from "@/database/interaction.model";
+import Question from "@database/question.model";
+import Tag from "@database/tag.model";
+import User from "@database/user.model";
+import Answer from "@database/answer.model";
+import Interaction from "@database/interaction.model";
 
-import { connectToDatabase } from "@/lib/mongoose";
+import { connectToDatabase } from "@lib/mongoose";
 import { connectToDatabaseDev } from "../mongoosedev";
 
 import type {

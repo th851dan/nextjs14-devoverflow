@@ -14,16 +14,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/use-toast";
+} from "@components/ui/form";
+import { Input } from "@components/ui/input";
+import { Button } from "@components/ui/button";
+import { toast } from "@components/ui/use-toast";
 
-import { ProfileValidation } from "@/lib/validations";
+import { ProfileValidation } from "@lib/validations";
 
-import type { ClerkId } from "@/lib/actions/shared.types";
+import type { ClerkId } from "@lib/actions/shared.types";
 
-import { updateUser } from "@/lib/actions/user.action";
+import { updateUser } from "@lib/actions/user.action";
 
 interface Props extends ClerkId {
   user: string;

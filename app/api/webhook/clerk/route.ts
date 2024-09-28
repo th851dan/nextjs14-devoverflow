@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 import { Webhook } from "svix";
 import { WebhookEvent } from "@clerk/nextjs/server";
 
-import { createUser, deleteUser, updateUser } from "@/lib/actions/user.action";
+import { createUser, deleteUser, updateUser } from "@lib/actions/user.action";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
@@ -73,7 +73,7 @@ export async function POST(req: Request) {
       ),
       first_name: first_name || "",
       last_name: last_name || "",
-      image_url, 
+      image_url,
       picture: image_url,
     });
     return NextResponse.json({ message: "User created", mongoUser });

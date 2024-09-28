@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import RenderTag from "@/components/shared/RenderTag";
+import RenderTag from "@components/shared/RenderTag";
 import PaginationV2 from "./PaginationV2";
 
 

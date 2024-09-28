@@ -1,7 +1,7 @@
 // pages/api/checkUserCreated.ts (or app/api/checkUserCreated/route.ts if using the app directory)
 
 import { NextRequest, NextResponse } from "next/server";
-import { checkUserCreationFlag } from "@/lib/actions/user.action";
+import { checkUserCreationFlag } from "@lib/actions/user.action";
 
 // Handle GET requests
 export async function GET(req: NextRequest) {

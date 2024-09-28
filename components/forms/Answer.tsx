@@ -14,16 +14,16 @@ import {
   FormItem,
   FormControl,
   FormMessage,
-} from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/use-toast";
+} from "@components/ui/form";
+import { Button } from "@components/ui/button";
+import { toast } from "@components/ui/use-toast";
 
-import { useTheme } from "@/context/ThemeProvider";
+import { useTheme } from "@context/ThemeProvider";
 
-import { createAnswer, editAnswer } from "@/lib/actions/answer.action";
-import { AnswerValidation } from "@/lib/validations";
+import { createAnswer, editAnswer } from "@lib/actions/answer.action";
+import { AnswerValidation } from "@lib/validations";
 
-import type { QuestionId } from "@/lib/actions/shared.types";
+import type { QuestionId } from "@lib/actions/shared.types";
 
 interface Props extends QuestionId {
   type?: string;
@@ -92,9 +92,8 @@ const Answer = ({
       setIsSubmitting(false);
 
       toast({
-        title: `Answer ${
-          type === "Edit" ? "edited" : "submitted"
-        } successfully 🎉`,
+        title: `Answer ${type === "Edit" ? "edited" : "submitted"
+          } successfully 🎉`,
         variant: "default",
       });
     }

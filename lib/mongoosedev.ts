@@ -1,7 +1,7 @@
-import { InteractionSchema } from "@/database/interaction.model";
-import { QuestionSchema } from "@/database/question.model";
-import { TagSchema } from "@/database/tag.model";
-import { UserSchema } from "@/database/user.model";
+import { InteractionSchema } from "@database/interaction.model";
+import { QuestionSchema } from "@database/question.model";
+import { TagSchema } from "@database/tag.model";
+import { UserSchema } from "@database/user.model";
 import mongoose from "mongoose";
 
 export const connectToDatabaseDev = async () => {

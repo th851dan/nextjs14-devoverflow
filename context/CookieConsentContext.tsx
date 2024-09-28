@@ -1,6 +1,6 @@
 "use client"
 
-import { generateUniqueID, getCookie, setCookie, updateConsentToDatabase } from '@/lib/cookie'
+import { generateUniqueID, getCookie, setCookie, updateConsentToDatabase } from '@lib/cookie'
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { usePostHog } from 'posthog-js/react'
 

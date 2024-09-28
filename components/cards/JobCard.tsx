@@ -1,16 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { Badge } from "@/components/ui/badge";
-import Metric from "@/components/shared/Metric";
-import JobBadge from "@/components/jobs/JobBadge";
+import { Badge } from "@components/ui/badge";
+import Metric from "@components/shared/Metric";
+import JobBadge from "@components/jobs/JobBadge";
 
 import {
   employmentTypeConverter,
   getFormattedSalary,
   getTimestamp,
   isValidImage,
-} from "@/lib/utils";
+} from "@lib/utils";
 
 interface JobProps {
   title: string;
@@ -54,9 +54,8 @@ const JobCard = ({
     ? employerLogo
     : "/assets/images/site-logo.svg";
 
-  const location = `${city ? `${city}${state ? ", " : ""}` : ""}${state || ""}${
-    city && state && country ? ", " : ""
-  }${country || ""}`;
+  const location = `${city ? `${city}${state ? ", " : ""}` : ""}${state || ""}${city && state && country ? ", " : ""
+    }${country || ""}`;
 
   return (
     <div className="card-wrapper rounded-[10px]">

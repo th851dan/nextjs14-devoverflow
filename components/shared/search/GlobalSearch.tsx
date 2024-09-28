@@ -4,10 +4,10 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
-import { Input } from "@/components/ui/input";
-import GlobalResult from "@/components/shared/search/GlobalResult";
+import { Input } from "@components/ui/input";
+import GlobalResult from "@components/shared/search/GlobalResult";
 
-import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import { formUrlQuery, removeKeysFromQuery } from "@lib/utils";
 
 const GlobalSearch = () => {
   const router = useRouter();

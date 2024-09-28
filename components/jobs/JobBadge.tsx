@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@components/ui/badge";
 
 const JobBadge = ({
   data,

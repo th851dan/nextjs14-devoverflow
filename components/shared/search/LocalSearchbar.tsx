@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { Input } from "@/components/ui/input";
+import { Input } from "@components/ui/input";
 
-import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import { formUrlQuery, removeKeysFromQuery } from "@lib/utils";
 
 interface CustomInputProps {
   route: string;
@@ -58,9 +58,8 @@ const LocalSearchbar = ({
 
   return (
     <div
-      className={`background-light800_darkgradient flex min-h-[56px] grow  items-center gap-4 rounded-[10px] px-4 ${otherClasses} ${
-        iconPosition === "right" && "flex-row-reverse"
-      }`}
+      className={`background-light800_darkgradient flex min-h-[56px] grow  items-center gap-4 rounded-[10px] px-4 ${otherClasses} ${iconPosition === "right" && "flex-row-reverse"
+        }`}
     >
       <Image
         src={imgSrc}

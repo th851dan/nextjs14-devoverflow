@@ -3,12 +3,12 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
-import Answer from "@/database/answer.model";
-import Question from "@/database/question.model";
-import User from "@/database/user.model";
-import Interaction from "@/database/interaction.model";
+import Answer from "@database/answer.model";
+import Question from "@database/question.model";
+import User from "@database/user.model";
+import Interaction from "@database/interaction.model";
 
-import { connectToDatabase } from "@/lib/mongoose";
+import { connectToDatabase } from "@lib/mongoose";
 
 import type {
   AnswerVoteParams,

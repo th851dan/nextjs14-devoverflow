@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 
 import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@components/ui/button";
 
 import { sidebarLinks } from "@/constants";
 
-import Footer from "@/components/shared/Footer";
+import Footer from "@components/shared/Footer";
 
 const LeftSidebar = () => {
   const { userId } = useAuth();
@@ -40,11 +40,10 @@ const LeftSidebar = () => {
               <Link
                 key={link.route}
                 href={link.route}
-                className={`${
-                  isActive
-                    ? "primary-gradient rounded-lg text-light-900"
-                    : "text-dark300_light900"
-                } flex items-center justify-start gap-4 bg-transparent p-4`}
+                className={`${isActive
+                  ? "primary-gradient rounded-lg text-light-900"
+                  : "text-dark300_light900"
+                  } flex items-center justify-start gap-4 bg-transparent p-4`}
               >
                 <Image
                   src={link.imgURL}
@@ -54,9 +53,8 @@ const LeftSidebar = () => {
                   className={`${isActive ? "" : "invert-colors"}`}
                 />
                 <p
-                  className={`${
-                    isActive ? "base-bold" : "base-medium"
-                  } max-lg:hidden`}
+                  className={`${isActive ? "base-bold" : "base-medium"
+                    } max-lg:hidden`}
                 >
                   {link.label}
                 </p>
@@ -68,11 +66,10 @@ const LeftSidebar = () => {
             <Link
               key={"/profile"}
               href={`${sidebarLinks[4].route}/${userId}`}
-              className={`${
-                isProfileActive
-                  ? "primary-gradient rounded-lg text-light-900"
-                  : "text-dark300_light900"
-              } flex items-center justify-start gap-4 bg-transparent p-4`}
+              className={`${isProfileActive
+                ? "primary-gradient rounded-lg text-light-900"
+                : "text-dark300_light900"
+                } flex items-center justify-start gap-4 bg-transparent p-4`}
             >
               <Image
                 src={sidebarLinks[4].imgURL}
@@ -82,9 +79,8 @@ const LeftSidebar = () => {
                 className={`${isProfileActive ? "" : "invert-colors"}`}
               />
               <p
-                className={`${
-                  isProfileActive ? "base-bold" : "base-medium"
-                } max-lg:hidden`}
+                className={`${isProfileActive ? "base-bold" : "base-medium"
+                  } max-lg:hidden`}
               >
                 {sidebarLinks[4].label}
               </p>

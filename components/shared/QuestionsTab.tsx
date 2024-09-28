@@ -1,9 +1,9 @@
-import Pagination from "@/components/shared/Pagination";
-import QuestionCard from "@/components/cards/QuestionCard";
+import Pagination from "@components/shared/Pagination";
+import QuestionCard from "@components/cards/QuestionCard";
 
-import { getUserQuestions } from "@/lib/actions/user.action";
+import { getUserQuestions } from "@lib/actions/user.action";
 
-import type { UserId } from "@/lib/actions/shared.types";
+import type { UserId } from "@lib/actions/shared.types";
 import type { SearchParamsProps } from "@/types";
 
 interface Props extends SearchParamsProps, UserId {

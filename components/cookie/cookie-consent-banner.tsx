@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import Image from 'next/image'
-import { useCookieConsent } from '@/context/CookieConsentContext'
+import { useCookieConsent } from '@context/CookieConsentContext'
 
 export default function CookieConsentBanner() {
     const { consentGiven, setConsentGiven, updateCookiePreferences } = useCookieConsent()

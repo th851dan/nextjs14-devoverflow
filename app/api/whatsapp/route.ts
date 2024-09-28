@@ -1,7 +1,7 @@
-import { editWhatsappGroup, getWhatsappGroups, saveWhatsappGroup } from "@/lib/actions/whatsapp.action";
+import { editWhatsappGroup, getWhatsappGroups, saveWhatsappGroup } from "@lib/actions/whatsapp.action";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from '@clerk/backend'
-import { getUserById } from "@/lib/actions/user.action";
+import { getUserById } from "@lib/actions/user.action";
 
 export const GET = async (req: NextRequest) => {
   try {

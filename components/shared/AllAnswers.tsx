@@ -3,14 +3,14 @@ import Image from "next/image";
 
 import { SignedIn } from "@clerk/nextjs";
 
-import Filter from "@/components/shared/Filter";
-import ParseHTML from "@/components/shared/ParseHTML";
-import Votes from "@/components/shared/Votes";
-import Pagination from "@/components/shared/Pagination";
-import EditDeleteAction from "@/components/shared/EditDeleteAction";
+import Filter from "@components/shared/Filter";
+import ParseHTML from "@components/shared/ParseHTML";
+import Votes from "@components/shared/Votes";
+import Pagination from "@components/shared/Pagination";
+import EditDeleteAction from "@components/shared/EditDeleteAction";
 
-import { getAnswers } from "@/lib/actions/answer.action";
-import { getTimestamp } from "@/lib/utils";
+import { getAnswers } from "@lib/actions/answer.action";
+import { getTimestamp } from "@lib/utils";
 
 import { AnswerFilters } from "@/constants/filters";
 
@@ -19,7 +19,7 @@ import type {
   UserId,
   OptionalPage,
   OptionalFilter,
-} from "@/lib/actions/shared.types";
+} from "@lib/actions/shared.types";
 
 interface Props extends QuestionId, UserId, OptionalPage, OptionalFilter {
   totalAnswers: number;

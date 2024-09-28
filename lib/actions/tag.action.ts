@@ -2,11 +2,11 @@
 
 import { FilterQuery } from "mongoose";
 
-import Tag from "@/database/tag.model";
-import Question from "@/database/question.model";
-import User from "@/database/user.model";
+import Tag from "@database/tag.model";
+import Question from "@database/question.model";
+import User from "@database/user.model";
 
-import { connectToDatabase } from "@/lib/mongoose";
+import { connectToDatabase } from "@lib/mongoose";
 
 import type {
   GetAllTagsParams,

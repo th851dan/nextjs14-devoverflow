@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "../ui/button";
 
-import { formUrlQuery } from "@/lib/utils";
+import { formUrlQuery } from "@lib/utils";
 
 interface Props {
   pageNumber: number;

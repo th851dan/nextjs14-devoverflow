@@ -7,9 +7,9 @@ import { useSearchParams } from "next/navigation";
 
 import { ReloadIcon } from "@radix-ui/react-icons";
 
-import GlobalFilters from "@/components/shared/search/GlobalFilters";
+import GlobalFilters from "@components/shared/search/GlobalFilters";
 
-import { globalSearch } from "@/lib/actions/general.action";
+import { globalSearch } from "@lib/actions/general.action";
 
 const GlobalResult = () => {
   const searchParams = useSearchParams();

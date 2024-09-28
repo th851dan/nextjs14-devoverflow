@@ -4,13 +4,13 @@ import { revalidatePath } from "next/cache";
 
 import { FilterQuery } from "mongoose";
 
-import User from "@/database/user.model";
-import Tag from "@/database/tag.model";
-import Question from "@/database/question.model";
-import Answer from "@/database/answer.model";
+import User from "@database/user.model";
+import Tag from "@database/tag.model";
+import Question from "@database/question.model";
+import Answer from "@database/answer.model";
 
-import { connectToDatabase } from "@/lib/mongoose";
-import { assignBadges } from "@/lib/utils";
+import { connectToDatabase } from "@lib/mongoose";
+import { assignBadges } from "@lib/utils";
 
 import type {
   CreateUserParams,

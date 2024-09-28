@@ -20,7 +20,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@components/*": ["./components/*"],
+      "@context/*": ["./context/*"],
+      "@database/*": ["./database/*"],
+      "@i18n/*": ["./i18n/*"],
+      "@lib/*": ["./lib/*"]
     }
   },
   "include": [

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { getFormattedNumber } from "@/lib/utils";
+import { getFormattedNumber } from "@lib/utils";
 
 import type { BadgeCounts } from "@/types";
 

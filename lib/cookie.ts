@@ -1,4 +1,4 @@
-import { CookieConsentData } from "@/context/CookieConsentContext";
+import { CookieConsentData } from "@context/CookieConsentContext";
 import crypto from "crypto";
 
 export function generateUniqueID(length: number = 44): string {

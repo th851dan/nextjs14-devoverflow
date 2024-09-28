@@ -2,10 +2,10 @@ import Link from "next/link";
 
 import { SignedIn } from "@clerk/nextjs";
 
-import Metric from "@/components/shared/Metric";
-import EditDeleteAction from "@/components/shared/EditDeleteAction";
+import Metric from "@components/shared/Metric";
+import EditDeleteAction from "@components/shared/EditDeleteAction";
 
-import { getFormattedNumber, getTimestamp } from "@/lib/utils";
+import { getFormattedNumber, getTimestamp } from "@lib/utils";
 
 interface Props {
   clerkId?: string | null;

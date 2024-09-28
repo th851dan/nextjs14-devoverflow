@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
-import { deleteAnswer } from "@/lib/actions/answer.action";
-import { deleteQuestion } from "@/lib/actions/question.action";
+import { deleteAnswer } from "@lib/actions/answer.action";
+import { deleteQuestion } from "@lib/actions/question.action";
 
 interface Props {
   type: string;

@@ -1,7 +1,7 @@
-import { connectToDatabase } from "@/lib/mongoose";
+import { connectToDatabase } from "@lib/mongoose";
 
-import CookieConsent from "@/database/cookieConsent.model";
-import { CookieConsentData } from "@/context/CookieConsentContext";
+import CookieConsent from "@database/cookieConsent.model";
+import { CookieConsentData } from "@context/CookieConsentContext";
 
 export async function updateCookieConsent(params: CookieConsentData) {
   try {

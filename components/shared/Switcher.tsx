@@ -2,10 +2,10 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+import { Label } from "@components/ui/label";
+import { Switch } from "@components/ui/switch";
 
-import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import { formUrlQuery, removeKeysFromQuery } from "@lib/utils";
 
 interface Props {
   query: string;

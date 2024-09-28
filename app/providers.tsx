@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { maskUserIdInEvent } from '@/lib/privacy';
+import { maskUserIdInEvent } from '@lib/privacy';
 
 export function PHProvider({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();

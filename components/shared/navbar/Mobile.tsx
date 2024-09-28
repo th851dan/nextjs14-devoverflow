@@ -6,13 +6,13 @@ import { usePathname } from "next/navigation";
 
 import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@components/ui/button";
 import {
   Sheet,
   SheetClose,
   SheetContent,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@components/ui/sheet";
 
 import { sidebarLinks } from "@/constants";
 import Footer from "../Footer";
@@ -33,11 +33,10 @@ const NavContent = () => {
           <SheetClose asChild key={link.route}>
             <Link
               href={link.route}
-              className={`${
-                isActive
-                  ? "primary-gradient rounded-lg text-light-900"
-                  : "text-dark300_light900"
-              } flex items-center justify-start gap-4 bg-transparent p-4`}
+              className={`${isActive
+                ? "primary-gradient rounded-lg text-light-900"
+                : "text-dark300_light900"
+                } flex items-center justify-start gap-4 bg-transparent p-4`}
             >
               <Image
                 src={link.imgURL}
@@ -70,11 +69,10 @@ const ProfileTab = () => {
         <Link
           key={"/profile"}
           href={`${sidebarLinks[4].route}/${userId}`}
-          className={`${
-            isProfileActive
-              ? "primary-gradient rounded-lg text-light-900"
-              : "text-dark300_light900"
-          } flex items-center justify-start gap-4 bg-transparent p-4`}
+          className={`${isProfileActive
+            ? "primary-gradient rounded-lg text-light-900"
+            : "text-dark300_light900"
+            } flex items-center justify-start gap-4 bg-transparent p-4`}
         >
           <Image
             src={sidebarLinks[4].imgURL}

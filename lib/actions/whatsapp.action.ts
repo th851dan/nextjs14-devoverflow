@@ -1,6 +1,6 @@
 
-import { connectToDatabase } from "@/lib/mongoose";
-import Whatsapp from "@/database/whatsapp.model";
+import { connectToDatabase } from "@lib/mongoose";
+import Whatsapp from "@database/whatsapp.model";
 
 import type {
   GetWhatsappParams,

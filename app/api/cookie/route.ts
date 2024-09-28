@@ -1,4 +1,4 @@
-import { updateCookieConsent } from "@/lib/actions/cookie.action";
+import { updateCookieConsent } from "@lib/actions/cookie.action";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {

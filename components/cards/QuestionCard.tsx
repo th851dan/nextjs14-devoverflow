@@ -2,11 +2,11 @@ import Link from "next/link";
 
 import { SignedIn } from "@clerk/nextjs";
 
-import RenderTag from "@/components/shared/RenderTag";
-import Metric from "@/components/shared/Metric";
-import EditDeleteAction from "@/components/shared/EditDeleteAction";
+import RenderTag from "@components/shared/RenderTag";
+import Metric from "@components/shared/Metric";
+import EditDeleteAction from "@components/shared/EditDeleteAction";
 
-import { getFormattedNumber, getTimestamp } from "@/lib/utils";
+import { getFormattedNumber, getTimestamp } from "@lib/utils";
 import CollapsibleContent from "../shared/CollapsibleContent";
 import CopyClipBoard from "../shared/CopyClipBoard";
 import { headers } from "next/headers";
