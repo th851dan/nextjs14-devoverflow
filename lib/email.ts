@@ -20,8 +20,8 @@ export default async function handlerEmail(params: MailOptions) {
       port: 587,
       secure: false,  
       auth: {
-        user: process.env.ICLOUD_EMAIL, 
-        pass: process.env.ICLOUD_APP_PASSWORD,  
+        user: process.env.ICLOUD_AUTH_EMAIL, 
+        pass: process.env.ICLOUD_APP_NODEMAILER_PASSWORD,  
       },
     });
 
@@ -47,7 +47,7 @@ export default async function handlerEmail(params: MailOptions) {
     const questionLink = `${protocol}://${host}/question/${params.questionId}`;
     
     const mailOptions = {
-      from: process.env.ICLOUD_EMAIL_FROM, 
+      from: process.env.ICLOUD_FROM_EMAIL, 
       to: params.toMail, 
       subject: 'New Answer', 
       template: 'notification-new-answer', 
