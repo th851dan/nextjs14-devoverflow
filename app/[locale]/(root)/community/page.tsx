@@ -10,7 +10,6 @@ import { UserFilters } from "@/constants/filters";
 
 import type { SearchParamsProps } from "@/types";
 import type { Metadata } from "next";
-import { useTranslations } from "next-intl";
 
 export const metadata: Metadata = {
   title: "Community — BuddyKnows",
