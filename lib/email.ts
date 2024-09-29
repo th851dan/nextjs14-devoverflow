@@ -23,6 +23,9 @@ export default async function handlerEmail(params: MailOptions) {
         user: process.env.ICLOUD_AUTH_EMAIL, 
         pass: process.env.ICLOUD_APP_NODEMAILER_PASSWORD,  
       },
+      tls: {
+        rejectUnauthorized: false,
+      }
     });
 
     const handlebarOptions = {
