@@ -1,4 +1,4 @@
-import { CookieDeclaration } from "@/components/ui/cookiedeclaration";
+import CookieDeclaration from "@/components/cookie/cookiedeclaration";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

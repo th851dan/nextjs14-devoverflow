@@ -1,5 +1,4 @@
 import React from "react";
-import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -15,6 +14,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { PHProvider } from "./providers";
 import dynamic from 'next/dynamic'
+import ContactBanner from "@/components/shared/ContactBanner";
+import CookieConsentBanner from "@/components/cookie/cookie-consent-banner";
+import { CookieConsentProvider } from "@/context/CookieConsentContext";
 
 const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
   ssr: false,
@@ -48,29 +50,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid={`${process.env.NEXT_PUBLIC_COOKIEBOT_DOMAIN_GROUP_ID}`}
-          type="text/javascript"
-        ></Script>
-      </head>
       <PHProvider>
         <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
-          <PostHogPageView />
-          <ClerkProvider
-            appearance={{
-              elements: {
-                formButtonPrimary: "primary-gradient",
-                footerActionLink: "primary-text-gradient hover:text-primary-500",
-              },
-            }}
-          >
-            <ThemeProvider>{children}</ThemeProvider>
-          </ClerkProvider>
-          <Analytics />
-          <SpeedInsights />
+          <CookieConsentProvider>
+            <ContactBanner />
+            <PostHogPageView />
+            <ClerkProvider
+              appearance={{
+                elements: {
+                  formButtonPrimary: "primary-gradient",
+                  footerActionLink: "primary-text-gradient hover:text-primary-500",
+                },
+              }}
+            >
+              <ThemeProvider>{children}</ThemeProvider>
+            </ClerkProvider>
+            <Analytics />
+            <SpeedInsights />
+            <CookieConsentBanner />
+          </CookieConsentProvider>
         </body>
       </PHProvider>
     </html>
