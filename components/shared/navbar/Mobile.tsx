@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@i18n/routing";
 
 import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 

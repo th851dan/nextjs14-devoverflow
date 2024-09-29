@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@i18n/routing";
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";

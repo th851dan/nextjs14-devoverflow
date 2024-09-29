@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "@i18n/routing";
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";

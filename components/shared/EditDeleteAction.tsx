@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@i18n/routing";
 
 import { deleteAnswer } from "@lib/actions/answer.action";
 import { deleteQuestion } from "@lib/actions/question.action";
