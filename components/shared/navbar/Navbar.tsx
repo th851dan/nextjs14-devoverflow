@@ -6,6 +6,7 @@ import { SignedIn, UserButton } from "@clerk/nextjs";
 import Theme from "@components/shared/navbar/Theme";
 import Mobile from "@components/shared/navbar/Mobile";
 import GlobalSearch from "@components/shared/search/GlobalSearch";
+import LanguageSwitcher from "@components/shared/navbar/LanguageSwitcher";
 
 const Navbar = () => {
   return (
@@ -27,8 +28,8 @@ const Navbar = () => {
       </Link>
 
       <GlobalSearch />
-
-      <div className="flex-between gap-5">
+      <div className="flex-between gap-2">
+        <LanguageSwitcher />
         <Theme />
         <SignedIn>
           <UserButton
