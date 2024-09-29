@@ -52,8 +52,8 @@ export async function createAnswer(params: CreateAnswerParams) {
 
     const authorOfQuestion = await User.findById(questionObj.author);
 
-    if(!authorOfQuestion.isDeleted) {
-      await handlerEmail({
+    if (!authorOfQuestion.isDeleted) {
+      handlerEmail({
         toMail: authorOfQuestion.email_addresses[0],
         username: authorOfQuestion.name,
         questionId: question
