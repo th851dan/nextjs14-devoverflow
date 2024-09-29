@@ -13,8 +13,6 @@ interface MailOptions {
 export default async function handlerEmail(params: MailOptions) {
 
     console.log("try to send email")
-    console.log("auth email " + process.env.ICLOUD_AUTH_EMAIL)
-    console.log("pass " + process.env.ICLOUD_APP_NODEMAILER_PASSWORD)
 
     // Configure the transporter
     const transporter = nodemailer.createTransport({
@@ -61,9 +59,6 @@ export default async function handlerEmail(params: MailOptions) {
         linkToQuestion: questionLink
       },
     };
-
-    console.log("mailOption")
-    console.log(mailOptions)
 
     try {
 
