@@ -2,32 +2,21 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { countQuestion } from "@/lib/actions/question.action";
+import { getNotificationByRecipient } from "@/lib/actions/notification.action";
 
-const Notification = () => {
+const ShowNotification = (recipientId: string) => {
 
-    const [questionNumber, setQuestionNumber] = useState<number>(0);
-
+    const [notifcation, setNotification] = useState<Notification[]>([]);
 
     useEffect(() => {
 
-        const fetchData = async () => {
-            try {
-                const question = await countQuestion()
-                setQuestionNumber(question);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+        async function fetchNotifications() {
+            const res = await getNotificationByRecipient({ recipientId })
+            setNotification(res);
+        }
+        fetchNotifications();
 
-        fetchData();
-
-        const interval = setInterval(() => {
-            fetchData();
-        }, 900000);
-
-        return () => clearInterval(interval);
-    }, []);
+    }, [notifcation, recipientId])
 
     return (
         <div className="relative flex items-center gap-1">
@@ -36,13 +25,13 @@ const Notification = () => {
                 width={22}
                 height={22}
                 className={`object-contain`} alt={''} />
-            {questionNumber > 0 && (
+            {notifcation.length > 0 && (
                 <span className="absolute -right-1 -top-1 rounded-full bg-red-600 px-1 text-xs text-white">
-                    {questionNumber}
+                    {notifcation.length}
                 </span>
             )}
         </div>
     );
 };
 
-export default Notification;
+export default ShowNotification;

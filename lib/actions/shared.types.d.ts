@@ -52,9 +52,9 @@ interface Voting {
 
 interface Searchable
   extends OptionalPage,
-    OptionalPageSize,
-    OptionalSearch,
-    OptionalFilter {}
+  OptionalPageSize,
+  OptionalSearch,
+  OptionalFilter { }
 
 /**
  * Interfaces for user actions
@@ -69,9 +69,9 @@ export interface CreateUserParams extends ClerkId {
   image_url: string;
 }
 
-export interface GetUserByIdParams extends UserId {}
+export interface GetUserByIdParams extends UserId { }
 
-export interface GetAllUsersParams extends Searchable {}
+export interface GetAllUsersParams extends Searchable { }
 
 export interface GetJobsParams extends Searchable {
   location?: string;
@@ -84,26 +84,26 @@ export interface UpdateUserParams extends ClerkId, Path {
   updateData: Partial<IUser>;
 }
 
-export interface DeleteUserParams extends ClerkId {}
+export interface DeleteUserParams extends ClerkId { }
 
 export interface GetUserStatsParams
   extends UserId,
-    OptionalPage,
-    OptionalPageSize {}
+  OptionalPage,
+  OptionalPageSize { }
 
-export interface ToggleSaveQuestionParams extends UserId, QuestionId, Path {}
+export interface ToggleSaveQuestionParams extends UserId, QuestionId, Path { }
 
 export interface GetSavedQuestionParams
   extends ClerkId,
-    OptionalPage,
-    OptionalPageSize,
-    OptionalSearch,
-    OptionalFilter {}
+  OptionalPage,
+  OptionalPageSize,
+  OptionalSearch,
+  OptionalFilter { }
 
 /**
  * Interfaces for question actions
  */
-export interface GetQuestionsParams extends Searchable {}
+export interface GetQuestionsParams extends Searchable { }
 
 export interface CreateQuestionParams extends Path, Content {
   title: string;
@@ -111,9 +111,9 @@ export interface CreateQuestionParams extends Path, Content {
   author: Schema.Types.ObjectId | IUser;
 }
 
-export interface GetQuestionByIdParams extends QuestionId {}
+export interface GetQuestionByIdParams extends QuestionId { }
 
-export interface QuestionVoteParams extends QuestionId, UserId, Path, Voting {}
+export interface QuestionVoteParams extends QuestionId, UserId, Path, Voting { }
 
 export interface DeleteQuestionParams extends QuestionId, Path {
   isQuestionPath?: boolean;
@@ -134,23 +134,23 @@ export interface CreateAnswerParams extends Path, Content {
 
 export interface GetAnswersParams
   extends OptionalPage,
-    OptionalPageSize,
-    QuestionId {
+  OptionalPageSize,
+  QuestionId {
   sortBy?: string;
 }
 
-export interface GetAnswerByIdParams extends AnswerId {}
+export interface GetAnswerByIdParams extends AnswerId { }
 
-export interface AnswerVoteParams extends AnswerId, UserId, Path, Voting {}
+export interface AnswerVoteParams extends AnswerId, UserId, Path, Voting { }
 
-export interface DeleteAnswerParams extends Path, AnswerId {}
+export interface DeleteAnswerParams extends Path, AnswerId { }
 
-export interface EditAnswerParams extends Path, AnswerId, Content {}
+export interface EditAnswerParams extends Path, AnswerId, Content { }
 
 /**
  * Interfaces for interaction actions
  */
-export interface ViewQuestionParams extends UserId, QuestionId {}
+export interface ViewQuestionParams extends UserId, QuestionId { }
 
 /**
  * Interfaces for tag actions
@@ -159,12 +159,12 @@ export interface GetTopInteractedTagsParams extends UserId {
   limit?: number;
 }
 
-export interface GetAllTagsParams extends Searchable {}
+export interface GetAllTagsParams extends Searchable { }
 
 export interface GetQuestionByTagIdParams
   extends OptionalPage,
-    OptionalPageSize,
-    OptionalSearch {
+  OptionalPageSize,
+  OptionalSearch {
   tagId: string;
 }
 
@@ -182,9 +182,9 @@ export interface SearchParams {
 
 export interface RecommendedParams
   extends UserId,
-    OptionalPage,
-    OptionalPageSize,
-    OptionalSearch {}
+  OptionalPage,
+  OptionalPageSize,
+  OptionalSearch { }
 
 export interface JobFilterParams {
   query: string;
@@ -200,9 +200,9 @@ export interface GetFormattedSalaryParams {
 
 export interface GetWhatsappParams
   extends OptionalPage,
-    OptionalPageSize,
-    OptionalFilter,
-    OptionalSearch {}
+  OptionalPageSize,
+  OptionalFilter,
+  OptionalSearch { }
 
 export interface WhatsappGroupData {
   id: Number;
@@ -214,6 +214,14 @@ export interface WhatsappGroupData {
 
 export interface GetUserByFacebookUserIdParams
   extends OptionalPage,
-    OptionalPageSize {
+  OptionalPageSize {
   facebookUserId: string;
+}
+
+
+export interface NotificationParams {
+  id: Number
+  content: string;
+  recipients: Schema.Types.ObjectId[],
+  readBy: Schema.Types.ObjectId[]
 }
