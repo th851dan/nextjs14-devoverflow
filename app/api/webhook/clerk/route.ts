@@ -7,6 +7,17 @@ import { WebhookEvent } from "@clerk/nextjs/server";
 
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.action";
 
+import Pusher from 'pusher';
+
+// Initialize Pusher with TypeScript types
+const pusher = new Pusher({
+  appId: process.env.PUSHER_APP_ID!,
+  key: process.env.PUSHER_KEY!,
+  secret: process.env.PUSHER_SECRET!,
+  cluster: process.env.PUSHER_CLUSTER!,
+  useTLS: true,
+});
+
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
@@ -73,9 +84,12 @@ export async function POST(req: Request) {
       ),
       first_name: first_name || "",
       last_name: last_name || "",
-      image_url, 
+      image_url,
       picture: image_url,
     });
+
+    // Emit the userCreated event to Pusher
+    await pusher.trigger('user-channel', 'user-created', { clerkId: id });
     return NextResponse.json({ message: "User created", mongoUser });
   }
 

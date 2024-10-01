@@ -5,7 +5,7 @@ import Profile from "@/components/forms/Profile";
 
 import { getUserById } from "@/lib/actions/user.action";
 import { ClerkId } from "@/lib/actions/shared.types";
-import DelayedRedirect from "@/components/auth/DelayedRedirect";
+import UserData from "@/components/auth/UserData";
 
 const getMongoUser = async ({ clerkId }: ClerkId) => {
   try {
@@ -19,8 +19,18 @@ const getMongoUser = async ({ clerkId }: ClerkId) => {
 const Page = async () => {
   const { userId } = auth();
   if (!userId) return null;
+
   const mongoUser = await getMongoUser({ clerkId: userId });
-  if (!mongoUser) return <DelayedRedirect delay={1500} redirectTo="/onboarding/waiting" />;
+
+  if (!mongoUser) {
+    return (
+      <div>
+        <p className="text-dark100_light900">Creating your account, please wait...</p>
+        {/* Client Component to handle Pusher real-time updates */}
+        <UserData clerkId={userId} />
+      </div>
+    );
+  }
 
   if (mongoUser.onboarded) {
     return redirect("/"); // Redirect if user is already onboarded
