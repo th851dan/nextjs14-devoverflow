@@ -21,23 +21,6 @@ export default clerkMiddleware((auth, req) => {
   if (auth().userId && req.nextUrl.pathname === "/profile")
     return NextResponse.redirect(new URL(`/profile/${auth().userId}`, req.url));
 
-  // Fix race condition BO-35
-  if (auth().userId && req.nextUrl.pathname === "/onboarding") {
-    const referer = req.headers.get("referer");
-    //Potential bug here(detected 31.08.2024): when user using OAuth of thid parties, get redirected to onboarding,
-    //the 'referer' might be null, when the username option on Clerk is turned off. Since username is turned on, user gets
-    //one extra step to enter username, the redirection now somehow also carries the referer property.
-    if (referer) {
-      // Perform logic based on the referer
-      // redirected from /onboaring/waiting
-      if (referer.includes("/waiting")) {
-        return NextResponse.next();
-      }
-      // request comes from same page, e.x by clicking submit button
-      if (referer === req.nextUrl.href) return NextResponse.next();
-      return NextResponse.redirect(new URL(`/onboarding/waiting`, req.url));
-    }
-  }
 });
 
 export const config = {
